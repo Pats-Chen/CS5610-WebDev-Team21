@@ -10,18 +10,13 @@ import Home from "./home/index.js";
 function App() {
   return (
     <div className="App">
-        <p>First test </p>
-
-
         <BrowserRouter>
             <div className="container">
             <Routes>
-                <Route path="/home" element={<Home/>}/>
                 <Route path="/googleMapTest" element={<GoogleMapTest/>}/>
             </Routes>
             </div>
         </BrowserRouter>
-
     </div>
   );
 }
