@@ -6,6 +6,7 @@ import {Routes, Route} from "react-router";
 
 import GoogleMapTest from "./GoogleMapTest";
 import Home from "./home/index.js";
+import NavigationBar from "./navigation-bar";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <div className="container">
             <Routes>
                 <Route path="/googleMapTest" element={<GoogleMapTest/>}/>
+                <Route path="/navigationBar" element={<NavigationBar/>}/>
             </Routes>
             </div>
         </BrowserRouter>
