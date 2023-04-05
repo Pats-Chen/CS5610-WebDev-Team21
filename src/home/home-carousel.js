@@ -2,7 +2,7 @@ import React from "react";
 
 function HomeCarousel () {
     return (
-        <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
+        <div id="myCarousel" className="carousel slide mb-0" data-bs-ride="carousel">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                         className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -27,9 +27,9 @@ function HomeCarousel () {
 
                     <div className="container">
                         <div className="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a className="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                            <h1>Creat a new plan.</h1>
+                            <p>search your distinction, build your trip .</p>
+                            <p><a className="btn btn-lg btn-primary" href="#">Start to plan</a></p>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,9 @@ function HomeCarousel () {
 
                     <div className="container">
                         <div className="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a className="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                            <h1>Explore more plans.</h1>
+                            <p>view travel plans created by others and join their jurney</p>
+                            <p><a className="btn btn-lg btn-primary" href="#">Browse plans</a></p>
                         </div>
                     </div>
                 </div>
