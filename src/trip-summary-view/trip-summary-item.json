@@ -1,0 +1,29 @@
+[{
+  "_id":"123",
+  "place": "Seattle",
+  "owner": "Mozhi",
+  "participant": "AAA,BBB,CCC",
+  "description": "A three day trip around Seattle"
+},
+  {
+    "_id":"234",
+    "place": "San Francisco",
+    "owner": "Mozhi",
+    "participant": "AAA,BBB,CCC",
+    "description": "A three day trip around Seattle"
+  },
+  {
+    "_id":"345",
+    "place": "Boston",
+    "owner": "Mozhi",
+    "participant": "AAA,BBB,CCC",
+    "description": "A three day trip around Seattle"
+  },
+  {
+    "_id":"456",
+    "place": "Seattle",
+    "owner": "Mozhi",
+    "participant": "AAA,BBB,CCC",
+    "description": "A three day trip around Seattle"
+  }
+]
