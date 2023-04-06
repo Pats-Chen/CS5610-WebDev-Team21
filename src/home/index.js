@@ -64,7 +64,7 @@ function Home(){
                Place for nav bar
             </header>
 
-            <HomeCarousel></HomeCarousel>
+            <HomeCarousel/>
 
             <div className="row  featurette container-fluid bg-opacity-50" >
                 <div className="col-md-9" >
