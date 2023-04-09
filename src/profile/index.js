@@ -5,6 +5,8 @@ import MyTrips from "./myTrips/my-trips.js";
 import MyReviews from "./myReviews/my-reviews.js";
 import EditProfile from "./editProfile/edit-profile";
 import MyInfo from "./myInfo/my-info";
+import FollowingList from "./followingList/index.js";
+import FollowerList from "./followerList/index.js";
 
 
 
@@ -23,6 +25,9 @@ function Profile(){
                         <Route path="/mytrips"        element={<MyTrips/>}/>
                         <Route path="/myreviews"  element={<MyReviews/>}/>
                         <Route path="/editprofile" element={<EditProfile/>}/>
+                        <Route path="/followingList" element={<FollowingList/>}/>
+                        <Route path="/followerList" element={<FollowerList/>}/>
+
                     </Routes>
 
                 </div>

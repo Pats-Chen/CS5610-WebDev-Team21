@@ -20,14 +20,16 @@ function MyReviews(props) {
                    {reviews.map(review =>
                        <ReviewItems key={review._id} summary={review}/>
                    )}
-                   }
+
                </div>
 
            </div>
            <div className="mt-5">
 
                <p className="float-end"><a href="#">Back to top</a></p>
-               <p>&copy; Team21. CS5610. NEU. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+               <p>&copy; Team21. CS5610. NEU. &middot; <a href="#">Privacy</a>
+                   &middot; <a href="#">Terms</a></p>
+
 
            </div>
 

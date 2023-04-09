@@ -42,6 +42,18 @@ const active = paths[2];
                           <div className="col-lg-6">
                               <h2><strong>Valerie Luna</strong></h2>
 
+                              <h7 className ="mb-2">
+                                  <span> <strong>  <Link  to="followingList " style={{ display: 'inline' , textDecoration:"none", color: 'black' }}  >
+                                 1,200
+                              </Link> </strong> </span>Following
+
+                                  <span className="ms-4"> <strong>  <Link  to="followerList " style={{ display: 'inline' , textDecoration:"none", color: 'black' }}  >
+                                 1,900
+                              </Link> </strong> </span>Followers
+
+
+                              </h7>
+
                               <p className="text-muted">
                                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                   Veritatis officia optio nihil, accusamus corrupti praesentium.

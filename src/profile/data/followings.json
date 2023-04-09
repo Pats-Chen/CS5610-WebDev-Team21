@@ -1,0 +1,25 @@
+[{
+  "_id":"123",
+  "Name": "Bella Thorne",
+  "following": "1,000",
+  "profileImage": "https://i.imgur.com/KmT515u.jpg"
+},
+  {
+    "_id":"234",
+    "Name": "Susan Ye",
+    "following": "1,000",
+    "profileImage": "https://i.imgur.com/KmT515u.jpg"
+  },
+  {
+    "_id":"456",
+    "Name": "Bella Thorne",
+    "following": "1,000",
+    "profileImage": "https://i.imgur.com/KmT515u.jpg"
+  },
+  {
+    "_id":"789",
+    "Name": "Bella Thorne",
+    "following": "1,000",
+    "profileImage": "https://i.imgur.com/KmT515u.jpg"
+  }
+]
