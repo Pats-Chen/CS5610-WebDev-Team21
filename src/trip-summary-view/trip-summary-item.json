@@ -3,10 +3,11 @@
   "planName": "Seattle Trip",
   "planCreator": "0x456789",
   "planOwner": "0x456789",
+  "planDescription": "A three day trip around Seattle",
   "place": "Seattle",
   "owner": "Mozhi",
   "participant": "AAA,BBB,CCC",
-  "description": "A three day trip around Seattle"
+
 },
   {
     "_id":"234",
