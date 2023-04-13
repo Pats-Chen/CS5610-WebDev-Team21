@@ -3,6 +3,10 @@ import "./homepage.css";
 import homeCarousel from "./home-carousel";
 import HomeCarousel from "./home-carousel";
 import TripSummaryList from "../trip-summary-view/trip-summary-list.js";
+import {Link} from "react-router-dom";
+import NavigationBar from "../navigation-bar";
+import PlanOverview from "../plan-overview";
+
 function Home(){
     return(
         <main>
@@ -61,7 +65,7 @@ function Home(){
                 `}
             </style>
             <header>
-               Place for nav bar
+                <NavigationBar/>
             </header>
 
             <HomeCarousel/>
@@ -88,3 +92,4 @@ function Home(){
 }
 
 export default Home
+

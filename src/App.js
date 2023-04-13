@@ -1,11 +1,11 @@
-
 import './App.css';
+import './vendors/fontawesome/css/all.min.css';
 import * as PropTypes from "prop-types";
 import {BrowserRouter, Router} from "react-router-dom";
 import {Routes, Route} from "react-router";
 
 import GoogleMapTest from "./GoogleMapTest";
-import Home from "./home/index.js";
+import HomeComponent from "./home/index.js";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
             <Routes>
                 <Route path="" element={<Home/>}/>
                 <Route path="/googleMapTest" element={<GoogleMapTest/>}/>
+                <Route path="/home" element={<HomeComponent/>}/>
             </Routes>
         </BrowserRouter>
     </div>
