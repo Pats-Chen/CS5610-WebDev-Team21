@@ -1,19 +1,18 @@
 import React from "react";
-import summaryArray from "./trip-summary-item.json";
-import TripSummaryViewItem from "./trip-summary-view-item";
+import summaryArray from "./plan-summary-item.json";
+import PlanSummaryViewItem from "./plan-summary-view-item";
 
-
-const TripSummaryList = () =>{
+const PlanSummaryList = () =>{
     // console.log(summaryArray)
     return(
         <div className="container marketing">
             <div className="row">
                 {summaryArray.map(summary =>
-                    <TripSummaryViewItem key ={summary._id} summary={summary}/>)
+                    <PlanSummaryViewItem key ={summary._planID} summary={summary}/>)
                 }
             </div>
         </div>
     )
 };
 
-export default TripSummaryList
+export default PlanSummaryList
