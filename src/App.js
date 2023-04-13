@@ -11,12 +11,11 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            <div className="container">
             <Routes>
+                <Route path="" element={<Home/>}/>
                 <Route path="/googleMapTest" element={<GoogleMapTest/>}/>
                 <Route path="/home" element={<HomeComponent/>}/>
             </Routes>
-            </div>
         </BrowserRouter>
     </div>
   );

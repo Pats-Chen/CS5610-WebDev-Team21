@@ -1,0 +1,54 @@
+[
+  {
+    "_planID":"123",
+    "planName": "Seattle Trip",
+    "planCreator": "0x456789",
+    "planOwner": "0x456789",
+    "planDescription": "A three day trip around Seattle",
+    "planStops": [{
+      "stopName": "Seattle",
+      "stopLocation": [81, 40],
+      "stopTime": "12:10:03",
+      "isEnd": true
+    }]
+  },
+  {
+    "_planID":"234",
+    "planName": "Seattle Trip",
+    "planCreator": "0x456789",
+    "planOwner": "0x456789",
+    "planDescription": "A three day trip around Seattle",
+    "planStops": [{
+      "stopName": "Seattle",
+      "stopLocation": [81, 40],
+      "stopTime": "12:10:03",
+      "isEnd": true
+    }]
+  },
+  {
+    "_planID":"345",
+    "planName": "Seattle Trip",
+    "planCreator": "0x456789",
+    "planOwner": "0x456789",
+    "planDescription": "A three day trip around Seattle",
+    "planStops": [{
+      "stopName": "Seattle",
+      "stopLocation": [81, 40],
+      "stopTime": "12:10:03",
+      "isEnd": true
+    }]
+  },
+  {
+    "_planID":"456",
+    "planName": "Seattle Trip",
+    "planCreator": "0x456789",
+    "planOwner": "0x456789",
+    "planDescription": "A three day trip around Seattle",
+    "planStops": [{
+      "stopName": "Seattle",
+      "stopLocation": [81, 40],
+      "stopTime": "12:10:03",
+      "isEnd": true
+    }]
+  }
+]
