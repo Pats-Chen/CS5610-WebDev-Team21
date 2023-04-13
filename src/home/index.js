@@ -2,7 +2,7 @@ import React from "react";
 import "./homepage.css";
 import homeCarousel from "./home-carousel";
 import HomeCarousel from "./home-carousel";
-import TripSummaryList from "../trip-summary-view/trip-summary-list.js";
+import PlanSummaryList from "../trip-summary-view/plan-summary-list.js";
 import {Link} from "react-router-dom";
 import NavigationBar from "../navigation-bar";
 import PlanOverview from "../plan-overview";
@@ -79,7 +79,7 @@ function Home(){
                 </div>
             </div>
 
-            <TripSummaryList/>
+            <PlanSummaryList/>
 
             <footer className="container">
             <p className="float-end"><a href="#">Back to top</a></p>
