@@ -1,5 +1,8 @@
 [{
-  "_id":"123",
+  "_planID":"123",
+  "planName": "Seattle Trip",
+  "planCreator": "0x456789",
+  "planOwner": "0x456789",
   "place": "Seattle",
   "owner": "Mozhi",
   "participant": "AAA,BBB,CCC",
