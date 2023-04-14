@@ -1,24 +1,27 @@
-
+import './vendors/fontawesome/css/all.min.css';
 import './App.css';
-import * as PropTypes from "prop-types";
-import {BrowserRouter, Router} from "react-router-dom";
+import React from "react";
 import {Routes, Route} from "react-router";
-
-import GoogleMapTest from "./GoogleMapTest";
-import PlanDetailComponent from "./plan_detail";
+import {BrowserRouter, Router} from "react-router-dom";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import CurrentUserContext from "./travelAdvisor/current-user-context";
+import usersReducer from "./services/usersReducer";
+import TravelAdvisor from "./travelAdvisor/index.js"
 
 function App() {
   return (
-    <div className="App">
-        <BrowserRouter>
-            <div className="container">
-            <Routes>
-                <Route path="/googleMapTest" element={<GoogleMapTest/>}/>
-                <Route path="/plan-detail" element={<PlanDetailComponent/>}/>
-            </Routes>
-            </div>
-        </BrowserRouter>
-    </div>
+      <Provider store={configureStore({reducer: {users: usersReducer}})}>
+          <CurrentUserContext>
+            <BrowserRouter>
+                <div className="container">
+                    <Routes>
+                        <Route path="/travelAdvisor/*" element={<TravelAdvisor/>}/>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+          </CurrentUserContext>
+    </Provider>
   );
 }
 
