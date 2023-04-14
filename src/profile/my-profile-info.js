@@ -5,10 +5,10 @@ import MyProfileInfoComponent from "./my-info/my-info";
 function ProfileInfo(){
     return (
         <>
-            <div >
+            <div className="container bg-light">
                 <ProfileNavBar/>
             </div>
-            <div>
+            <div className="container bg-light">
                 <MyProfileInfoComponent/>
             </div>
             <div className="mt-5">

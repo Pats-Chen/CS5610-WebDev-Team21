@@ -12,7 +12,7 @@ const Signup = () => {
             .catch(e => alert(e));
     return (
         <>
-            <div style={{ textAlign: 'left'}}>
+            <div className="bg-light rounded-2 p-2" style={{ textAlign: 'left'}}>
                 <h3>Signup</h3>
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="form2Username">Username</label>
@@ -47,7 +47,7 @@ const Signup = () => {
 
             </div>
 
-            <div className="mt-5">
+            <div className="mt-5 bg-light rounded-2">
 
                 <p className="float-end"><a href="#">Back to top</a></p>
                 <p>&copy; Team21. CS5610. NEU. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>

@@ -10,7 +10,7 @@ const PlanOverview = () => {
     const active = paths[2];
     return (
         <>
-            <div className="album py-5 bg-light">
+            <div className="album py-3 bg-light">
                 <div className="container">
                     <div className="row">
                         {planOverviewArray.map(planOverview => <PlanOverviewItem key={planOverview._id} planOverview={planOverview}/>)}

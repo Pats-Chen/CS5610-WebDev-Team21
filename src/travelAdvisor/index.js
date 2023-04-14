@@ -5,12 +5,13 @@ import {Routes, Route} from "react-router";
 import HomeComponent from "../home/index.js";
 import LoginComponent from "../login/login";
 import SignupComponent from "../login/register";
-import NavigationBar from "../navigation-bar";
+import NavigationBar from "../navigation-bar/index";
 import PlanSummaryList from "../trip-summary-view/plan-summary-list";
 import MapComponent from "../createTravelPlan/map";
 import ProfileInfoComponent from "../profile/my-profile-info";
 import ProfileTripsComponent from "../profile/my-profile-trips";
 import ProfileEditComponent from "../profile/my-profile-edit";
+import PlanDetailComponent from "../plan-detail/index";
 
 function TravelAdvisor() {
     return (
@@ -84,6 +85,7 @@ function TravelAdvisor() {
                     <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
                     <Route path="profile/mytrips" element={<ProfileTripsComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
+                    <Route path="detail" element={<PlanDetailComponent/>}/>
                 </Routes>
             </div>
         </main>

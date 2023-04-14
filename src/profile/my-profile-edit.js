@@ -5,10 +5,10 @@ import EditProfileComponent from "./edit-profile/edit-profile";
 function ProfileTrips(){
     return (
         <>
-            <div >
+            <div className="container bg-light">
                 <ProfileNavBar/>
             </div>
-            <div>
+            <div className="container bg-light">
                 <EditProfileComponent/>
             </div>
             <div className="mt-5">

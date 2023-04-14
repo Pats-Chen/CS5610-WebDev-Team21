@@ -12,12 +12,12 @@ const ProfileNavBar = () => {
         return (
             <div>
 
-                <section className="bg-white shadow-1 ">
-                    <div className="container">
+                <section className="bg-light shadow-1">
+                    <div className="container ">
                         {/* Section: Images */}
                         <section className="mb-5">
                             <div style={{width: '100%'}}>
-                                <img  style={{height: '250px', width: '100%',objectFit: 'fit'}} src="/img/landscape3.png" alt=""/>
+                                <img  style={{height: '250px', width: '100%',objectFit: 'fit'}} src="/img/profile-header.png" alt=""/>
                             </div>
 
                             <img
