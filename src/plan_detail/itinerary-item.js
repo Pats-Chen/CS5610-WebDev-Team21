@@ -9,7 +9,7 @@ const ItineraryItem = (
     return(
         <li className="list-group-item">
             <div>
-                <div>{item.sightName}</div>
+                <h5>{item.sightName}</h5>
                 <div>Stop: {item.stayTime} min</div>
                 <div>{item.description}</div>
                 <button className="btn btn-primary rounded-pill float">See more details</button>
