@@ -68,6 +68,12 @@ function Home(){
                 <NavigationBar/>
             </header>
 
+            <div>
+                <Link to="/">Home</Link> |
+                <Link to="/login">Login</Link> |
+                <Link to="/createTravelPlan">CreateTravelPlan</Link>
+            </div>
+            
             <HomeCarousel/>
 
             <div className="row  featurette container-fluid bg-opacity-50" >
@@ -88,7 +94,6 @@ function Home(){
 
         </main>
     )
-
 }
 
 export default Home
