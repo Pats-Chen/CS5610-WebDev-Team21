@@ -8,6 +8,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import CurrentUserContext from "./travelAdvisor/current-user-context";
 import usersReducer from "./services/usersReducer";
 import TravelAdvisor from "./travelAdvisor/index.js"
+import PlanDetailComponent from "./plan_detail";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
                 <div className="container">
                     <Routes>
                         <Route path="/travelAdvisor/*" element={<TravelAdvisor/>}/>
+                        <Route path="/plan-detail" element={<PlanDetailComponent/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
