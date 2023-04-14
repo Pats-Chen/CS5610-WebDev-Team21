@@ -34,6 +34,15 @@ const NavigationBar = () => {
                                 <Link to="/travelAdvisor/signup" className="nav-link text-dark">Signup</Link>
                             </li>
                             <li className="nav-item">
+                                <Link to="/travelAdvisor/profile/myprofile" className="nav-link text-dark">Profile</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/travelAdvisor/profile/myprofileedit" className="nav-link text-dark">Edit profile</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/travelAdvisor/profile/mytrips" className="nav-link text-dark">My trips</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
                             </li>
                         </ul>

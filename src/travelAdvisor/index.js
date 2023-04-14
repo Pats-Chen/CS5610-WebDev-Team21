@@ -8,6 +8,9 @@ import SignupComponent from "../login/register";
 import NavigationBar from "../navigation-bar";
 import PlanSummaryList from "../trip-summary-view/plan-summary-list";
 import MapComponent from "../createTravelPlan/map";
+import ProfileInfoComponent from "../profile/my-profile-info";
+import ProfileTripsComponent from "../profile/my-profile-trips";
+import ProfileEditComponent from "../profile/my-profile-edit";
 
 function TravelAdvisor() {
     return (
@@ -73,9 +76,13 @@ function TravelAdvisor() {
 
             <div>
                 <Routes>
+                    <Route path="/" element={<HomeComponent/>}/>
                     <Route path="home" element={<HomeComponent/>}/>
                     <Route path="login" element={<LoginComponent/>}/>
                     <Route path="signup" element={<SignupComponent/>}/>
+                    <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
+                    <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
+                    <Route path="profile/mytrips" element={<ProfileTripsComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
                 </Routes>
             </div>
