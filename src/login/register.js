@@ -39,7 +39,7 @@ const Signup = () => {
 
             <button onClick={signup} className="btn btn-primary mb-5">Register</button>
             <div className="text-center">
-                <p>Already have an account? <Link to="/login" className="text-decoration-none">
+                <p>Already have an account? <Link to="/travelAdvisor/login" className="text-decoration-none">
                     Login</Link> now
                 </p>
             </div>

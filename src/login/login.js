@@ -12,9 +12,6 @@ export const Login = () => {
             .catch(e => alert(e));
     return (
         <div style={{ textAlign: 'left'}}>
-            <Link to="/">Home</Link> |
-            <Link to="/login">Login</Link> |
-            <Link to="/createTravelPlan">CreateTravelPlan</Link>
             <h3>Login</h3>
 
             <div className="form-outline mb-4">
@@ -33,7 +30,7 @@ export const Login = () => {
             <button onClick={login} type="button" className="btn btn-primary btn-block mb-4">Login</button>
 
             <div className="text-center">
-                <p>Don't have an account? <Link to="/login/register" className="text-decoration-none">
+                <p>Don't have an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">
                     Register</Link> now
                 </p>
             </div>

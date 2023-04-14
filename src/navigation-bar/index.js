@@ -25,16 +25,16 @@ const NavigationBar = () => {
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <a className="nav-link text-dark" href="#">Home <span className="sr-only">(current)</span></a>
+                                <Link to="/travelAdvisor/home" className="nav-link text-dark">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="#">View profile</a>
+                                <Link to="/travelAdvisor/login" className="nav-link text-dark">Login</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="#">New plan</a>
+                                <Link to="/travelAdvisor/signup" className="nav-link text-dark">Signup</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="#">Sign out</a>
+                                <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
                             </li>
                         </ul>
                     </div>
