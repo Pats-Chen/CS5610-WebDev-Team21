@@ -1,13 +1,14 @@
 import './vendors/fontawesome/css/all.min.css';
 import './App.css';
-import {BrowserRouter, Router} from "react-router-dom";
-import {Routes, Route} from "react-router";
-import TravelAdvisor from "./travelAdvisor/index.js"
 import React from "react";
+import {Routes, Route} from "react-router";
+import {BrowserRouter, Router} from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import CurrentUserContext from "./travelAdvisor/current-user-context";
 import usersReducer from "./services/usersReducer";
+import TravelAdvisor from "./travelAdvisor/index.js"
+
 function App() {
   return (
       <Provider store={configureStore({reducer: {users: usersReducer}})}>
