@@ -1,19 +1,32 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {loginThunk} from "../services/users-thunks";
 import * as service from "../services/user-service";
 
 export const Login = () => {
+    const { currentUser } = useSelector((state) => state.users);
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     // login: if success --> navigate to home screen
-    const login = () =>
-        service.login(loginUser)
-            .then((user) => navigate('/'))
-            .catch(e => alert(e));
+    const login = async () =>{
+        // service.login(loginUser)
+        //     .then((user) => navigate('/'))
+        //     .catch(e => alert(e));
+    try {
+        await dispatch(loginThunk(loginUser));
+        // navigate("/travelAdvisor/login");
+
+    } catch (err) {
+        console.log(err);
+    }
+};
     return (
         <div style={{ textAlign: 'left'}}>
             <h3>Login</h3>
-
+            {/*a demo to show that state.user is invoked*/}
+            {currentUser && (<h2>Welcome {currentUser.username}</h2>)}
             <div className="form-outline mb-4">
                 <label className="form-label" htmlFor="form2Username">Username</label>
                 <input onChange={(e) =>
