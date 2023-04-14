@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {loginThunk} from "../services/users-thunks";
+import {loginThunk, logoutThunk} from "../services/users-thunks";
 import * as service from "../services/user-service";
 
 export const Login = () => {
@@ -18,15 +18,24 @@ export const Login = () => {
         await dispatch(loginThunk(loginUser));
         // navigate("/travelAdvisor/login");
 
+
     } catch (err) {
         console.log(err);
-    }
+    }}
+    const logout = async () =>{
+        try {
+            await dispatch(logoutThunk());
+        } catch (err) {
+            console.log(err);
+        }
 };
     return (
         <div style={{ textAlign: 'left'}}>
             <h3>Login</h3>
             {/*a demo to show that state.user is invoked*/}
             {currentUser && (<h2>Welcome {currentUser.username}</h2>)}
+            {currentUser && (<button onClick={logout} className = "btn btn-primary">log out</button>)}
+            {/* demo ends here*/}
             <div className="form-outline mb-4">
                 <label className="form-label" htmlFor="form2Username">Username</label>
                 <input onChange={(e) =>
