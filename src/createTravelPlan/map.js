@@ -8,6 +8,8 @@ class Map extends Component {
             map: null,
             searchQuery: '',
             searchResults: [],
+            planName: '',
+            planDescription: '',
         };
         this.autocompleteInput = React.createRef();
         this.autocomplete = null;
@@ -35,20 +37,34 @@ class Map extends Component {
 
     handlePlaceSelect() {
         const place = this.autocomplete.getPlace();
-        const {map, searchResults} = this.state;
-        if (place.geometry) {
-            map.panTo(place.geometry.location);
-            map.setZoom(15);
-            const marker = new window.google.maps.Marker({
-                map,
-                position: place.geometry.location,
-            });
-            const address = place.formatted_address;
-            this.setState({
-                searchResults: [...searchResults, {name: place.name, location: place.geometry.location, address}],
-            });
+        const {map, searchResults, autoSearch} = this.state;
+        if (autoSearch) {
+            if (place.geometry) {
+                map.panTo(place.geometry.location);
+                map.setZoom(15);
+                const marker = new window.google.maps.Marker({
+                    map,
+                    position: place.geometry.location,
+                });
+                const address = place.formatted_address;
+                this.setState({
+                    searchResults: [...searchResults, {name: place.name, location: place.geometry.location, address}],
+                    autoSearch: false,
+                });
+            } else {
+                alert('No results found for this place');
+            }
         } else {
-            alert('No results found for this place');
+            if (place.geometry) {
+                map.panTo(place.geometry.location);
+                map.setZoom(15);
+                const marker = new window.google.maps.Marker({
+                    map,
+                    position: place.geometry.location,
+                });
+            } else {
+                alert('No results found for this place');
+            }
         }
     }
 
@@ -56,7 +72,7 @@ class Map extends Component {
         this.setState({searchQuery: event.target.value});
     }
 
-    handleSearch = () => {
+    handleAdd = () => {
         const {searchQuery, map, searchResults} = this.state;
         const request = {
             query: searchQuery,
@@ -82,6 +98,56 @@ class Map extends Component {
         });
     }
 
+    handlePlanNameChange = (event) => {
+        this.setState({planName: event.target.value});
+    }
+
+    handlePlanDescriptionChange = (event) => {
+        this.setState({planDescription: event.target.value});
+    }
+
+    handleCreatePlan = () => {
+        const {searchResults, planName, planDescription} = this.state;
+        if (searchResults.length === 0 || !planName || !planDescription) {
+            alert('Please enter plan name, plan description, and at least one location to create a travel plan.');
+            return;
+        }
+
+        const newPlan = {
+            planName,
+            planDescription,
+            locations: searchResults
+        };
+
+        // send newPlan to server to save to database
+        fetch('/api/create-plan', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPlan)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Travel plan created successfully!');
+                    // clear form and reset state
+                    this.setState({
+                        searchQuery: '',
+                        searchResults: [],
+                        planName: '',
+                        planDescription: ''
+                    });
+                } else {
+                    alert('There was an error creating the travel plan. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('There was an error creating the travel plan. Please try again.');
+            });
+    }
+
     handleRemove = (index) => {
         const {searchResults} = this.state;
         const updatedResults = [...searchResults];
@@ -89,13 +155,13 @@ class Map extends Component {
         this.setState({searchResults: updatedResults});
     }
 
-    renderSearchList = () => {
+    renderAddList = () => {
         const {searchResults} = this.state;
         return (
             <ul>
                 {searchResults.map((result, index) => (
                     <li key={index}>
-                        {result.name} - {result.address}
+                        {result.name} - Address: {result.address}
                         <button onClick={() => this.handleRemove(index)}>Remove</button>
                     </li>
                 ))}
@@ -108,16 +174,37 @@ class Map extends Component {
             <div className="map-container">
                 <h1 className="map-title">Create your travel plan!</h1>
                 <div className="search-container">
-                    <input style={{border: "2px solid black"}} type="text" onChange={this.handleChange}
-                           ref={this.autocompleteInput}
-                           placeholder="Search for a location e.g. Boston"/>
-                    <button onClick={this.handleSearch}>Search</button>
+                    <input
+                        style={{border: "2px solid black"}}
+                        type="text"
+                        onChange={this.handleChange}
+                        ref={this.autocompleteInput}
+                        placeholder="Add a location e.g. Boston"
+                    />
+                    <button onClick={this.handleAdd}>Add</button>
                 </div>
                 <div id="map"></div>
-                <h3 className="map-title">locations of interest</h3>
-                <div className="list-container">{this.renderSearchList()}</div>
+                <div className="search-container">
+                    <input
+                        style={{border: "2px solid black"}}
+                        type="text"
+                        placeholder="Enter your plan name"
+                        value={this.state.planName}
+                        onChange={this.handlePlanNameChange}
+                    />
+                    <input
+                        style={{border: "2px solid black"}}
+                        type="text"
+                        placeholder="Enter your plan description"
+                        value={this.state.planDescription}
+                        onChange={this.handlePlanDescriptionChange}
+                    />
+                    <button onClick={this.handleCreatePlan}>Create</button>
+                </div>
+                <h3 className="map-title">Your travel plan:</h3>
+                <div className="list-container">{this.renderAddList()}</div>
             </div>
-        )
+        );
     }
 }
 

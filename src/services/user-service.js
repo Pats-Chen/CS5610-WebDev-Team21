@@ -22,9 +22,11 @@ export const logout = () =>
     api.post(`${SECURITY_API}/logout`)
         .then(response => response.data);
 
-export const profile = () =>
-    api.post(`${SECURITY_API}/profile`)
-        .then(response => response.data);
+export const profile = () =>{
+    return api.post(`${SECURITY_API}/profile`);
+};
+    // api.post(`${SECURITY_API}/profile`)
+    //     .then(response => response.data);
 
 export const updateProfile = (uid, data) =>
     api.put(`${USER_API}/${uid}`, data)
