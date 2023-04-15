@@ -6,20 +6,82 @@ const MyInfo = () => {
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="profile-card text-center" style={{ border: "1px solid #ddd", borderRadius: "10px", padding: "20px" }}>
-
-                        <h2 className="mb-3 ml-100px">Valerie Luna</h2>
-                        <p className="text-muted">User ID: 12345</p>
-                        <p><strong>Email:</strong> Valerie Luna@example.com</p>
-                        <p><strong>Phone:</strong> +1 (123) 456-7890</p>
-                        <p><strong>Website:</strong> hi@gmail.com </p>
-                        <p><strong>Location:</strong> New York, USA</p>
-                        <p className="text-muted">Bio</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at lacinia velit, eget efficitur mi.</p>
-                        <button className="btn btn-primary" >
-                            <Link to="/travelAdvisor/profile/myprofileedit" style={{ color: "white" }}>Edit Profile</Link>
-                        </button>
-
+                    <div className="container">
+                        <div className="text-c">
+                            <div className="card mb-3 mt-3">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">User ID</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">12345</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">First name</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">Valerie</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">Last Name</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">Luna</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">Email address</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">Luna@example.com</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">Phone number</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">(097)-234-5678</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">Website</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">www.hi.com</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-sm-4">
+                                            <p className="mb-0">Location</p>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <p className="text-muted mb-0">New York, USA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row text-center">
+                                <div className="container mb-3">
+                                    <Link to="/travelAdvisor/profile/myprofileedit"
+                                          className="btn btn-primary"
+                                          role="button">Edit Profile</Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

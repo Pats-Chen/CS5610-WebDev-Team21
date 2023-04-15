@@ -1,7 +1,6 @@
 import React from "react";
 import "./homepage.css";
 import HomeCarousel from "./home-carousel";
-import PlanSummaryList from "../trip-summary-view/plan-summary-list.js";
 import PlanOverview from "../plan-overview/index";
 
 function Home(){
@@ -10,17 +9,25 @@ function Home(){
             <HomeCarousel/>
 
             <div className="container">
-                <div className="row bg-light" >
+                <div className="row bg-light rounded-bottom-2">
                     <div className="col-md-9" >
-                        <h2 className="featurette-heading fw-normal lh-1">Creating a travel plan
+                        <h2 className="featurette-heading fw-normal lh-1 ps-3">Creating a travel plan
                             <span className="text-muted"> can't be any easier.</span></h2>
-                        <p className="lead ms-1">Create a plan to anywhere you want to go or
+                        <p className="lead ms-1 ps-3">Create a plan to anywhere you want to go or
                             <span className="text-muted"> join a fantastic travel created by others.</span></p>
                     </div>
                 </div>
             </div>
 
-            <PlanOverview/>
+            <div className="container bg-light rounded-2">
+                <h2 className="featurette-heading fw-normal lh-1 ps-3">Explore</h2>
+                <PlanOverview/>
+            </div>
+
+            <div className="container bg-light rounded-2">
+                <h2 className="featurette-heading fw-normal lh-1 ps-3">My plans</h2>
+                <PlanOverview/>
+            </div>
 
             <div>
                 <footer>

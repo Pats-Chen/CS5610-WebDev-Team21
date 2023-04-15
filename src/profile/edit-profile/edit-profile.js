@@ -12,8 +12,7 @@ const EditProfile = (
     }}
 ) => {
     return (
-        <div className="container-xl px-4 mt-4">
-            <hr className="mt-0 mb-4" />
+        <div className="container-xl px-4 mt-4 pt-3 rounded-2">
             <div className="row">
                 <div className="col-xl-4">
                     <div className="card mb-4 mb-xl-0">
@@ -163,9 +162,15 @@ const EditProfile = (
                                             placeholder="Enter your Phone Number"
                                             value="7-17-2000"/>
                                     </div>
-
                                 </div>
-                                <button className="btn btn-primary float-start" type="button">Save changes</button>
+
+                                <div className="row text-center">
+                                    <div className="container mb-1">
+                                        <Link to="/travelAdvisor/profile/myprofile"
+                                              className="btn btn-primary"
+                                              role="button">Save changes</Link>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
