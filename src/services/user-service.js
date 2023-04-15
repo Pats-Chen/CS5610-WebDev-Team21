@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+// ******** const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "http://localhost:4000"
 const USER_API = `${BASE_URL}/api/users`;
 const SECURITY_API = `${BASE_URL}/api/auth`;
 
@@ -25,12 +26,17 @@ export const logout = () =>
 export const profile = () =>{
     return api.post(`${SECURITY_API}/profile`);
 };
-    // api.post(`${SECURITY_API}/profile`)
-    //     .then(response => response.data);
+// api.post(`${SECURITY_API}/profile`)
+//     .then(response => response.data);
 
 export const updateProfile = (uid, data) =>
     api.put(`${USER_API}/${uid}`, data)
 
+
+export const updateUser = async (user) => {
+    const response = await axios.put(`${USER_API}/${user.uid}`, user)
+    return response.data
+}
 export const getUserProfile = (uid) =>
     api.get(`${USER_API}/${uid}`)
         .then(res => res.data)

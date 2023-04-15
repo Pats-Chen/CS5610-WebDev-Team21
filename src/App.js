@@ -9,9 +9,13 @@ import CurrentUserContext from "./travelAdvisor/current-user-context";
 import usersReducer from "./services/usersReducer";
 import TravelAdvisor from "./travelAdvisor/index.js"
 
+
+const store = configureStore({reducer: { users: usersReducer}})
+
+
 function App() {
   return (
-      <Provider store={configureStore({reducer: {users: usersReducer}})}>
+      <Provider store={store}>
           <CurrentUserContext>
             <BrowserRouter>
                 <div className="container">

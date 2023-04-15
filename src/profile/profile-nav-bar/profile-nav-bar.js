@@ -1,8 +1,12 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 const ProfileNavBar = () => {
 
-    return (
+    const {currentUser} = useSelector((state) => state.users)
+    {
+
+        return currentUser && (
         <div>
             <section className="bg-light shadow-1">
                 <div className="container">
@@ -28,7 +32,10 @@ const ProfileNavBar = () => {
                     <section className="text-center">
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-6">
-                                <h2><strong>Valerie Luna</strong></h2>
+                                <h2><strong>{currentUser.firstName} {currentUser.lastName}</strong></h2>
+                                <p className="text-muted">
+                                    {currentUser.bio}
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -36,6 +43,6 @@ const ProfileNavBar = () => {
                 </div>
             </section>
         </div>
-    );
+    );}
 };
 export default ProfileNavBar;

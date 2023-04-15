@@ -24,3 +24,12 @@ export const profileThunk = createAsyncThunk("users/profile", async () => {
     // console.log(response.data)
     return response.data;
 });
+
+export const updateUserThunk =
+    createAsyncThunk(
+        'users/updateUser',
+        async (u) => {
+            const user =  await userService.updateUser(u)
+            return user;
+        }
+    )

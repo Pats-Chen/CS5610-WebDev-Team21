@@ -16,7 +16,7 @@ const NavigationBar = () => {
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">
                         <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30" alt=""
-                        className="rounded-circle bg-success"/>
+                             className="rounded-circle bg-success"/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ const NavigationBar = () => {
                                 <Link to="/travelAdvisor/profile/myprofilechooseicon" className="nav-link text-dark">Choose icon</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/travelAdvisor/profile/myplans" className="nav-link text-dark">My plans</Link>
+                                <Link to="/travelAdvisor/profile/mytrips" className="nav-link text-dark">My trips</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>

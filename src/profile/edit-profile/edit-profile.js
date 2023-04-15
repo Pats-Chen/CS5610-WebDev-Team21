@@ -1,18 +1,51 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {updateUserThunk} from "../../services/users-thunks";
 
-const EditProfile = (
-    { userinfo = {
-        "_id":"123",
-        "username": "username",
-        "first name": "Valerie",
-        "last name": "Luna",
-        "website": "www.valerieluna.com",
-        "profile Image": "http://www.valerieluna.com/profile.jpg"
-    }}
-) => {
-    return (
-        <div className="container-xl px-4 mt-4 pt-3 rounded-2">
+const EditProfile = ()=>{
+
+    const {currentUser} = useSelector((state) => state.users);
+    let [firstName, setFirstName] = useState(currentUser.firstName);
+    let [lastName, setLastName] = useState(currentUser.lastName);
+    let [username, setUsername] = useState(currentUser.username);
+    let [emailAddress, setEmailAddress] = useState(currentUser.emailAddress);
+    let [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
+    let [website, setWebsite] = useState(currentUser.website);
+    let [location, setLocation] = useState(currentUser.location);
+    let [bio, setBio] = useState(currentUser.bio);
+    let [birthday, setBirthday] = useState(currentUser.dateOfBirth);
+    let [profileImage, setProfileImage] = useState(currentUser.profileImage);
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const saveChangeHandler = () => {
+        const updatedProfile = {
+            uid:currentUser._id,
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            website: website,
+            location: location,
+            emailAddress: emailAddress,
+            phoneNumber: phoneNumber,
+            dateOfBirth: birthday,
+            profileImage: profileImage,
+            bio: bio,
+        };
+        dispatch(updateUserThunk(updatedProfile));
+        navigate('/travelAdvisor/profile/myprofile');
+    };
+
+
+
+
+    return currentUser && (
+        <div className="container-xl px-4 mt-4">
+            <hr className="mt-0 mb-4" />
             <div className="row">
                 <div className="col-xl-4">
                     <div className="card mb-4 mb-xl-0">
@@ -20,14 +53,18 @@ const EditProfile = (
                         <div className="card-body text-center">
                             <img
                                 className="img-account-profile rounded-circle mb-2"
-                                src={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
-                                alt={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
-                                // set width, height to 150px
-                                style={{height: "150px", width: "150px"}}/>
-                            <div>
-                                <Link to="/travelAdvisor/profile/myprofilechooseicon"
-                                      className="btn btn-primary" role="button">Change user icon</Link>
+                                src="https://mdbootstrap.com/img/new/avatars/18.jpg"
+                                alt=""
+                                style={{ width: "200px" }} // set width to 200px
+                            />
+
+                            <div className="small font-italic text-muted mb-4">
+                                JPG or PNG no larger than 5 MB
                             </div>
+
+                            <button className="btn btn-primary" type="button">
+                                Upload new image
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +85,8 @@ const EditProfile = (
                                         id="inputUsername"
                                         type="text"
                                         placeholder="Enter your username"
-                                        value="username"
+                                        value={username}
+                                        onChange = {(event) => setUsername(event.target.value)}
                                     />
                                 </div>
 
@@ -65,7 +103,8 @@ const EditProfile = (
                                             id="inputFirstName"
                                             type="text"
                                             placeholder="Enter your first name"
-                                            value="Valerie"
+                                            value={firstName}
+                                            onChange = {(event) => setFirstName(event.target.value)}
                                         />
                                     </div>
 
@@ -81,7 +120,8 @@ const EditProfile = (
                                             id="inputLastName"
                                             type="text"
                                             placeholder="Enter your last name"
-                                            value="Luna"
+                                            value={lastName}
+                                            onChange = {(event) => setLastName(event.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -99,7 +139,8 @@ const EditProfile = (
                                             id="inputOrgName"
                                             type="text"
                                             placeholder="Enter your website"
-                                            value="hi.com"
+                                            value={website}
+                                            onChange = {(event) => setWebsite(event.target.value)}
                                         />
                                     </div>
 
@@ -115,7 +156,8 @@ const EditProfile = (
                                             id="inputLocation"
                                             type="text"
                                             placeholder="Enter your location"
-                                            value="San Francisco, CA"
+                                            value={location}
+                                            onChange = {(event) => setLocation(event.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -131,7 +173,8 @@ const EditProfile = (
                                         id="inputLocation"
                                         type="text"
                                         placeholder="Enter your Email"
-                                        value="luna@gmail.com"
+                                        value={emailAddress}
+                                        onChange = {(event) => setEmailAddress(event.target.value)}
                                     />
                                 </div>
                                 <div className="row gx-3 mb-3">
@@ -146,7 +189,9 @@ const EditProfile = (
                                             id="inputPhone"
                                             type="text"
                                             placeholder="Enter your Phone Number"
-                                            value="888-888-888"/>
+                                            value={phoneNumber}
+                                            onChange = {(event) => setPhoneNumber(event.target.value)}
+                                        />
                                     </div>
 
                                     <div className="col-md-6">
@@ -160,17 +205,33 @@ const EditProfile = (
                                             id="inputBD"
                                             type="text"
                                             placeholder="Enter your Phone Number"
-                                            value="7-17-2000"/>
+                                            value = {birthday}
+                                            onChange = {(event) => setBirthday(event.target.value)}
+                                        />
                                     </div>
-                                </div>
 
-                                <div className="row text-center">
-                                    <div className="container mb-1">
-                                        <Link to="/travelAdvisor/profile/myprofile"
-                                              className="btn btn-primary"
-                                              role="button">Save changes</Link>
+                                    <div className="mb-3">
+                                        <label
+                                            className="small mb-1"
+                                            htmlFor="inputBio"
+                                        >
+                                            About me
+                                        </label>
+                                        <input
+                                            className="form-control"
+                                            id="inputBio"
+                                            type="text"
+                                            placeholder="Enter your Bio"
+                                            value={bio}
+                                            onChange = {(event) => setBio(event.target.value)}
+                                        />
                                     </div>
+
+
                                 </div>
+                                <button className="btn btn-primary float-start" type="button" onClick={saveChangeHandler}>
+                                    Save changes
+                                </button>
                             </form>
                         </div>
                     </div>
