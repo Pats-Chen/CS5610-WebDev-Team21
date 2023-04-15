@@ -1,15 +1,25 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import * as usersService from "../services/user-service";
+import {loginThunk, logoutThunk, registerThunk} from "../services/users-thunks";
+import {useDispatch} from "react-redux";
 
 const Signup = () => {
-    const [newUser, setNewUser] = useState({});
+    const [newUser, setNewUser] = useState({"paidSubscriber":"no"});
     const navigate = useNavigate();
-
-    const signup = () =>
-        usersService.signup(newUser)
-            .then(() => navigate('/'))
-            .catch(e => alert(e));
+    const dispatch = useDispatch();
+    // const signup = () =>
+    //     usersService.signup(newUser)
+    //         .then(() => navigate('/'))
+    //         .catch(e => alert(e));
+    const signup = async () =>{
+        try {
+            await dispatch(logoutThunk());
+            await dispatch(registerThunk(newUser));
+            navigate('/');
+        }  catch (err) {
+        console.log(err);
+    }}
     return (
         <>
             <div className="bg-light rounded-2 p-2" style={{ textAlign: 'left'}}>

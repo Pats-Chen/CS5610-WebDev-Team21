@@ -2,23 +2,19 @@ import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {loginThunk, logoutThunk} from "../services/users-thunks";
-import * as service from "../services/user-service";
+
 
 export const Login = () => {
     const { currentUser } = useSelector((state) => state.users);
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const dispatch = useDispatch();
+
     // login: if success --> navigate to home screen
     const login = async () =>{
-        // service.login(loginUser)
-        //     .then((user) => navigate('/'))
-        //     .catch(e => alert(e));
     try {
         await dispatch(loginThunk(loginUser));
-        // navigate("/travelAdvisor/login");
-
-
+        navigate("/travelAdvisor/profile/myprofile");
     } catch (err) {
         console.log(err);
     }}
