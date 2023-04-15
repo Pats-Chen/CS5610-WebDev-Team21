@@ -38,6 +38,40 @@ const Signup = () => {
                            placeholder="email" type="email"/>
                 </div>
 
+                <div className="form-outline mb-4">
+                    <label className="form-label">Would you like to be a subscriber?</label>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            id="paidYes"
+                            name="paidSubscription"
+                            value="yes"
+                            onChange={(e) =>
+                                setNewUser({...newUser, paidSubscriber: e.target.value})
+                            }
+                        />
+                        <label className="form-check-label" htmlFor="paidYes">
+                            Yes
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            id="paidNo"
+                            name="paidSubscription"
+                            value="no"
+                            onChange={(e) =>
+                                setNewUser({...newUser, paidSubscriber: e.target.value})
+                            }
+                        />
+                        <label className="form-check-label" htmlFor="paidNo">
+                            No
+                        </label>
+                    </div>
+                </div>
+
                 <button onClick={signup} className="btn btn-primary mb-5">Register</button>
                 <div className="text-center">
                     <p>Already have an account? <Link to="/travelAdvisor/login" className="text-decoration-none">
