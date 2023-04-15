@@ -47,8 +47,10 @@ const Signup = () => {
                 </div>
 
                 <div className="form-outline mb-3">
-                    <label className="form-label">Would you like to be a subscriber?</label>
-                    <div className="form-check form-check-inline">
+                    <div>
+                        <label className="form-label">Would you like to be a premium user?</label>
+                    </div>
+                    <div className="form-check form-check-inline ms-1">
                         <input
                             className="form-check-input"
                             type="radio"
@@ -57,11 +59,8 @@ const Signup = () => {
                             value="yes"
                             onChange={(e) =>
                                 setNewUser({...newUser, paidSubscriber: e.target.value})
-                            }
-                        />
-                        <label className="form-check-label" htmlFor="paidYes">
-                            Yes
-                        </label>
+                            }/>
+                        <label className="form-check-label" htmlFor="paidYes">Yes</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
@@ -72,11 +71,8 @@ const Signup = () => {
                             value="no"
                             onChange={(e) =>
                                 setNewUser({...newUser, paidSubscriber: e.target.value})
-                            }
-                        />
-                        <label className="form-check-label" htmlFor="paidNo">
-                            No
-                        </label>
+                            }/>
+                        <label className="form-check-label" htmlFor="paidNo">No</label>
                     </div>
                 </div>
                 <button className="btn btn-primary mb-3" onClick={signup}>Register</button>
