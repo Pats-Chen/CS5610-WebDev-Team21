@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
 
 const ProfileNavBar = () => {
@@ -13,18 +12,18 @@ const ProfileNavBar = () => {
             <div>
 
                 <section className="bg-light shadow-1">
-                    <div className="container ">
+                    <div className="container">
                         {/* Section: Images */}
                         <section className="mb-5">
                             <div style={{width: '100%'}}>
-                                <img  style={{height: '250px', width: '100%',objectFit: 'fit'}} src="/img/profile-header.png" alt=""/>
+                                <img style={{height: '250px', width: '100%',objectFit: 'fit'}}
+                                     src="/img/profile-header.png" alt="/img/profile-header.png"/>
                             </div>
 
-                            <img
-                                src="https://mdbootstrap.com/img/new/avatars/18.jpg"
-                                className="rounded-circle shadow-3-strong position-absolute"
-                                alt=""
-                                style={{ width: '168px', marginTop: '-140px', marginLeft: '550px', marginRight: '700px'}}
+                            <img className="rounded-circle shadow-3-strong position-absolute bg-white"
+                                 src={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
+                                 alt={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
+                                 style={{height: '150px', width: '150px', marginTop: '-140px', marginLeft: '550px', marginRight: '700px'}}
                             />
 
                             <div className="d-flex justify-content-center">
@@ -92,17 +91,13 @@ const ProfileNavBar = () => {
                                 {/*        Edit Profile*/}
                                 {/*    </Link>*/}
                                 {/*</button>*/}
-
                             </div>
                             {/* lef end */}
-
                         </section>
-
                     </div>
                 </section>
-
-            </div> );
-
-    } };
-
+            </div>
+        );
+    }
+};
 export default ProfileNavBar;
