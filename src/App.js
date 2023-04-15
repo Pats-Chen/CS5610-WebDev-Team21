@@ -16,8 +16,8 @@ function App() {
             <BrowserRouter>
                 <div className="container">
                     <Routes>
-                        <Route path="/travelAdvisor/*" element={<TravelAdvisor/>}/>
                         <Route path="/" element={<Navigate to="/travelAdvisor/home" replace/>}/>
+                        <Route path="/travelAdvisor/*" element={<TravelAdvisor/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
