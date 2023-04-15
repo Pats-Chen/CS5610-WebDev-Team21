@@ -22,7 +22,7 @@ const Signup = () => {
     }}
     return (
         <>
-            <div className="bg-light rounded-2 p-2" style={{marginTop: '130px', textAlign: 'left'}}>
+            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Signup</h3>
                 <div className="form-outline mb-3">
                     <label className="form-label" htmlFor="form2Email">Email address</label>

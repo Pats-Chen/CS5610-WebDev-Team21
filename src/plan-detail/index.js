@@ -10,14 +10,22 @@ const PlanDetailComponent = () => {
     if (!isLoaded) return <div>Loading...</div>
     return (
         <>
-            <div className="row">
-                <div className="col-3">
-                    <h1>Itinerary</h1>
-                    <ItineraryList/>
-                </div>
-                <div className="col-9">
+            <div className="container row bg-light rounded-top-2 ps-5 m-0">
+                <div className="col-2 bg-light"></div>
+                <div className="col-8 bg-light">
                     <ItineraryMap/>
                 </div>
+                <div className="col-2 bg-light"></div>
+            </div>
+            <div className="container bg-light pb-2 rounded-bottom-2">
+                <ItineraryList/>
+            </div>
+
+            <div>
+                <footer>
+                    <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </footer>
             </div>
         </>
     )

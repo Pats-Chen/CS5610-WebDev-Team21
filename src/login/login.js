@@ -26,9 +26,8 @@ export const Login = () => {
         }
 };
     return (
-
         <>
-            <div className="bg-light rounded-2 p-2" style={{marginTop: '130px', textAlign: 'left'}}>
+            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Login</h3>
                 {/*a demo to show that state.user is invoked*/}
                 {currentUser && (<h2>Welcome {currentUser.username}</h2>)}

@@ -171,39 +171,54 @@ class Map extends Component {
 
     render() {
         return (
-            <div className="map-container">
-                <h1 className="map-title">Create your travel plan!</h1>
-                <div className="search-container">
-                    <input
-                        style={{border: "2px solid black"}}
-                        type="text"
-                        onChange={this.handleChange}
-                        ref={this.autocompleteInput}
-                        placeholder="Add a location e.g. Boston"
-                    />
-                    <button onClick={this.handleAdd}>Add</button>
+            <>
+                <div className="map-container bg-light rounded-2">
+                    <h1 className="map-title ms-4">Create a new travel plan!</h1>
+                    <div className="search-container pb-3">
+                        <div>
+                            <input
+                                style={{border: "2px solid black"}}
+                                type="text"
+                                placeholder="Enter your plan name"
+                                value={this.state.planName}
+                                onChange={this.handlePlanNameChange}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                style={{border: "2px solid black"}}
+                                type="text"
+                                placeholder="Enter your plan description"
+                                value={this.state.planDescription}
+                                onChange={this.handlePlanDescriptionChange}
+                            />
+                        </div>
+                        <div>
+                            <button onClick={this.handleCreatePlan}>Create</button>
+                        </div>
+                    </div>
+                    <div className="search-container">
+                        <input
+                            style={{border: "2px solid black"}}
+                            type="text"
+                            onChange={this.handleChange}
+                            ref={this.autocompleteInput}
+                            placeholder="Add a location: e.g. Boston"
+                        />
+                        <button onClick={this.handleAdd}>Add</button>
+                    </div>
+                    <div id="map" className="rounded-2"></div>
+                    <h3 className="map-title ms-4">Your travel plan</h3>
+                    <div className="list-container">{this.renderAddList()}</div>
                 </div>
-                <div id="map"></div>
-                <div className="search-container">
-                    <input
-                        style={{border: "2px solid black"}}
-                        type="text"
-                        placeholder="Enter your plan name"
-                        value={this.state.planName}
-                        onChange={this.handlePlanNameChange}
-                    />
-                    <input
-                        style={{border: "2px solid black"}}
-                        type="text"
-                        placeholder="Enter your plan description"
-                        value={this.state.planDescription}
-                        onChange={this.handlePlanDescriptionChange}
-                    />
-                    <button onClick={this.handleCreatePlan}>Create</button>
+
+                <div>
+                    <footer>
+                        <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                        <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                    </footer>
                 </div>
-                <h3 className="map-title">Your travel plan:</h3>
-                <div className="list-container">{this.renderAddList()}</div>
-            </div>
+            </>
         );
     }
 }
