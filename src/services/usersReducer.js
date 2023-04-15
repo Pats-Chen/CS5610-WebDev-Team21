@@ -1,3 +1,5 @@
+import {registerThunk} from "./users-thunks";
+
 const { createSlice } = require("@reduxjs/toolkit");
 const {
     // findAllUsersThunk,
@@ -32,7 +34,9 @@ const usersSlice = createSlice({
         },
         [profileThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
-            // console.log(state.currentUser)
+        },
+        [registerThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload;
         },
     },
 });
