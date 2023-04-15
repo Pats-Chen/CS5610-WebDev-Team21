@@ -29,11 +29,6 @@ const ProfileNavBar = () => {
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-6">
                                 <h2><strong>Valerie Luna</strong></h2>
-
-                                <p className="text-muted">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    Veritatis officia optio nihil, accusamus corrupti praesentium.
-                                </p>
                             </div>
                         </div>
                     </section>
