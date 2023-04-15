@@ -1,0 +1,12 @@
+[{
+  "_id":"123",
+  "username": "username",
+  "first name": "Valerie",
+  "last name": "Luna",
+  "website": "www.valerieluna.com",
+  "location": "San Francisco, CA",
+  "email address": "vLuna@gmail.com",
+  "phone number": "415-555-5555",
+  "Birthday": "01/01/1990",
+  "profile Image": "http://www.valerieluna.com/profile.jpg"
+}]
