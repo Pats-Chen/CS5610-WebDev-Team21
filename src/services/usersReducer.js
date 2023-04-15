@@ -7,7 +7,7 @@ const {
     // updateUserThunk,
     loginThunk,
     logoutThunk,
-    // profileThunk,
+    profileThunk,
     // registerThunk,
 } = require("../services/users-thunks");
 
@@ -25,9 +25,14 @@ const usersSlice = createSlice({
     extraReducers: {
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
+            // console.log(state.currentUser)
         },
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null;
+        },
+        [profileThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload;
+            // console.log(state.currentUser)
         },
     },
 });
