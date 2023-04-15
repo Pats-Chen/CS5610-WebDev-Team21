@@ -1,0 +1,25 @@
+[{
+  "_id":"123",
+  "date": "2017-10-10",
+  "place": "Seattle",
+  "placeImage": "http://shorebread.com/wp-content/uploads/2013/08/purple-blue-and-orange-sunset_75664102.jpg"
+},
+  {
+    "_id":"234",
+    "date": "2017-10-10",
+    "place": "Seattle",
+    "placeImage": "http://shorebread.com/wp-content/uploads/2013/08/purple-blue-and-orange-sunset_75664102.jpg"
+  },
+  {
+    "_id":"456",
+    "date": "2017-10-10",
+    "place": "New York",
+    "placeImage": "http://shorebread.com/wp-content/uploads/2013/08/purple-blue-and-orange-sunset_75664102.jpg"
+  },
+  {
+    "_id":"789",
+    "date": "2017-10-10",
+    "place": "Seattle",
+    "placeImage": "http://shorebread.com/wp-content/uploads/2013/08/purple-blue-and-orange-sunset_75664102.jpg"
+  }
+]

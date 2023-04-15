@@ -5,9 +5,14 @@ import {Routes, Route} from "react-router";
 import HomeComponent from "../home/index.js";
 import LoginComponent from "../login/login";
 import SignupComponent from "../login/register";
-import NavigationBar from "../navigation-bar";
+import NavigationBar from "../navigation-bar/index";
 import PlanSummaryList from "../trip-summary-view/plan-summary-list";
 import MapComponent from "../createTravelPlan/map";
+import ProfileInfoComponent from "../profile/my-profile-info";
+import ProfileTripsComponent from "../profile/my-profile-trips";
+import ProfileEditComponent from "../profile/my-profile-edit";
+import PlanDetailComponent from "../plan-detail/index";
+import ProfileChooseIconComponent from "../profile/edit-profile/change-user-icon-list"
 
 function TravelAdvisor() {
     return (
@@ -73,10 +78,16 @@ function TravelAdvisor() {
 
             <div>
                 <Routes>
+                    <Route path="/" element={<HomeComponent/>}/>
                     <Route path="home" element={<HomeComponent/>}/>
                     <Route path="login" element={<LoginComponent/>}/>
                     <Route path="signup" element={<SignupComponent/>}/>
+                    <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
+                    <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
+                    <Route path="profile/myprofilechooseicon" element={<ProfileChooseIconComponent/>}/>
+                    <Route path="profile/mytrips" element={<ProfileTripsComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
+                    <Route path="detail" element={<PlanDetailComponent/>}/>
                 </Routes>
             </div>
         </main>

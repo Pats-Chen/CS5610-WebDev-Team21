@@ -1,0 +1,11 @@
+[{"sightName": "Times Square",
+  "stayTime": 15,
+  "description": "Starts Daily at 9 am and 10 am Duration: 6 Hours Departs/Ends on 7th Avenue (50th/51st) Open-Top or Glass-Top Convertible Bus"},
+
+  {"sightName": "Rockefeller Center",
+    "stayTime": 20,
+    "description": "The second stop on the tour is Rockefeller Center, for views of St. Patrick's Cathedral, the location of the ice skating rink and Christmas Tree, and NBC's Today Show set."},
+
+  {"sightName": "Madison Square Park",
+    "stayTime": 20,
+    "description": "The third stop is Madison Square Park - the original location of Madison Square Garden Arena. This area provides spectacular views of dramatic architecture featured in numerous books and films: the Flatiron Building (Godzilla, Spider-Man), the Metropolitan Life Insurance Company Tower (The Runaway Skyscraper, Futurama), and the Empire State Building (King Kong, Independence Day). The tour continues with a drive through some of the iconic NYC's neighborhoods, such as Greenwich Village, Soho, Chinatown, and the Financial District."}]

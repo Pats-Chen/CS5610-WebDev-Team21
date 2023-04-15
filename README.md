@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Icon Attribute
+
+<a href="https://iconscout.com/icon-pack/animal-flat-colors" target="_blank">Animal Flat Colors Icon Pack</a> by <a href="https://iconscout.com/contributors/kerismaker" target="_blank">Kerismaker Studio</a>
