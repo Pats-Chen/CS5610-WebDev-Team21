@@ -43,7 +43,7 @@ const NavigationBar = () => {
                                 <Link to="/travelAdvisor/profile/myprofilechooseicon" className="nav-link text-dark">Choose icon</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/travelAdvisor/profile/mytrips" className="nav-link text-dark">My trips</Link>
+                                <Link to="/travelAdvisor/profile/myplans" className="nav-link text-dark">My plans</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>

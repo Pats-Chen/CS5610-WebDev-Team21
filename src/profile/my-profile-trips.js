@@ -11,11 +11,11 @@ function ProfileTrips(){
             <div className="container bg-light">
                 <PlanOverview/>
             </div>
-            <div className="mt-5 bg-light">
-
-                <p className="float-end"><a href="#">Back to top</a></p>
-                <p>&copy; Team21. CS5610. NEU. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-
+            <div>
+                <footer>
+                    <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </footer>
             </div>
         </>
     )

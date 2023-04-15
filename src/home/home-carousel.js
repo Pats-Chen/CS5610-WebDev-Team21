@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function HomeCarousel () {
     return (
@@ -18,7 +19,7 @@ function HomeCarousel () {
                         <div className="carousel-caption text-start">
                             <h1>SIGN UP TODAY</h1>
                             <p>start preparing for your future travel</p>
-                            <p><a className="btn btn-lg btn-primary" href="#">Signup</a></p>
+                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up</Link></p>
                         </div>
                     </div>
                 </div>
@@ -29,7 +30,7 @@ function HomeCarousel () {
                         <div className="carousel-caption">
                             <h1>CREATE YOUR OWN PLAN</h1>
                             <p>search your distinction and build your trip</p>
-                            <p><a className="btn btn-lg btn-primary" href="#">Create</a></p>
+                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">Create</Link></p>
                         </div>
                     </div>
                 </div>
@@ -38,9 +39,9 @@ function HomeCarousel () {
 
                     <div className="container">
                         <div className="carousel-caption text-end">
-                            <h1>FOLLOW NEW FRIENDS</h1>
+                            <h1>SHARE YOUR PLANS</h1>
                             <p>build relationship with others and join their journey</p>
-                            <p><a className="btn btn-lg btn-primary" href="#">Browse plans</a></p>
+                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">My plans</Link></p>
                         </div>
                     </div>
                 </div>
