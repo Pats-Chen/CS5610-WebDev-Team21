@@ -1,12 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
+import {getUserProfile} from "../../services/user-service";
 
 const ProfileNavBar = () => {
-
+    const { userId } = useParams()
     const {currentUser} = useSelector((state) => state.users)
+    const [displayedUser, setDisplayedUser] = useState(currentUser);
+    useEffect(() => {
+        async function fetchData() {
+            if (userId) {
+                const userProfile = await getUserProfile(userId);
+                setDisplayedUser(userProfile);
+            }
+        }
+        fetchData();
+    }, []);
     {
 
-        return currentUser && (
+        return displayedUser && (
         <div>
             <section className="bg-light shadow-1">
                 <div className="container">
@@ -32,10 +44,10 @@ const ProfileNavBar = () => {
                     <section className="text-center">
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-6">
-                                <h2><strong>{currentUser.firstName} {currentUser.lastName}</strong></h2>
+                                <h2><strong>{displayedUser.firstName} {displayedUser.lastName}</strong></h2>
                                 <p className="text-muted">
                                     {/*{currentUser.bio}*/}
-                                    {currentUser.username}
+                                    {displayedUser.username}
                                 </p>
                             </div>
                         </div>

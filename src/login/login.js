@@ -2,11 +2,9 @@ import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {loginThunk, logoutThunk} from "../services/users-thunks";
-import {useEffect} from "react";
 
 
 export const Login = () => {
-    const { currentUser } = useSelector((state) => state.users);
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -14,28 +12,17 @@ export const Login = () => {
     // login: if success --> navigate to home screen
     const login = async () =>{
         try {
-            await dispatch(loginThunk(loginUser));
-            navigate("/travelAdvisor/home");
-        } catch (err) {
-            console.logq(err);
-        }}
-
-    const logout = async () =>{
-        try {
-            await dispatch(logoutThunk());
+            const data = await dispatch(loginThunk(loginUser));
+            if(data.payload) navigate("/travelAdvisor/home");
+            else alert("Log in failed, please check your username and password");
         } catch (err) {
             console.log(err);
-        }
-    };
-    return  (
+        }}
 
+    return  (
         <>
             <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Login</h3>
-                {/*a demo to show that state.user is invoked*/}
-                {/*{currentUser && (<h2>Welcome {currentUser.username}</h2>)}*/}
-                {/*{currentUser && (<button onClick={logout} className = "btn btn-primary">log out</button>)}*/}
-                {/* demo ends here*/}
                 <div className="form-outline mb-3">
                     <label className="form-label" htmlFor="form2Username">Username</label>
                     <input onChange={(e) =>
