@@ -56,7 +56,7 @@ const Signup = () => {
 
     return (
         <>
-            <div className="bg-light rounded-2 p-2" style={{ textAlign: 'left'}}>
+            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Signup</h3>
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="form2Username">Username</label>
@@ -65,8 +65,9 @@ const Signup = () => {
                            placeholder="username"/>
                 </div>
 
-                <div className="form-outline mb-4">
-                    <label className="form-label" htmlFor="form2Password">Password</label>
+                
+                <div className="form-outline mb-3">
+                    <label className="form-label" htmlFor="form2Password">Create a password</label>
                     <input className="mb-2 form-control" id="form2Password"
                            onChange={(e) =>
                                setPassword(e.target.value)}
@@ -81,9 +82,11 @@ const Signup = () => {
                            placeholder="email" type="email"/>
                 </div>
 
-                <div className="form-outline mb-4">
-                    <label className="form-label">Would you like to be a subscriber?</label>
-                    <div className="form-check form-check-inline">
+               <div className="form-outline mb-3">
+                    <div>
+                        <label className="form-label">Would you like to be a premium user?</label>
+                    </div>
+                    <div className="form-check form-check-inline ms-1">
                         <input
                             className="form-check-input"
                             type="radio"
@@ -115,7 +118,7 @@ const Signup = () => {
                     </div>
                 </div>
 
-                <button onClick={signupClickHandler} className="btn btn-primary mb-5">Register</button>
+                <button className="btn btn-primary mb-3" onClick={signupClickHandler}>Register</button>
                 <div className="text-center">
                     <p>Already have an account? <Link to="/travelAdvisor/login" className="text-decoration-none">
                         Login</Link> now
@@ -124,11 +127,11 @@ const Signup = () => {
 
             </div>
 
-            <div className="mt-5 bg-light rounded-2">
-
-                <p className="float-end"><a href="#">Back to top</a></p>
-                <p>&copy; Team21. CS5610. NEU. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-
+            <div>
+                <footer>
+                    <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </footer>
             </div>
         </>
     );
