@@ -37,6 +37,9 @@ export const updateUser = async (user) => {
     const response = await axios.put(`${USER_API}/${user.uid}`, user)
     return response.data
 }
-export const getUserProfile = (uid) =>
-    api.get(`${USER_API}/${uid}`)
-        .then(res => res.data)
+export const getUserProfile = async (uid) => {
+    // api.get(`${USER_API}/${uid}`)
+    //     .then(res => res.data)
+    const response = await axios.get(`${USER_API}/${uid}`);
+    return response.data
+}

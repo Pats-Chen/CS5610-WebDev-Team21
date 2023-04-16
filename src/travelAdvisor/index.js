@@ -86,6 +86,7 @@ function TravelAdvisor() {
                     <Route path="profile/myplans" element={<ProfilePlansComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
                     <Route path="detail" element={<PlanDetailComponent/>}/>
+                    <Route path="profile/user/:userId" element={<ProfileInfoComponent/>}/>
                 </Routes>
             </div>
         </main>

@@ -1,15 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-
+import { useParams } from 'react-router-dom';
+import {getUserProfile} from "../../services/user-service";
 
 
 
 
 const MyInfo = () => {
+    const { userId } = useParams()
     const {currentUser} = useSelector((state) => state.users);
+    const [displayedUser, setDisplayedUser] = useState(currentUser);
+    // useEffect(() => {
+    //     if (currentUser) { // check if currentUser exists before setting displayedUser
+    //         setDisplayedUser(currentUser);
+    //     }
+    // }, [currentUser]);
+    useEffect(() => {
+        async function fetchData() {
+            if (userId) {
+                const userProfile = await getUserProfile(userId);
+                setDisplayedUser(userProfile);
+            }
+        }
+        fetchData();
+    }, []);
 
-    return  currentUser && (
+    // useEffect(() => {
+    //     console.log(displayedUser);
+    // }, [displayedUser]);
+
+    return  displayedUser && (
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
@@ -22,7 +43,7 @@ const MyInfo = () => {
                                             <p className="mb-0">User ID</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser._id}</p>
+                                            <p className="text-muted mb-0">{displayedUser._id}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -31,7 +52,7 @@ const MyInfo = () => {
                                             <p className="mb-0">First name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.firstName}</p>
+                                            <p className="text-muted mb-0">{displayedUser.firstName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -40,7 +61,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Last Name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.lastName}</p>
+                                            <p className="text-muted mb-0">{displayedUser.lastName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -49,7 +70,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Email address</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.emailAddress}</p>
+                                            <p className="text-muted mb-0">{displayedUser.emailAddress}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -58,7 +79,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Phone number</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.phoneNumber}</p>
+                                            <p className="text-muted mb-0">{displayedUser.phoneNumber}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -67,7 +88,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Website</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.website}</p>
+                                            <p className="text-muted mb-0">{displayedUser.website}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -76,7 +97,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Location</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.location}</p>
+                                            <p className="text-muted mb-0">{displayedUser.location}</p>
                                         </div>
                                     </div>
                                 </div>
