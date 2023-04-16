@@ -5,6 +5,7 @@ import {loginThunk, logoutThunk, registerThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
 
 const Signup = () => {
+    // const [newUser, setNewUser] = useState({"paidSubscriber":"no"});
     const { currentUser } = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
