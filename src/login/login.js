@@ -14,7 +14,7 @@ export const Login = () => {
         try {
             const data = await dispatch(loginThunk(loginUser));
             if(data.payload) navigate("/travelAdvisor/home");
-            else alert("Log in failed, please check your username and password");
+            else alert("Log in failed, please check your username and password.");
         } catch (err) {
             console.log(err);
         }}
