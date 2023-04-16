@@ -53,18 +53,13 @@ const EditProfile = ()=>{
                         <div className="card-body text-center">
                             <img
                                 className="img-account-profile rounded-circle mb-2"
-                                src="https://mdbootstrap.com/img/new/avatars/18.jpg"
-                                alt=""
-                                style={{ width: "200px" }} // set width to 200px
-                            />
-
-                            <div className="small font-italic text-muted mb-4">
-                                JPG or PNG no larger than 5 MB
-                            </div>
-
-                            <button className="btn btn-primary" type="button">
-                                Upload new image
-                            </button>
+                                src={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
+                                alt={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
+                                // set width, height to 150px
+                                style={{height: "150px", width: "150px"}}/>
+                            <div>
+                                <Link to="/travelAdvisor/profile/myprofilechooseicon"
+                                      className="btn btn-primary" role="button">Change</Link>
                         </div>
                     </div>
                 </div>
@@ -227,11 +222,15 @@ const EditProfile = ()=>{
                                         />
                                     </div>
 
-
-                                </div>
-                                <button className="btn btn-primary float-start" type="button" onClick={saveChangeHandler}>
-                                    Save changes
-                                </button>
+                                
+                                <div className="row text-center">
+                                    <div className="container mb-1">
+                                        <Link to="/travelAdvisor/profile/myprofile"
+                                              className="btn btn-primary"
+                                              role="button
+                                              onClick={saveChangeHandler}">Save</Link>
+                                    </div>
+                                    </div>
                             </form>
                         </div>
                     </div>
