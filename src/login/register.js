@@ -27,14 +27,14 @@ const Signup = () => {
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [username, setUsername] = useState("");
-    let [paidSubscriber, setPaidSubscriber] = useState("no");
+    let [userStatus, setUserStatus] = useState("normal");
 
     const signupClickHandler =  async () => {
         const newUser = {
             emailAddress: email,
             password: password,
             username: username,
-            paidSubscriber: paidSubscriber,
+            userStatus: userStatus,
             firstName: "",
             lastName: "",
             website: "",
@@ -93,9 +93,9 @@ const Signup = () => {
                             type="radio"
                             id="paidYes"
                             name="paidSubscription"
-                            value="yes"
+                            value="paid"
                             onChange={(e) =>
-                                setPaidSubscriber(e.target.value)
+                                setUserStatus(e.target.value)
                             }
                         />
                         <label className="form-check-label" htmlFor="paidYes">
@@ -110,7 +110,7 @@ const Signup = () => {
                             name="paidSubscription"
                             value="no"
                             onChange={(e) =>
-                                setPaidSubscriber(e.target.value)
+                                setUserStatus(e.target.value)
                             }
                         />
                         <label className="form-check-label" htmlFor="paidNo">

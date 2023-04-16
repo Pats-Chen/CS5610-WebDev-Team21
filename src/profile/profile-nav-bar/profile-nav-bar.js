@@ -34,7 +34,8 @@ const ProfileNavBar = () => {
                             <div className="col-lg-6">
                                 <h2><strong>{currentUser.firstName} {currentUser.lastName}</strong></h2>
                                 <p className="text-muted">
-                                    {currentUser.bio}
+                                    {/*{currentUser.bio}*/}
+                                    {currentUser.username}
                                 </p>
                             </div>
                         </div>

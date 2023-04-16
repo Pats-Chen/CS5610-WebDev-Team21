@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from "react-redux";
 const MyInfo = () => {
     const {currentUser} = useSelector((state) => state.users);
 
-
     return  currentUser && (
         <div className="container mt-5">
             <div className="row justify-content-center">
@@ -23,7 +22,7 @@ const MyInfo = () => {
                                             <p className="mb-0">User ID</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userID}</p>
+                                            <p className="text-muted mb-0">{currentUser._id}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -32,7 +31,7 @@ const MyInfo = () => {
                                             <p className="mb-0">First name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userFirstName}</p>
+                                            <p className="text-muted mb-0">{currentUser.firstName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -41,7 +40,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Last Name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userLastName}</p>
+                                            <p className="text-muted mb-0">{currentUser.lastName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -50,7 +49,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Email address</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userEmail}</p>
+                                            <p className="text-muted mb-0">{currentUser.emailAddress}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -59,7 +58,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Phone number</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userPhoneNumber}</p>
+                                            <p className="text-muted mb-0">{currentUser.phoneNumber}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -68,7 +67,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Website</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userWebsite}</p>
+                                            <p className="text-muted mb-0">{currentUser.website}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -77,7 +76,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Location</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">{currentUser.userLocation}</p>
+                                            <p className="text-muted mb-0">{currentUser.location}</p>
                                         </div>
                                     </div>
                                 </div>
