@@ -1,7 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomeCarousel () {
+    const { currentUser } = useSelector((state) => state.users);
     return (
         <div id="myCarousel" className="carousel slide mb-0" data-bs-ride="carousel">
             <div className="carousel-indicators">
@@ -15,22 +17,42 @@ function HomeCarousel () {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <img src="/img/boston-night-carousel.jpg" className="bd-placeholder-img" width="100%" height="100%"/>
+
                     <div className="container">
                         <div className="carousel-caption text-start">
-                            <h1>SIGN UP TODAY</h1>
-                            <p>start preparing for your future travel</p>
-                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up</Link></p>
+                            {currentUser && (<>
+                                    <h1>Welcome back, {currentUser.username}!</h1>
+                                    <p>View profile details</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/profile/myprofile">Profile</Link></p>
+                                </>
+                            )}
+                            {!currentUser && (<>
+                                    <h1>SIGN UP TODAY</h1>
+                                    <p>start preparing for your future travel</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up</Link></p>
+                                </>
+                                )}
                         </div>
                     </div>
                 </div>
+
                 <div className="carousel-item">
                     <img src="/img/seattle-night-carousel.jpg" className="bd-placeholder-img" width="100%" height="100%"/>
 
                     <div className="container">
                         <div className="carousel-caption">
-                            <h1>CREATE YOUR OWN PLAN</h1>
-                            <p>search your distinction and build your trip</p>
-                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">Create</Link></p>
+                            {currentUser && (<>
+                                    <h1>CREATE YOUR OWN PLAN</h1>
+                                    <p>search your distinction and build your trip</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">Create</Link></p>
+                                </>
+                                )}
+                            {!currentUser && (<>
+                                    <h1>CREATE YOUR OWN PLAN in 5 MINUTES</h1>
+                                    <p>sign up and create your own plan</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up & Create</Link></p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -39,9 +61,18 @@ function HomeCarousel () {
 
                     <div className="container">
                         <div className="carousel-caption text-end">
-                            <h1>SHARE YOUR PLANS</h1>
-                            <p>build relationship with others and join their journey</p>
-                            <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">My plans</Link></p>
+                            {currentUser && (<>
+                                    <h1>SHARE YOUR PLANS</h1>
+                                    <p>build relationship with others and join their journey</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">My plans</Link></p>
+                                </>
+                            )}
+                            {!currentUser && (<>
+                                    <h1>EXPLORE OTHERS PLANS</h1>
+                                    <p>There is always one plan that can inspire your dream</p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">See plans</Link></p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

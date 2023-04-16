@@ -15,7 +15,7 @@ export const Login = () => {
     const login = async () =>{
         try {
             await dispatch(loginThunk(loginUser));
-            navigate("/travelAdvisor/profile/myprofile");
+            navigate("/travelAdvisor/home");
         } catch (err) {
             console.logq(err);
         }}
@@ -33,8 +33,8 @@ export const Login = () => {
             <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Login</h3>
                 {/*a demo to show that state.user is invoked*/}
-                {currentUser && (<h2>Welcome {currentUser.username}</h2>)}
-                {currentUser && (<button onClick={logout} className = "btn btn-primary">log out</button>)}
+                {/*{currentUser && (<h2>Welcome {currentUser.username}</h2>)}*/}
+                {/*{currentUser && (<button onClick={logout} className = "btn btn-primary">log out</button>)}*/}
                 {/* demo ends here*/}
                 <div className="form-outline mb-3">
                     <label className="form-label" htmlFor="form2Username">Username</label>
