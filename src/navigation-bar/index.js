@@ -15,8 +15,9 @@ const NavigationBar = () => {
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">
-                        <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30" alt=""
-                        className="rounded-circle bg-success"/>
+                        <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30"
+                             alt={`${process.env.PUBLIC_URL}/img/logo.svg`}
+                             className="rounded-circle bg-success"/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

@@ -6,7 +6,7 @@ const {
     // findUserByIdThunk,
     // createUserThunk,
     // deleteUserThunk,
-    // updateUserThunk,
+    updateUserThunk,
     loginThunk,
     logoutThunk,
     profileThunk,
@@ -38,7 +38,14 @@ const usersSlice = createSlice({
         [registerThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
         },
+        [updateUserThunk.fulfilled]:
+            (state, action) => {
+
+                state.currentUser = action.payload;
+                //console.log(action.payload);
+            },
     },
 });
+
 
 export default usersSlice.reducer;

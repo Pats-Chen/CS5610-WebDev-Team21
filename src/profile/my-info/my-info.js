@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
+
+
+
 
 const MyInfo = () => {
-    return (
+    const {currentUser} = useSelector((state) => state.users);
+
+
+    return  currentUser && (
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
@@ -15,7 +23,7 @@ const MyInfo = () => {
                                             <p className="mb-0">User ID</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">12345</p>
+                                            <p className="text-muted mb-0">{currentUser.userID}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -24,7 +32,7 @@ const MyInfo = () => {
                                             <p className="mb-0">First name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">Valerie</p>
+                                            <p className="text-muted mb-0">{currentUser.userFirstName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -33,7 +41,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Last Name</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">Luna</p>
+                                            <p className="text-muted mb-0">{currentUser.userLastName}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -42,7 +50,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Email address</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">Luna@example.com</p>
+                                            <p className="text-muted mb-0">{currentUser.userEmail}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -51,7 +59,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Phone number</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">(097)-234-5678</p>
+                                            <p className="text-muted mb-0">{currentUser.userPhoneNumber}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -60,7 +68,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Website</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">www.hi.com</p>
+                                            <p className="text-muted mb-0">{currentUser.userWebsite}</p>
                                         </div>
                                     </div>
                                     <hr/>
@@ -69,7 +77,7 @@ const MyInfo = () => {
                                             <p className="mb-0">Location</p>
                                         </div>
                                         <div className="col-sm-8">
-                                            <p className="text-muted mb-0">New York, USA</p>
+                                            <p className="text-muted mb-0">{currentUser.userLocation}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -82,11 +90,10 @@ const MyInfo = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default MyInfo;

@@ -2,6 +2,7 @@ import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {loginThunk, logoutThunk} from "../services/users-thunks";
+import {useEffect} from "react";
 
 
 export const Login = () => {
@@ -12,20 +13,22 @@ export const Login = () => {
 
     // login: if success --> navigate to home screen
     const login = async () =>{
-    try {
-        await dispatch(loginThunk(loginUser));
-        navigate("/travelAdvisor/profile/myprofile");
-    } catch (err) {
-        console.log(err);
-    }}
+        try {
+            await dispatch(loginThunk(loginUser));
+            navigate("/travelAdvisor/profile/myprofile");
+        } catch (err) {
+            console.log(err);
+        }}
+
     const logout = async () =>{
         try {
             await dispatch(logoutThunk());
         } catch (err) {
             console.log(err);
         }
-};
-    return (
+    };
+    return  (
+
         <>
             <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Login</h3>
@@ -44,11 +47,12 @@ export const Login = () => {
                     <input onChange={(e) =>
                         setLoginUser({...loginUser, password: e.target.value})}
                            type="password" id="form2Password" className="form-control"/>
+
                 </div>
                 <button onClick={login} type="button" className="btn btn-primary btn-block mb-4">Login</button>
+
                 <div className="text-center">
                     <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register</Link> now
-                    </p>
                 </div>
             </div>
 
