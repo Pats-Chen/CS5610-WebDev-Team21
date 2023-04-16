@@ -9,7 +9,7 @@ import {logoutThunk} from "../../services/users-thunks";
 
 
 const MyInfo = () => {
-    const { userId } = useParams()
+    const { userId } = useParams();
     const {currentUser} = useSelector((state) => state.users);
     const [displayedUser, setDisplayedUser] = useState(currentUser);
     const dispatch = useDispatch()
@@ -107,7 +107,7 @@ const MyInfo = () => {
                             {(currentUser === displayedUser) && (
                             <div className="row text-center">
                                 <div className="container mb-3">
-                                    <Link to="/travelAdvisor/profile/myprofileedit"
+                                    <Link to="/travelAdvisor/myprofileedit"
                                           className="btn btn-primary me-2"
                                           role="button">Edit Profile</Link>
                                     <Link to="/travelAdvisor/home"

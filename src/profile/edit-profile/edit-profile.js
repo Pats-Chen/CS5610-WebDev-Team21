@@ -57,7 +57,7 @@ const EditProfile = ()=>{
                             // set width, height to 150px
                             style={{height: "150px", width: "150px"}}/>
                         <div>
-                            <Link to="/travelAdvisor/profile/myprofilechooseicon"
+                            <Link to="/travelAdvisor/myprofilechooseicon"
                                   className="btn btn-primary" role="button">Change</Link>
                         </div>
                     </div>

@@ -23,7 +23,8 @@ function HomeCarousel () {
                             {currentUser && (<>
                                     <h1>Welcome back, {currentUser.username}!</h1>
                                     <p>View profile details</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/profile/myprofile">Profile</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary" to={`/travelAdvisor/profile/${currentUser._id}`}>Profile</Link></p>
+
                                 </>
                             )}
                             {!currentUser && (<>
@@ -64,7 +65,7 @@ function HomeCarousel () {
                             {currentUser && (<>
                                     <h1>SHARE YOUR PLANS</h1>
                                     <p>build relationship with others and join their journey</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">My plans</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/myplans">My plans</Link></p>
                                 </>
                             )}
                             {!currentUser && (<>
