@@ -1,33 +1,17 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import * as usersService from "../services/user-service";
 import {loginThunk, logoutThunk, registerThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
 
 const Signup = () => {
-    // const [newUser, setNewUser] = useState({"paidSubscriber":"no"});
     const { currentUser } = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const signup = () =>
-    //     usersService.signup(newUser)
-    //         .then(() => navigate('/'))
-    //         .catch(e => alert(e));
-    // const signup = async () =>{
-    //     try {
-    //         await dispatch(logoutThunk());
-    //         await dispatch(registerThunk(newUser));
-    //         navigate('/profile');
-    //     }  catch (err) {
-    //     console.log(err);
-    // }}
-
-
 
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [username, setUsername] = useState("");
-    let [userStatus, setUserStatus] = useState("normal");
+    let [userStatus, setUserStatus] = useState("free");
 
     const signupClickHandler =  async () => {
         const newUser = {
@@ -50,10 +34,10 @@ const Signup = () => {
             followersList: [],
             planList: [],
         }
-        await dispatch(registerThunk(newUser));
-        navigate('/travelAdvisor/login');
+        const data = await dispatch(registerThunk(newUser));
+        if(data.type === "users/register/fulfilled") navigate("/travelAdvisor/login");
+        else alert("Register failed, please choose another user name.");
     }
-
 
     return (
         <>
@@ -93,7 +77,7 @@ const Signup = () => {
                             type="radio"
                             id="paidYes"
                             name="paidSubscription"
-                            value="paid"
+                            value="premium"
                             onChange={(e) =>
                                 setUserStatus(e.target.value)
                             }
@@ -108,7 +92,7 @@ const Signup = () => {
                             type="radio"
                             id="paidNo"
                             name="paidSubscription"
-                            value="no"
+                            value="free"
                             onChange={(e) =>
                                 setUserStatus(e.target.value)
                             }
