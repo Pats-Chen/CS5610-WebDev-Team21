@@ -15,7 +15,8 @@ const NavigationBar = () => {
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">
-                        <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30" alt=""
+                        <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30"
+                             alt={`${process.env.PUBLIC_URL}/img/logo.svg`}
                              className="rounded-circle bg-success"/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -43,7 +44,7 @@ const NavigationBar = () => {
                                 <Link to="/travelAdvisor/profile/myprofilechooseicon" className="nav-link text-dark">Choose icon</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/travelAdvisor/profile/mytrips" className="nav-link text-dark">My trips</Link>
+                                <Link to="/travelAdvisor/profile/myplans" className="nav-link text-dark">My plans</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
