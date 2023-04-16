@@ -90,6 +90,7 @@ const MyInfo = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

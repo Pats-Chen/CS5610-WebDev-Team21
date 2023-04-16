@@ -222,20 +222,21 @@ const EditProfile = ()=>{
                                         />
                                     </div>
 
-                                
+                                </div>
                                 <div className="row text-center">
                                     <div className="container mb-1">
                                         <Link to="/travelAdvisor/profile/myprofile"
                                               className="btn btn-primary"
-                                              role="button
-                                              onClick={saveChangeHandler}">Save</Link>
+                                              role="button"
+                                              onClick={saveChangeHandler}>Save</Link>
                                     </div>
-                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     );

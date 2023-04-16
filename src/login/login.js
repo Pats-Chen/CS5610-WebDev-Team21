@@ -17,7 +17,7 @@ export const Login = () => {
             await dispatch(loginThunk(loginUser));
             navigate("/travelAdvisor/profile/myprofile");
         } catch (err) {
-            console.log(err);
+            console.logq(err);
         }}
 
     const logout = async () =>{
@@ -52,7 +52,7 @@ export const Login = () => {
                 <button onClick={login} type="button" className="btn btn-primary btn-block mb-4">Login</button>
 
                 <div className="text-center">
-                    <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register</Link> now
+                    <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register now</Link></p>
                 </div>
             </div>
 
