@@ -9,9 +9,7 @@ import CurrentUserContext from "./travelAdvisor/current-user-context";
 import usersReducer from "./services/usersReducer";
 import TravelAdvisor from "./travelAdvisor/index.js"
 
-
 const store = configureStore({reducer: { users: usersReducer}})
-
 
 function App() {
   return (
