@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { useParams } from 'react-router-dom';
 import {getUserProfile} from "../../services/user-service";
+import {logoutThunk} from "../../services/users-thunks";
 
 
 
@@ -11,11 +12,14 @@ const MyInfo = () => {
     const { userId } = useParams()
     const {currentUser} = useSelector((state) => state.users);
     const [displayedUser, setDisplayedUser] = useState(currentUser);
-    // useEffect(() => {
-    //     if (currentUser) { // check if currentUser exists before setting displayedUser
-    //         setDisplayedUser(currentUser);
-    //     }
-    // }, [currentUser]);
+    const dispatch = useDispatch()
+    const logout = async () =>{
+        try {
+            await dispatch(logoutThunk());
+        } catch (err) {
+            console.log(err);
+        }
+    };
     useEffect(() => {
         async function fetchData() {
             if (userId) {
@@ -23,12 +27,10 @@ const MyInfo = () => {
                 setDisplayedUser(userProfile);
             }
         }
+
         fetchData();
     }, []);
 
-    // useEffect(() => {
-    //     console.log(displayedUser);
-    // }, [displayedUser]);
 
     return  displayedUser && (
         <div className="container mt-5">
@@ -102,13 +104,19 @@ const MyInfo = () => {
                                     </div>
                                 </div>
                             </div>
+                            {(currentUser === displayedUser) && (
                             <div className="row text-center">
                                 <div className="container mb-3">
                                     <Link to="/travelAdvisor/profile/myprofileedit"
-                                          className="btn btn-primary"
+                                          className="btn btn-primary me-2"
                                           role="button">Edit Profile</Link>
+                                    <Link to="/travelAdvisor/home"
+                                          className="btn btn-danger"
+                                          onClick={logout}
+                                          role="button">Log out</Link>
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
                 </div>
