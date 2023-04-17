@@ -13,6 +13,7 @@ export const Login = () => {
     const login = async () =>{
         try {
             const data = await dispatch(loginThunk(loginUser));
+            console.log(data)
             if(data.payload) navigate("/travelAdvisor/home");
             else alert("Log in failed, please check your username and password.");
         } catch (err) {

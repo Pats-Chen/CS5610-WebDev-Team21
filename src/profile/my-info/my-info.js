@@ -17,6 +17,7 @@ const MyInfo = () => {
             console.log(err);
         }
     };
+
     useEffect(() => {
         async function fetchData() {
             if (userId) {
@@ -26,7 +27,11 @@ const MyInfo = () => {
         }
 
         fetchData();
-    }, []);
+    }, [userId]);
+
+    useEffect(() => {
+        setDisplayedUser(currentUser);
+    }, [currentUser]);
 
 
     return  displayedUser && (
