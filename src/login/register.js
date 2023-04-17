@@ -35,6 +35,7 @@ const Signup = () => {
             planList: [],
         }
         const data = await dispatch(registerThunk(newUser));
+        console.log(data);
         if(data.type === "users/register/fulfilled") navigate("/travelAdvisor/login");
         else alert("Register failed, please choose another user name.");
     }
