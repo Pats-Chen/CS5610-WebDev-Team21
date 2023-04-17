@@ -106,7 +106,7 @@ const MyInfo = () => {
                                     </div>
                                 </div>
                             </div>
-                            {(currentUser._id === displayedUser._id) && (
+                            {currentUser && (currentUser._id === displayedUser._id) && (
                             <div className="row text-center">
                                 <div className="container mb-3">
                                     <Link to="/travelAdvisor/myprofileedit"
