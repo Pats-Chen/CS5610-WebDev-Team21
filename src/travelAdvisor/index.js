@@ -82,7 +82,7 @@ function TravelAdvisor() {
                     <Route path="login" element={<LoginComponent/>}/>
                     <Route path="signup" element={<SignupComponent/>}/>
                     <Route path="myprofileedit" element={<ProfileEditComponent/>}/>
-                    <Route path="myprofilechooseicon" element={<ProfileChooseIconComponent/>}/>
+                    <Route path="choose_icon" element={<ProfileChooseIconComponent/>}/>
                     <Route path="myplans" element={<ProfilePlansComponent/>}/>
                     <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
                     <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>

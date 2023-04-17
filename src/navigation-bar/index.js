@@ -1,23 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import {useParams} from "react-router-dom";
+import {getUserProfile} from "../services/user-service";
 import './index.css';
 
 const NavigationBar = () => {
-
-    const { currentUser } = useSelector((state) => state.users);
-    const navigationBarLogoClickHandler = () => {
-        console.log("navigationBarLogoClickHandler");
-    }
+    const { userId } = useParams()
+    const {currentUser} = useSelector((state) => state.users)
+    const [displayedUser, setDisplayedUser] = useState(currentUser);
+    useEffect(() => {
+        async function fetchData() {
+            if (userId) {
+                const userProfile = await getUserProfile(userId);
+                setDisplayedUser(userProfile);
+            }
+        }
+        fetchData();
+    }, []);
     return (
         <div className="container-fluid">
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">
+                    <Link to="#" className="navbar-brand">
                         <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30"
                              alt={`${process.env.PUBLIC_URL}/img/logo.svg`}
                              className="rounded-circle bg-success"/>
-                    </a>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -45,7 +54,11 @@ const NavigationBar = () => {
                                         <Link to={`/travelAdvisor/profile/myprofile`} className="nav-link text-dark">Profile</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={`/travelAdvisor/profile/${currentUser._id}`} className="nav-link text-dark">Profile</Link>
+                                        <Link to={`/travelAdvisor/profile/${currentUser._id}`} className="nav-link text-dark">
+                                            <img src={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`} width="30" height="30"
+                                                 alt={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
+                                                 className="rounded-circle bg-white"/>
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/travelAdvisor/myplans" className="nav-link text-dark">My plans</Link>
