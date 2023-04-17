@@ -10,12 +10,12 @@ const PlanDetailComponent = () => {
     const { isLoaded } = useLoadScript({
                                            googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
     // hardcode demoID：
-    const planOnwerId ="643c5e65a928059058979dc4";
+    const planOwnerId ="643c5e65a928059058979dc4";
     const [planOwner, setPlanOwner]= useState(null);
 
     useEffect(() => {
         async function fetchData() {
-                const userProfile = await getUserProfile(planOnwerId);
+                const userProfile = await getUserProfile(planOwnerId);
                 setPlanOwner(userProfile);
         }
         fetchData();
@@ -38,7 +38,7 @@ const PlanDetailComponent = () => {
                     {/*must use planOwner &&*/}
                     {planOwner && ( <>
                         <label className="form-label" htmlFor=""><h4>Plan Owner: {planOwner.username}</h4></label>
-                        <Link to={`/travelAdvisor/profile/${planOnwerId}`}
+                        <Link to={`/travelAdvisor/profile/${planOwnerId}`}
                               className="text-decoration-none">
                             <h4>View Profile</h4>
                         </Link></>)}
