@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Route, Routes, useNavigate, useLocation} from 'react-router-dom';
 import './map.css';
 
 class Map extends Component {
@@ -47,8 +48,11 @@ class Map extends Component {
                     position: place.geometry.location,
                 });
                 const address = place.formatted_address;
+                const placeId = place.place_id;
                 this.setState({
-                    searchResults: [...searchResults, {name: place.name, location: place.geometry.location, address}],
+                    searchResults: [...searchResults, {
+                        name: place.name, location: place.geometry.location, address, placeId
+                    }],
                     autoSearch: false,
                 });
             } else {
@@ -76,7 +80,7 @@ class Map extends Component {
         const {searchQuery, map, searchResults} = this.state;
         const request = {
             query: searchQuery,
-            fields: ['name', 'geometry', 'formatted_address'],
+            fields: ['name', 'geometry', 'formatted_address', 'place_id'],
         };
         const service = new window.google.maps.places.PlacesService(map);
         service.textSearch(request, (results, status) => {
@@ -89,8 +93,11 @@ class Map extends Component {
                     position: place.geometry.location,
                 });
                 const address = place.formatted_address;
+                const placeId = place.place_id;
                 this.setState({
-                    searchResults: [...searchResults, {name: place.name, location: place.geometry.location, address}],
+                    searchResults: [...searchResults, {
+                        name: place.name, location: place.geometry.location, address, placeId
+                    }],
                 });
             } else {
                 alert('No results found for this search query');
@@ -160,67 +167,86 @@ class Map extends Component {
         return (
             <ul>
                 {searchResults.map((result, index) => (
-                    <li key={index}>
-                        {result.name} - Address: {result.address}
-                        <button onClick={() => this.handleRemove(index)}>Remove</button>
-                    </li>
+                    <LocationItem
+                        key={index}
+                        result={result}
+                        index={index}
+                        onRemove={this.handleRemove}
+                    />
                 ))}
             </ul>
         );
-    }
+    };
 
     render() {
         return (
-            <>
-                <div className="map-container bg-light rounded-2">
-                    <h1 className="map-title ms-4">Create a new travel plan!</h1>
-                    <div className="search-container pb-3">
-                        <div>
-                            <input
-                                style={{border: "2px solid black"}}
-                                type="text"
-                                placeholder="Enter your plan name"
-                                value={this.state.planName}
-                                onChange={this.handlePlanNameChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                style={{border: "2px solid black"}}
-                                type="text"
-                                placeholder="Enter your plan description"
-                                value={this.state.planDescription}
-                                onChange={this.handlePlanDescriptionChange}
-                            />
-                        </div>
-                        <div>
-                            <button onClick={this.handleCreatePlan}>Create</button>
-                        </div>
-                    </div>
-                    <div className="search-container">
-                        <input
-                            style={{border: "2px solid black"}}
-                            type="text"
-                            onChange={this.handleChange}
-                            ref={this.autocompleteInput}
-                            placeholder="Add a location: e.g. Boston"
-                        />
-                        <button onClick={this.handleAdd}>Add</button>
-                    </div>
-                    <div id="map" className="rounded-2"></div>
-                    <h3 className="map-title ms-4">Your travel plan</h3>
-                    <div className="list-container">{this.renderAddList()}</div>
-                </div>
-
-                <div>
-                    <footer>
-                        <p className="float-end text-muted"><a href="#">Back to top</a></p>
-                        <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-                    </footer>
-                </div>
-            </>
+            <div className="map-container">
+                <Routes>
+                    <Route index element={
+                        <>
+                            <ConditionalMap/>
+                            <h1 className="map-title">Create your travel plan!</h1>
+                            <div className="search-container">
+                                <input
+                                    style={{border: "2px solid black"}}
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    ref={this.autocompleteInput}
+                                    placeholder="Add a location e.g. Boston"
+                                />
+                                <button onClick={this.handleAdd}>Add</button>
+                            </div>
+                            <div id="map"></div>
+                            <div className="search-container">
+                                <input
+                                    style={{border: "2px solid black"}}
+                                    type="text"
+                                    placeholder="Enter your plan name"
+                                    value={this.state.planName}
+                                    onChange={this.handlePlanNameChange}
+                                />
+                                <input
+                                    style={{border: "2px solid black"}}
+                                    type="text"
+                                    placeholder="Enter your plan description"
+                                    value={this.state.planDescription}
+                                    onChange={this.handlePlanDescriptionChange}
+                                />
+                                <button onClick={this.handleCreatePlan}>Create</button>
+                            </div>
+                            <h3 className="map-title">Your travel plan:</h3>
+                            <div className="list-container">{this.renderAddList()}</div>
+                        </>
+                    }/>
+                </Routes>
+            </div>
         );
     }
+}
+
+function LocationItem({result, index, onRemove}) {
+    const navigate = useNavigate();
+
+    return (
+        <li key={index}>
+            {result.name} - Address: {result.address}
+            <button
+                className="button-detail"
+                onClick={() => navigate(`/travelAdvisor/place_detail/${result.placeId}`)}
+            >
+                Detail
+            </button>
+            <button className="button-remove" onClick={() => onRemove(index)}>
+                Remove
+            </button>
+        </li>
+    );
+}
+
+
+function ConditionalMap() {
+    const location = useLocation();
+    return location.pathname === '/' ? <div id="map"></div> : null;
 }
 
 export default Map;
