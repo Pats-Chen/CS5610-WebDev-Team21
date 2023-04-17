@@ -9,7 +9,8 @@ import MapComponent from "../createTravelPlan/map";
 import ProfileInfoComponent from "../profile/my-profile-info";
 import ProfilePlansComponent from "../profile/my-profile-trips";
 import ProfileEditComponent from "../profile/my-profile-edit";
-import StopDetail from "../createTravelPlan/PlaceDetail";
+import ProfileChooseIconComponent from "../profile/edit-profile/change-user-icon-list";
+import PlaceDetail from "../createTravelPlan/PlaceDetail";
 import PlanDetailComponent from "../plan-detail/index";
 
 function TravelAdvisor() {
@@ -86,8 +87,9 @@ function TravelAdvisor() {
                     <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
                     <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
                     <Route path="profile/myplans" element={<ProfilePlansComponent/>}/>
+                    <Route path="profile/:userId" element={<ProfileInfoComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
-                    <Route path="stop_detail/:placeId" element={<StopDetail/>}/>
+                    <Route path="place_detail/:placeId" element={<PlaceDetail/>}/>
                     <Route path="detail" element={<PlanDetailComponent/>}/>
                 </Routes>
             </div>

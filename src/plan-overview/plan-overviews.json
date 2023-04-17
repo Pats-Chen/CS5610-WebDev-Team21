@@ -1,11 +1,12 @@
 [
   {
-    "_planID": 1,
+    "_id": 1,
     "planName": "Plan 1",
     "planCreator": "11",
     "planOwner": "111",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",
@@ -14,12 +15,13 @@
     "planCover": "plan-overview-example-1.jpg"
   },
   {
-    "_planID": 2,
+    "_id": 2,
     "planName": "Plan 2",
     "planCreator": "22",
     "planOwner": "22",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",
@@ -28,12 +30,13 @@
     "planCover": "plan-overview-example-2.jpg"
   },
   {
-    "_planID": 3,
+    "_id": 3,
     "planName": "Plan 3",
     "planCreator": "33",
     "planOwner": "33",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",
@@ -42,12 +45,13 @@
     "planCover": "plan-overview-example-3.jpg"
   },
   {
-    "_planID": 4,
+    "_id": 4,
     "planName": "Plan 4",
     "planCreator": "44",
     "planOwner": "44",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",
@@ -56,12 +60,13 @@
     "planCover": "plan-overview-example-1.jpg"
   },
   {
-    "_planID": 5,
+    "_id": 5,
     "planName": "Plan 5",
     "planCreator": "55",
     "planOwner": "55",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",
@@ -70,12 +75,13 @@
     "planCover": "plan-overview-example-2.jpg"
   },
   {
-    "_planID": 6,
+    "_id": 6,
     "planName": "Plan 6",
     "planCreator": "66",
     "planOwner": "66",
     "planDescription": "This is a example of a plan.",
     "planStops": [ {
+      "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
       "stopTime": "1 day",

@@ -1,12 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useLocation} from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import './index.css';
 
 const NavigationBar = () => {
-    const {pathname} = useLocation();
-    const paths = pathname.split('/')
-    const active = paths[2];
+
+    const { currentUser } = useSelector((state) => state.users);
     const navigationBarLogoClickHandler = () => {
         console.log("navigationBarLogoClickHandler");
     }
@@ -28,27 +27,35 @@ const NavigationBar = () => {
                             <li className="nav-item active">
                                 <Link to="/travelAdvisor/home" className="nav-link text-dark">Home</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/login" className="nav-link text-dark">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/signup" className="nav-link text-dark">Signup</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/profile/myprofile" className="nav-link text-dark">Profile</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/myprofileedit" className="nav-link text-dark">Edit profile</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/myprofilechooseicon" className="nav-link text-dark">Choose icon</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/myplans" className="nav-link text-dark">My plans</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
-                            </li>
+
+                            {!currentUser && (
+                                <>
+                                    <li className="nav-item">
+                                        <Link to="/travelAdvisor/login" className="nav-link text-dark">Login</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/travelAdvisor/signup" className="nav-link text-dark">Signup</Link>
+                                    </li>
+                                </>
+                            )}
+
+                            {currentUser && (
+                                <>
+                                    <li className="nav-item">
+                                        <Link to={`/travelAdvisor/profile/myprofile`} className="nav-link text-dark">Profile</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={`/travelAdvisor/profile/${currentUser._id}`} className="nav-link text-dark">Profile</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/travelAdvisor/myplans" className="nav-link text-dark">My plans</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
+                                    </li>
+                                </>
+                            )}
+
                             <li className="nav-item">
                                 <Link to="/travelAdvisor/detail" className="nav-link text-dark">Plan detail</Link>
                             </li>

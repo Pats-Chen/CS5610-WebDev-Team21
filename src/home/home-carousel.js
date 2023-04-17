@@ -20,11 +20,11 @@ function HomeCarousel () {
 
                     <div className="container">
                         <div className="carousel-caption text-start">
-                            {currentUser && (<>
+                            {currentUser && (
+                                <>
                                     <h1>Welcome back, {currentUser.username}!</h1>
                                     <p>View profile details</p>
                                     <p><Link className="btn btn-lg btn-primary" to={`/travelAdvisor/profile/${currentUser._id}`}>Profile</Link></p>
-
                                 </>
                             )}
                             {!currentUser && (<>

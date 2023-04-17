@@ -5,9 +5,6 @@ import { useParams } from 'react-router-dom';
 import {getUserProfile} from "../../services/user-service";
 import {logoutThunk} from "../../services/users-thunks";
 
-
-
-
 const MyInfo = () => {
     const { userId } = useParams();
     const {currentUser} = useSelector((state) => state.users);
@@ -104,7 +101,7 @@ const MyInfo = () => {
                                     </div>
                                 </div>
                             </div>
-                            {(currentUser === displayedUser) && (
+                            {(currentUser._id === displayedUser._id) && (
                             <div className="row text-center">
                                 <div className="container mb-3">
                                     <Link to="/travelAdvisor/myprofileedit"
