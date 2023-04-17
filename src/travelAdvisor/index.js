@@ -7,9 +7,9 @@ import SignupComponent from "../login/register";
 import NavigationBar from "../navigation-bar/index";
 import MapComponent from "../createTravelPlan/map";
 import ProfileInfoComponent from "../profile/my-profile-info";
-import ProfileTripsComponent from "../profile/my-profile-trips";
+import ProfilePlansComponent from "../profile/my-profile-trips";
 import ProfileEditComponent from "../profile/my-profile-edit";
-import PlaceDetail from "../createTravelPlan/PlaceDetail";
+import StopDetail from "../createTravelPlan/PlaceDetail";
 import PlanDetailComponent from "../plan-detail/index";
 
 function TravelAdvisor() {
@@ -80,11 +80,14 @@ function TravelAdvisor() {
                     <Route path="home" element={<HomeComponent/>}/>
                     <Route path="login" element={<LoginComponent/>}/>
                     <Route path="signup" element={<SignupComponent/>}/>
+                    <Route path="myprofileedit" element={<ProfileEditComponent/>}/>
+                    <Route path="myprofilechooseicon" element={<ProfileChooseIconComponent/>}/>
+                    <Route path="myplans" element={<ProfilePlansComponent/>}/>
                     <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
                     <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
-                    <Route path="profile/mytrips" element={<ProfileTripsComponent/>}/>
+                    <Route path="profile/myplans" element={<ProfilePlansComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
-                    <Route path="place_detail/:placeId" element={<PlaceDetail/>}/>
+                    <Route path="stop_detail/:placeId" element={<StopDetail/>}/>
                     <Route path="detail" element={<PlanDetailComponent/>}/>
                 </Routes>
             </div>
