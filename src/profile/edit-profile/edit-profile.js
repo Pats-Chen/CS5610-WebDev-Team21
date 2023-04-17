@@ -5,7 +5,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {updateUserThunk} from "../../services/users-thunks";
 
-const EditProfile = ()=>{
+const EditProfile = () => {
 
     const {currentUser} = useSelector((state) => state.users);
     let [firstName, setFirstName] = useState(currentUser.firstName);
@@ -19,7 +19,6 @@ const EditProfile = ()=>{
     let [birthday, setBirthday] = useState(currentUser.dateOfBirth);
     let [profileImage, setProfileImage] = useState(currentUser.profileImage);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const saveChangeHandler = () => {
@@ -40,9 +39,6 @@ const EditProfile = ()=>{
         navigate('/travelAdvisor/profile/myprofile');
     };
 
-
-
-
     return currentUser && (
         <div className="container-xl px-4 mt-4">
             <hr className="mt-0 mb-4" />
@@ -52,12 +48,12 @@ const EditProfile = ()=>{
                     <div className="card-body text-center">
                         <img
                             className="img-account-profile rounded-circle mb-2"
-                            src={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
-                            alt={`${process.env.PUBLIC_URL}/img/husky-dog-1358170.svg`}
+                            src={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
+                            alt={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
                             // set width, height to 150px
                             style={{height: "150px", width: "150px"}}/>
                         <div>
-                            <Link to="/travelAdvisor/myprofilechooseicon"
+                            <Link to="/travelAdvisor/choose_icon"
                                   className="btn btn-primary" role="button">Change</Link>
                         </div>
                     </div>
