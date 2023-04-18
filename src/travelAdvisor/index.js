@@ -12,6 +12,7 @@ import ProfileEditComponent from "../profile/my-profile-edit";
 import ProfileChooseIconComponent from "../profile/edit-profile/change-user-icon-list";
 import PlaceDetail from "../createTravelPlan/PlaceDetail";
 import PlanDetailComponent from "../plan-detail/index";
+import ReviewComponent from "../plan-detail/reviews";
 
 function TravelAdvisor() {
     return (
@@ -91,6 +92,7 @@ function TravelAdvisor() {
                     <Route path="create" element={<MapComponent/>}/>
                     <Route path="place_detail/:placeId" element={<PlaceDetail/>}/>
                     <Route path="detail" element={<PlanDetailComponent/>}/>
+                    <Route path="detail/reviews" element={<ReviewComponent/>}/>
                 </Routes>
             </div>
         </main>
