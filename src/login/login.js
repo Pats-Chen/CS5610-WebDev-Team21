@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {loginThunk, logoutThunk} from "../services/users-thunks";
+import {useDispatch} from "react-redux";
+import {loginThunk} from "../services/users-thunks";
 
 
 export const Login = () => {
@@ -10,16 +10,19 @@ export const Login = () => {
     const dispatch = useDispatch();
 
     // login: if success --> navigate to home screen
-    const login = async () =>{
+    const login = async () => {
         try {
             const data = await dispatch(loginThunk(loginUser));
-            if(data.payload) navigate("/travelAdvisor/home");
-            else alert("Log in failed, please check your username and password.");
+            if (data.payload) {
+                localStorage.setItem('userinfo', JSON.stringify(data.payload));
+                navigate("/travelAdvisor/home");
+            } else alert("Log in failed, please check your username and password.");
         } catch (err) {
             console.log(err);
-        }}
+        }
+    }
 
-    return  (
+    return (
         <>
             <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
                 <h3>Login</h3>
@@ -39,14 +42,16 @@ export const Login = () => {
                 <button onClick={login} type="button" className="btn btn-primary btn-block mb-4">Login</button>
 
                 <div className="text-center">
-                    <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register now</Link></p>
+                    <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register
+                        now</Link></p>
                 </div>
             </div>
 
             <div>
                 <footer>
                     <p className="float-end text-muted"><a href="#">Back to top</a></p>
-                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot;
+                        <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
                 </footer>
             </div>
         </>

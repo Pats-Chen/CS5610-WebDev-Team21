@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {loginThunk, logoutThunk, registerThunk} from "../services/users-thunks";
-import {useDispatch, useSelector} from "react-redux";
+import {registerThunk} from "../services/users-thunks";
+import {useDispatch} from "react-redux";
 
 const Signup = () => {
-    const { currentUser } = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -13,7 +12,7 @@ const Signup = () => {
     let [username, setUsername] = useState("");
     let [userStatus, setUserStatus] = useState("free");
 
-    const signupClickHandler =  async () => {
+    const signupClickHandler = async () => {
         const newUser = {
             emailAddress: email,
             password: password,
@@ -23,7 +22,7 @@ const Signup = () => {
             lastName: "",
             website: "",
             bio: "",
-            location:"",
+            location: "",
             phoneNumber: "",
             dateOfBirth: "",
             profileImage: "",
@@ -35,7 +34,7 @@ const Signup = () => {
             planList: [],
         }
         const data = await dispatch(registerThunk(newUser));
-        if(data.type === "users/register/fulfilled") navigate("/travelAdvisor/login");
+        if (data.type === "users/register/fulfilled") navigate("/travelAdvisor/login");
         else alert("Register failed, please choose another user name.");
     }
 
@@ -50,7 +49,6 @@ const Signup = () => {
                            placeholder="username"/>
                 </div>
 
-                
                 <div className="form-outline mb-3">
                     <label className="form-label" htmlFor="form2Password">Create a password</label>
                     <input className="mb-2 form-control" id="form2Password"
@@ -67,7 +65,7 @@ const Signup = () => {
                            placeholder="email" type="email"/>
                 </div>
 
-               <div className="form-outline mb-3">
+                <div className="form-outline mb-3">
                     <div>
                         <label className="form-label">Would you like to be a premium user?</label>
                     </div>
@@ -115,7 +113,8 @@ const Signup = () => {
             <div>
                 <footer>
                     <p className="float-end text-muted"><a href="#">Back to top</a></p>
-                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot;
+                        <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
                 </footer>
             </div>
         </>
