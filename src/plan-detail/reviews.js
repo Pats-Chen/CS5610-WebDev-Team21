@@ -18,7 +18,7 @@ function ReviewComponent() {
         if (currentUser) {
             dispatch(findReviewByPlanIdThunk(currentUser._id));
         }
-    }, [currentUser, dispatch, reviews]);
+    }, [currentUser]);
 
 
     const addReviewHandler = () => {
@@ -31,7 +31,8 @@ function ReviewComponent() {
             date: new Date(),
         }
         dispatch(createReviewThunk(newReview));
-        setReviewValue("")
+        setReviewValue("");
+        window.location.reload()
 
     }
 

@@ -7,11 +7,12 @@ import {Link} from "react-router-dom";
 
 const ReviewItems = (review)=>{
 
-    const {currentUser} = useSelector((state) => state.users)
+    const {currentUser} = useSelector((state) => state.users);
     const dispatch = useDispatch();
 
     const deleteClickHandler = ()=>{
-        dispatch(deleteReviewThunk(review.review._id))
+        dispatch(deleteReviewThunk(review.review._id));
+        window.location.reload();
     }
 
     const [Owner, setOwner]= useState(null);
