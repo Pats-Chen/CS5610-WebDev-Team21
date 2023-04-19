@@ -63,7 +63,7 @@ function ReviewComponent() {
                     >
                         Write a comment
                     </label>
-                    <button onClick={addReviewHandler} className="btn  float-end" type="button">Post</button>
+                    <button onClick={addReviewHandler} className="mt-2 btn btn-primary float-end" type="button">Post</button>
                 </div>
             </div>
 

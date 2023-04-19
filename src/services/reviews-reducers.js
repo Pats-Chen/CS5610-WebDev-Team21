@@ -37,7 +37,6 @@ const reviewsSlice = createSlice({
             },
         [findReviewByPlanIdThunk.fulfilled]:
             (state, { payload }) => {
-                console.log("payload", payload);
                 state.loading = false
                 state.reviews = payload
             },

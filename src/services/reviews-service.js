@@ -16,7 +16,6 @@ export const findReview = async (_id) => {
 export const findReviewsByPlanId = async (_id) => {
     const response = await axios.get(`${REVIEWS_API}/plan/${_id}`);
     const reviews = response.data;
-    console.log("reviews got back from", reviews)
     return reviews;
 }
 export const deleteReview = async (rid) => {
