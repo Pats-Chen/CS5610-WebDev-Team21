@@ -24,6 +24,14 @@ class Map extends Component {
     componentDidMount() {
         this.initMap();
         this.initAutocomplete();
+
+        const travel_list = localStorage.getItem("travel_list");
+        if (travel_list) {
+            let items_list = JSON.parse(travel_list)
+            this.setState({
+                searchResults: items_list,
+            });
+        }
     }
 
     initMap() {
@@ -48,13 +56,11 @@ class Map extends Component {
                 this.state = {
                     searchResults: [],
                 };
-                const {searchResults} = this.state;
                 let new_locations = [];
                 data.data.data.locations.map(item => {
 
                     new_locations.push({placeId: item.placeId, name: item.name, address: item.address})
                 })
-
 
                 this.setState({
                     planName: data.data.data.planName,
@@ -136,6 +142,10 @@ class Map extends Component {
                         name: place.name, location: place.geometry.location, address, placeId
                     }],
                 });
+                localStorage.setItem("travel_list", JSON.stringify([...searchResults, {
+                    name: place.name, location: place.geometry.location, address, placeId
+                }]));
+
             } else {
                 alert('No results found for this search query');
             }
@@ -167,6 +177,7 @@ class Map extends Component {
 
         let data = await create_plan(newPlan);
         if (data.data.planCreator) {
+            localStorage.removeItem("travel_list")
             alert('Travel plan created successfully!');
             this.setState({
                 searchQuery: '',
@@ -199,8 +210,6 @@ class Map extends Component {
             console.log(data)
             alert(data.data.msg);
         }
-
-
     }
 
     renderAddList = () => {
