@@ -9,16 +9,56 @@ import {Link, useParams} from "react-router-dom";
 import {getPlanById} from "../services/travel-plan-service";
 
 
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {createReviewThunk, findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
+import { useDispatch } from "react-redux";
+
+
+
 const PlanDetailComponent = () => {
     const { isLoaded } = useLoadScript({
                                            googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
     const{planId} = useParams();
+    const dispatch = useDispatch();
+    const {currentUser} = useSelector((state) => state.users);
+    const {reviews} = useSelector((state) => state.reviews);
+    const [reviewValue, setReviewValue] = React.useState("");
 
 
     // hardcode demoID：
     const [planOwnerId,setPlanOwnerId] = useState(null);
     const [displayPlan,setDisplayPlan] = useState(null);
     const [planOwner, setPlanOwner]= useState(null);
+
+
+
+    // find Reviews by planId
+    useEffect(() => {
+        if (currentUser) {
+            dispatch(findReviewByPlanIdThunk(planId));
+        }
+    }, [currentUser]);
+
+
+    // add review
+    const addReviewHandler = () => {
+        const newReview = {
+            planId: planId,
+            authorId: currentUser._id,
+            authorName: currentUser.firstName + " " + currentUser.lastName,
+            authorImg: currentUser.profileImage,
+            content: reviewValue,
+            date: new Date(),
+        }
+        dispatch(createReviewThunk(newReview));
+        setReviewValue("");
+        window.location.reload()
+
+    }
+
+
+    // find plan by planId
     useEffect(() => {
         async function fetchData() {
             const displayPlanHolder = await getPlanById(planId);
@@ -35,10 +75,12 @@ const PlanDetailComponent = () => {
     //     setDisplayPlan(displayPlan);
     // }, [displayPlan]);
 
+
+
     if (!isLoaded) return <div>Loading...</div>
     return displayPlan && (
         <>
-            <h2>{displayPlan.planCreator}</h2>
+            <h5>Plan Id: {displayPlan.planCreator}</h5>
             <div className="container row bg-light rounded-top-2 ps-5 m-0">
                 <div className="col-2 bg-light"></div>
                 <div className="col-8 bg-light">
@@ -46,24 +88,92 @@ const PlanDetailComponent = () => {
                 </div>
                 <div className="col-2 bg-light"></div>
             </div>
+
             {/*Placeholder for navigation to Owner's profile*/}
-            <div className="container row bg-light rounded-top-2 ps-5 m-0">
-                <div className="col-2 bg-light"></div>
-                <div className="col-8 bg-light">
-                    {/*must use planOwner &&*/}
-                    {planOwner && ( <>
-                        <label className="form-label" htmlFor=""><h4>Plan Owner: {planOwner.username}</h4></label>
-                        <Link to={`/travelAdvisor/profile/${planOwnerId}`}
-                              className="text-decoration-none">
-                            <h4>View Profile</h4>
-                        </Link></>)}
+            <div className="container my-3">
+                <div className="row bg-light rounded-top-2 ps-5 align-items-center flex-wrap">
+                    <div className="col-12 col-md-1 bg-light mb-3 mb-md-0">
+                        <Link to={`/travelAdvisor/profile/${planOwnerId}`} >
+                        <img
+                            src={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "default-avatar.png"}`}
+                            alt=""
+                            className="border rounded-circle"
+                            style={{ height: "60px" }}    />
+
+                    </Link>
+                    </div>
+                    <div className="col-12 col-md-11 bg-light text-start">
+                        {planOwner && (
+                            <div className="d-flex justify-content-between">
+                                <div>
+                                    <h4 className="form-label mb-0">
+                                        Plan Owner: {planOwner.username}
+                                    </h4>
+                                    <p className="mb-0">Plan description: {displayPlan.planName}</p>
+                                </div>
+                                <button
+                                    className="btn btn-primary align-self-start"
+                                    onClick={() =>
+                                        (window.location.href = `/travelAdvisor/profile/${planOwnerId}`)
+                                    }
+                                >
+                                    View Profile
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <div className="col-2 bg-light"></div>
             </div>
+
+
+
+
             {/*Placeholder ends here*/}
             <div className="container bg-light pb-2 rounded-bottom-2">
-                <ItineraryList plan = {displayPlan}></ItineraryList>
+                <ItineraryList plan={displayPlan}></ItineraryList>
             </div>
+
+
+
+
+            {/*review part*/}
+
+
+            {/* write review */}
+            <div className="d-flex mb-3 mt-4">
+                <a href="">
+                    <img
+                        src={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "default-avatar.png"}`}
+                        className="border rounded-circle mr-2"
+                        alt=""
+                        style={{ height: "40px", marginRight: "10px" }}
+                    />
+                </a>
+                <div className="form-outline w-100">
+          <textarea
+              className="form-control"
+              id="textAreaExample"
+              rows="2"
+              value={reviewValue}
+              placeholder = "Write a review"
+              onChange = {(e) => setReviewValue(e.target.value)}
+
+          > </textarea>
+                    <label
+                        className="form-label "
+                        htmlFor="textAreaExample"
+                    >
+                        Write a comment
+                    </label>
+                    <button onClick={addReviewHandler} className="mt-2 btn btn-primary float-end" type="button">Post</button>
+                </div>
+            </div>
+
+            {/* MyReviews component */}
+
+            { reviews && <MyReviews reviews={reviews} > </MyReviews>}
+
+
 
             <div>
                 <footer>
