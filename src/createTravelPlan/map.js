@@ -13,6 +13,7 @@ class Map extends Component {
             searchResults: [],
             planName: '',
             planDescription: '',
+            timeOfStay: '',
             userinfo: JSON.parse(localStorage.getItem('userinfo'))
         };
 
@@ -119,12 +120,23 @@ class Map extends Component {
         this.setState({searchQuery: event.target.value});
     }
 
+    handleTimeOfStayChange = (event) => {
+        this.setState({timeOfStay: parseInt(event.target.value, 10)});
+    }
+
     handleAdd = () => {
-        const {searchQuery, map, searchResults} = this.state;
+        const {searchQuery, map, searchResults, timeOfStay} = this.state;
+
+        if (!timeOfStay) {
+            alert('Please enter the minutes of stay(must be a number).');
+            return;
+        }
+
         const request = {
             query: searchQuery,
             fields: ['name', 'geometry', 'formatted_address', 'place_id'],
         };
+
         const service = new window.google.maps.places.PlacesService(map);
         service.textSearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
@@ -139,11 +151,19 @@ class Map extends Component {
                 const placeId = place.place_id;
                 this.setState({
                     searchResults: [...searchResults, {
-                        name: place.name, location: place.geometry.location, address, placeId
+                        placeId,
+                        name: place.name,
+                        address,
+                        location: place.geometry.location,
+                        timeOfStay: this.state.timeOfStay
                     }],
                 });
                 localStorage.setItem("travel_list", JSON.stringify([...searchResults, {
-                    name: place.name, location: place.geometry.location, address, placeId
+                    placeId,
+                    name: place.name,
+                    address,
+                    location: place.geometry.location,
+                    timeOfStay: this.state.timeOfStay
                 }]));
 
             } else {
@@ -161,8 +181,8 @@ class Map extends Component {
     }
 
     handleCreatePlan = async (type = false) => {
-
         const {searchResults, planName, planDescription} = this.state;
+
         if (searchResults.length === 0 || !planName || !planDescription) {
             alert('Please enter plan name, plan description, and at least one location to create a travel plan.');
             return;
@@ -176,7 +196,6 @@ class Map extends Component {
         };
 
         let data = await create_plan(newPlan);
-        // console.log(data.data)
         if (data.data.planCreator) {
             localStorage.removeItem("travel_list")
             alert('Travel plan created successfully!');
@@ -184,7 +203,8 @@ class Map extends Component {
                 searchQuery: '',
                 searchResults: [],
                 planName: '',
-                planDescription: ''
+                planDescription: '',
+                timeOfStay: ''
             });
         } else {
             console.log(data)
@@ -193,25 +213,14 @@ class Map extends Component {
     }
 
     handleRemove = async (index) => {
-        const {searchResults, planName, planDescription} = this.state;
+        const {searchResults} = this.state;
         const updatedResults = [...searchResults];
         updatedResults.splice(index, 1);
         this.setState({searchResults: updatedResults});
 
-        const newPlan = {
-            planName,
-            planDescription,
-            locations: updatedResults
-        };
-
-        let data = await create_plan(newPlan);
-        if (data.data.planCreator) {
-
-        } else {
-            console.log(data)
-            alert(data.data.msg);
-        }
-    }
+        // Update the local storage
+        localStorage.setItem("travel_list", JSON.stringify(updatedResults));
+    };
 
     renderAddList = () => {
         const {searchResults} = this.state;
@@ -244,6 +253,13 @@ class Map extends Component {
                                     onChange={this.handleChange}
                                     ref={this.autocompleteInput}
                                     placeholder="Add a location e.g. Boston"
+                                />
+                                <input
+                                    style={{border: "2px solid black"}}
+                                    type="text"
+                                    placeholder="Minutes to stay (must be a number)"
+                                    value={this.state.timeOfStay}
+                                    onChange={this.handleTimeOfStayChange}
                                 />
                                 <button onClick={this.handleAdd}>Add</button>
                             </div>
@@ -288,7 +304,7 @@ function LocationItem({result, index, onRemove}) {
     useNavigate();
     return (
         <li key={index}>
-            {result.name} - Address: {result.address}
+            {result.name} - Address: {result.address} - Time of Stay: {result.timeOfStay}
             <Link to={`/travelAdvisor/place_detail/${result.placeId}`} className={"button-detail"}>Detail</Link>
             <button className="button-remove" onClick={() => onRemove(index)}>
                 Remove
