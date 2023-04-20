@@ -176,6 +176,7 @@ class Map extends Component {
         };
 
         let data = await create_plan(newPlan);
+        // console.log(data.data)
         if (data.data.planCreator) {
             localStorage.removeItem("travel_list")
             alert('Travel plan created successfully!');

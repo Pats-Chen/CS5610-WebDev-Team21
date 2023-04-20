@@ -7,13 +7,9 @@ const api = axios.create({
     withCredentials: true
 });
 export const create_plan = (plan_info) => {
-
-    return api.post(TRAVEL_API + "/create", plan_info,
-        response => {
-            response.data
-        }
-    )
-
+    // return api.post(TRAVEL_API + "/create", plan_info).then
+    // (response =>response.data)
+    return api.post(TRAVEL_API + "/create", plan_info)
 }
 
 export const getLists = (id) =>
