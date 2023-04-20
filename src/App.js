@@ -8,8 +8,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import CurrentUserContext from "./travelAdvisor/current-user-context";
 import usersReducer from "./services/usersReducer";
 import TravelAdvisor from "./travelAdvisor/index.js"
+import reviewsReducers from "./services/reviews-reducers";
 
-const store = configureStore({reducer: { users: usersReducer}})
+const store = configureStore({reducer: { users: usersReducer, reviews: reviewsReducers}})
 
 function App() {
   return (
