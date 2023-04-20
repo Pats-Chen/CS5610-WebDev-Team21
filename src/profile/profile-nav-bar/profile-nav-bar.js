@@ -16,6 +16,23 @@ const ProfileNavBar = () => {
         }
         fetchData();
     }, []);
+
+
+    useEffect(() => {
+        async function fetchData() {
+            if (userId) {
+                const userProfile = await getUserProfile(userId);
+                setDisplayedUser(userProfile);
+            }
+        }
+
+        fetchData();
+    }, [userId]);
+
+    useEffect(() => {
+        setDisplayedUser(currentUser);
+    }, [currentUser]);
+
     return (
         <>
             {displayedUser && (
@@ -29,11 +46,11 @@ const ProfileNavBar = () => {
                                      src="/img/profile-header.png" alt="/img/profile-header.png"/>
                             </div>
 
-                            <div>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}  >
                                 <img className="rounded-circle shadow-3-strong position-absolute bg-white"
                                      src={`${process.env.PUBLIC_URL}/img/${displayedUser.profileImage}`}
                                      alt={`${process.env.PUBLIC_URL}/img/${displayedUser.profileImage}`}
-                                     style={{height: '150px', width: '150px', marginTop: '-110px', marginLeft: '550px', marginRight: '700px'}}
+                                     style={{height: '150px', width: '150px', marginTop: '-110px', marginLeft: '700px', marginRight: '700px'}}
                                 />
                             </div>
                             <div className="d-flex justify-content-center"></div>
