@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Route, Routes, useNavigate, useLocation} from 'react-router-dom';
+import {Route, Routes, useNavigate, useLocation, Link} from 'react-router-dom';
 import './map.css';
+import {create_plan, getLists} from "../services/travel-plan-service";
 
 class Map extends Component {
     constructor(props) {
@@ -8,10 +9,13 @@ class Map extends Component {
         this.state = {
             map: null,
             searchQuery: '',
+            createplan_btn: 'Create',
             searchResults: [],
             planName: '',
             planDescription: '',
+            userinfo: JSON.parse(localStorage.getItem('userinfo'))
         };
+
         this.autocompleteInput = React.createRef();
         this.autocomplete = null;
         this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
@@ -20,6 +24,14 @@ class Map extends Component {
     componentDidMount() {
         this.initMap();
         this.initAutocomplete();
+
+        const travel_list = localStorage.getItem("travel_list");
+        if (travel_list) {
+            let items_list = JSON.parse(travel_list)
+            this.setState({
+                searchResults: items_list,
+            });
+        }
     }
 
     initMap() {
@@ -34,6 +46,37 @@ class Map extends Component {
         const {map} = this.state;
         this.autocomplete = new window.google.maps.places.Autocomplete(this.autocompleteInput.current);
         this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    }
+
+    initData = async () => {
+        if (this.state.userinfo) {
+            let data = await getLists(this.state.userinfo._id);
+            if (data.data.success) {
+
+                this.state = {
+                    searchResults: [],
+                };
+                let new_locations = [];
+                data.data.data.locations.map(item => {
+
+                    new_locations.push({placeId: item.placeId, name: item.name, address: item.address})
+                })
+
+                this.setState({
+                    planName: data.data.data.planName,
+                    planDescription: data.data.data.planDescription
+                })
+
+                console.log(new_locations)
+                this.setState({
+                    searchResults: new_locations,
+                });
+
+            } else {
+                console.log(data)
+                alert(data.data.msg);
+            }
+        }
     }
 
     handlePlaceSelect() {
@@ -99,6 +142,10 @@ class Map extends Component {
                         name: place.name, location: place.geometry.location, address, placeId
                     }],
                 });
+                localStorage.setItem("travel_list", JSON.stringify([...searchResults, {
+                    name: place.name, location: place.geometry.location, address, placeId
+                }]));
+
             } else {
                 alert('No results found for this search query');
             }
@@ -113,7 +160,8 @@ class Map extends Component {
         this.setState({planDescription: event.target.value});
     }
 
-    handleCreatePlan = () => {
+    handleCreatePlan = async (type = false) => {
+
         const {searchResults, planName, planDescription} = this.state;
         if (searchResults.length === 0 || !planName || !planDescription) {
             alert('Please enter plan name, plan description, and at least one location to create a travel plan.');
@@ -123,43 +171,46 @@ class Map extends Component {
         const newPlan = {
             planName,
             planDescription,
-            locations: searchResults
+            locations: searchResults,
+            addnew: 1
         };
 
-        // send newPlan to server to save to database
-        fetch('/api/create-plan', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newPlan)
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Travel plan created successfully!');
-                    // clear form and reset state
-                    this.setState({
-                        searchQuery: '',
-                        searchResults: [],
-                        planName: '',
-                        planDescription: ''
-                    });
-                } else {
-                    alert('There was an error creating the travel plan. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert('There was an error creating the travel plan. Please try again.');
+        let data = await create_plan(newPlan);
+        // console.log(data.data)
+        if (data.data.planCreator) {
+            localStorage.removeItem("travel_list")
+            alert('Travel plan created successfully!');
+            this.setState({
+                searchQuery: '',
+                searchResults: [],
+                planName: '',
+                planDescription: ''
             });
+        } else {
+            console.log(data)
+            alert(data.data.msg);
+        }
     }
 
-    handleRemove = (index) => {
-        const {searchResults} = this.state;
+    handleRemove = async (index) => {
+        const {searchResults, planName, planDescription} = this.state;
         const updatedResults = [...searchResults];
         updatedResults.splice(index, 1);
         this.setState({searchResults: updatedResults});
+
+        const newPlan = {
+            planName,
+            planDescription,
+            locations: updatedResults
+        };
+
+        let data = await create_plan(newPlan);
+        if (data.data.planCreator) {
+
+        } else {
+            console.log(data)
+            alert(data.data.msg);
+        }
     }
 
     renderAddList = () => {
@@ -212,7 +263,16 @@ class Map extends Component {
                                     value={this.state.planDescription}
                                     onChange={this.handlePlanDescriptionChange}
                                 />
-                                <button onClick={this.handleCreatePlan}>Create</button>
+                                <button onClick={this.handleCreatePlan}> {this.state.createplan_btn} </button>
+                                {this.state.createplan_btn !== 'Create' && (
+                                    <div>
+                                        <button style={{marginLeft: "10px", backgroundColor: "#ff6600"}}
+                                                onClick={() => {
+                                                    this.handleCreatePlan(true)
+                                                }}> Create New
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                             <h3 className="map-title">Your travel plan:</h3>
                             <div className="list-container">{this.renderAddList()}</div>
@@ -225,24 +285,17 @@ class Map extends Component {
 }
 
 function LocationItem({result, index, onRemove}) {
-    const navigate = useNavigate();
-
+    useNavigate();
     return (
         <li key={index}>
             {result.name} - Address: {result.address}
-            <button
-                className="button-detail"
-                onClick={() => navigate(`/travelAdvisor/place_detail/${result.placeId}`)}
-            >
-                Detail
-            </button>
+            <Link to={`/travelAdvisor/place_detail/${result.placeId}`} className={"button-detail"}>Detail</Link>
             <button className="button-remove" onClick={() => onRemove(index)}>
                 Remove
             </button>
         </li>
     );
 }
-
 
 function ConditionalMap() {
     const location = useLocation();
