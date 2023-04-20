@@ -91,7 +91,7 @@ function TravelAdvisor() {
                     <Route path="profile/:userId" element={<ProfileInfoComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
                     <Route path="place_detail/:placeId" element={<PlaceDetail/>}/>
-                    <Route path="detail" element={<PlanDetailComponent/>}/>
+                    <Route path="detail/:planId" element={<PlanDetailComponent/>}/>
                     <Route path="detail/reviews" element={<ReviewComponent/>}/>
                 </Routes>
             </div>

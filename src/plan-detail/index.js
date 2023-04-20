@@ -5,31 +5,44 @@ import {useLoadScript} from "@react-google-maps/api";
 import './index.css';
 import {getUserProfile} from "../services/user-service";
 import MyReviews from "../review/index.js"
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {getPlanById} from "../services/travel-plan-service";
 
 
 const PlanDetailComponent = () => {
     const { isLoaded } = useLoadScript({
                                            googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
-    // hardcode demoID：
-    const planOwnerId ="643c5e65a928059058979dc4";
-    const [planOwner, setPlanOwner]= useState(null);
+    const{planId} = useParams();
 
+
+    // hardcode demoID：
+    const [planOwnerId,setPlanOwnerId] = useState(null);
+    const [displayPlan,setDisplayPlan] = useState(null);
+    const [planOwner, setPlanOwner]= useState(null);
     useEffect(() => {
         async function fetchData() {
-                const userProfile = await getUserProfile(planOwnerId);
-                setPlanOwner(userProfile);
+            const displayPlanHolder = await getPlanById(planId);
+            const userProfile = await getUserProfile(displayPlanHolder.data.planOwner);
+            setPlanOwnerId(displayPlanHolder.data.planOwner)
+            setPlanOwner(userProfile);
+            setDisplayPlan(displayPlanHolder.data)
+            // console.log(displayPlan);
+            // console.log(displayPlanHolder);
         }
         fetchData();
-    }, []);
-    if (!isLoaded) return <div>Loading...</div>
+    }, [planId]);
+    // useEffect(() => {
+    //     setDisplayPlan(displayPlan);
+    // }, [displayPlan]);
 
-    return (
+    if (!isLoaded) return <div>Loading...</div>
+    return displayPlan && (
         <>
+            <h2>{displayPlan.planCreator}</h2>
             <div className="container row bg-light rounded-top-2 ps-5 m-0">
                 <div className="col-2 bg-light"></div>
                 <div className="col-8 bg-light">
-                    <ItineraryMap/>
+                    <ItineraryMap plan = {displayPlan}></ItineraryMap>
                 </div>
                 <div className="col-2 bg-light"></div>
             </div>
@@ -49,11 +62,8 @@ const PlanDetailComponent = () => {
             </div>
             {/*Placeholder ends here*/}
             <div className="container bg-light pb-2 rounded-bottom-2">
-                <ItineraryList/>
+                <ItineraryList plan = {displayPlan}></ItineraryList>
             </div>
-
-
-
 
             <div>
                 <footer>

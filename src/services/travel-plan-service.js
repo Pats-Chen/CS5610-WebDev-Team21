@@ -12,6 +12,10 @@ export const create_plan = (plan_info) => {
     return api.post(TRAVEL_API + "/create", plan_info)
 }
 
+export const getPlanById =(pid)=>{
+    return api.get(TRAVEL_API +"/findOne/" +pid)
+
+}
 export const getLists = (id) =>
     api.get(TRAVEL_API + "/get/" + id)
 
