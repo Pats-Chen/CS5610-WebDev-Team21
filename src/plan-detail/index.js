@@ -140,6 +140,17 @@ const PlanDetailComponent = () => {
 
 
             {/* write review */}
+            {!currentUser &&
+                <div style={{ textAlign: "center", marginTop: "20px", marginBottom:"10px" }}>
+                    <h5 style={{ marginBottom: "10px" }}>Please login to see review</h5>
+                    <span>
+        <Link to="/travelAdvisor/login" style={{ textDecoration: "none" }}>Login</Link> now
+    </span>
+                </div>
+
+            }
+            { currentUser &&
+
             <div className="d-flex mb-3 mt-4">
                 <a href="">
                     <img
@@ -167,11 +178,12 @@ const PlanDetailComponent = () => {
                     </label>
                     <button onClick={addReviewHandler} className="mt-2 btn btn-primary float-end" type="button">Post</button>
                 </div>
-            </div>
+            </div> }
 
             {/* MyReviews component */}
 
             { reviews && <MyReviews reviews={reviews} > </MyReviews>}
+
 
 
 

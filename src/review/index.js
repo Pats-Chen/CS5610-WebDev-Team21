@@ -11,7 +11,6 @@ function MyReviews(reviews) {
 
                <div className="row">
                    <ListGroup>
-
                    {
                        reviews.reviews.map(review => <ReviewItems key={review._id} review={review}/>)
                    }
