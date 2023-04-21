@@ -18,6 +18,14 @@ export const findReviewsByPlanId = async (_id) => {
     const reviews = response.data;
     return reviews;
 }
+
+
+export const findReviewsByAuthor = async (_id) => {
+    const response = await axios.get(`${REVIEWS_API}/author/${_id}`);
+    const reviews = response.data;
+    return reviews;
+}
+
 export const deleteReview = async (rid) => {
     const response = await axios
         .delete(`${REVIEWS_API}/${rid}`)

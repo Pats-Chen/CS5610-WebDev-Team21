@@ -31,3 +31,10 @@ export const deleteReviewThunk = createAsyncThunk(
         await service.deleteReview(reviewId)
         return reviewId
     })
+
+export const findReviewsByAuthorThunk = createAsyncThunk(
+    'reviews/findReviewsByAuthor', async (_id) => {
+        const reviews =  await service.findReviewsByAuthor(_id)
+        return reviews;
+
+    })
