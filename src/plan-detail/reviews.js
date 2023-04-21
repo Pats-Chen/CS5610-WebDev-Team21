@@ -7,23 +7,23 @@ import { useDispatch } from "react-redux";
 
 
 function ReviewComponent() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {currentUser} = useSelector((state) => state.users);
+    const {currentPlan} = useSelector((state) => state.plan);
     const {reviews} = useSelector((state) => state.reviews);
     const [reviewValue, setReviewValue] = React.useState("");
 
 
     useEffect(() => {
         if (currentUser) {
-            dispatch(findReviewByPlanIdThunk(currentUser._id));
+            dispatch(findReviewByPlanIdThunk(currentPlan._id));
         }
     }, [currentUser]);
 
 
     const addReviewHandler = () => {
         const newReview = {
-            planId: currentUser._id, // *** no plan id yet, using userId for now
+            planId: currentPlan._id, // *** no plan id yet, using userId for now
             authorId: currentUser._id,
             authorName: currentUser.firstName + " " + currentUser.lastName,
             authorImg: currentUser.profileImage,

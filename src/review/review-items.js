@@ -59,7 +59,7 @@ const ReviewItems = (review)=>{
                 </div>
 
                 {
-                    currentUser  &&
+                    (review.review.authorId === currentUser._id  || currentUser.userStatus === "admin") &&
                     <div className="col-1">
                         <button className="rounded-pill btn btn-danger btn-sm" onClick={deleteClickHandler}>
                             Delete
@@ -67,14 +67,6 @@ const ReviewItems = (review)=>{
                     </div>
                 }
 
-                {
-                    currentUser.userStatus === "admin"  &&
-                    <div className="col-1">
-                        <button className="rounded-pill btn btn-danger btn-sm" onClick={deleteClickHandler}>
-                            Delete
-                        </button>
-                    </div>
-                }
 
 
 

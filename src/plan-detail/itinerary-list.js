@@ -1,15 +1,17 @@
 import React from "react";
-import itineraryArray from "./itinerary.json"
+// import itineraryArray from "./itinerary.json"
 import ItineraryItem from "./itinerary-item";
 
-const ItineraryList = () => {
+const ItineraryList = (plan) => {
+    // console.log(plan)
+    // console.log(plan.plan)
     return (
         <>
             <ul className="list-group">
                 <li className="list-group-item">
                     <h3>Start</h3>
                 </li>
-                {itineraryArray.map(item => <ItineraryItem item={item}/>)}
+                {plan.plan.locations.map(item => <ItineraryItem key ={item.placeId} item={item}/>)}
                 <li className="list-group-item">
                     <h3>End</h3>
                 </li>
