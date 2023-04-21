@@ -11,6 +11,7 @@ const ItineraryItem = (
     const navigate = useNavigate()
     const onclickHandler =()=>{
         navigate('/travelAdvisor/place_detail/'+item.placeId)
+        navigate(0)
     }
     return(
         <li className="list-group-item">
