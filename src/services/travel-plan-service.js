@@ -21,3 +21,22 @@ export const getLists = (id) =>
 
 export const delTravelPlain = (locations_id) =>
     api.get(TRAVEL_API + "/del", locations_id)
+
+export const getAllPlansOfOneUser = async (uid)=>{
+    const response = await api.get(TRAVEL_API +"/findAll/" +uid);
+    return response.data
+}
+
+export const adminGet = async ()=>{
+    const response = await api.get(TRAVEL_API +"/findAll");
+    // console.log(response.data);
+    return response.data;
+}
+
+export const getRecommendation = async ()=>{
+    const response = await api.get(TRAVEL_API +"/recommendation");
+    // console.log(response.data);
+    return response.data;
+}
+
+

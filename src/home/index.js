@@ -20,13 +20,16 @@ function Home(){
             </div>
 
             <div className="container bg-light rounded-2">
-                <h2 className="featurette-heading fw-normal lh-1 ps-3">Explore</h2>
-                <PlanOverview/>
+                {/*<h2 className="featurette-heading fw-normal lh-1 ps-3">My plans</h2>*/}
+                <PlanOverview>CurrentUser</PlanOverview>
             </div>
-
             <div className="container bg-light rounded-2">
-                <h2 className="featurette-heading fw-normal lh-1 ps-3">My plans</h2>
-                <PlanOverview/>
+                {/*<h2 className="featurette-heading fw-normal lh-1 ps-3">Admin view</h2>*/}
+                <PlanOverview>Admin</PlanOverview>
+            </div>
+            <div className="container bg-light rounded-2">
+                {/*<h2 className="featurette-heading fw-normal lh-1 ps-3">Recommendation</h2>*/}
+                <PlanOverview>Recommendation</PlanOverview>
             </div>
 
             <div>
