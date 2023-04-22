@@ -35,7 +35,7 @@ const MyInfo = () => {
 
 
     return  displayedUser && (
-        <div className="container mt-5">
+        <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="container">
@@ -110,10 +110,10 @@ const MyInfo = () => {
                             <div className="row text-center">
                                 <div className="container mb-3">
                                     <Link to="/travelAdvisor/myprofileedit"
-                                          className="btn btn-primary me-2"
+                                          className="btn btn-primary rounded-pill me-2"
                                           role="button">Edit Profile</Link>
                                     <Link to="/travelAdvisor/home"
-                                          className="btn btn-danger"
+                                          className="btn btn-danger rounded-pill"
                                           onClick={logout}
                                           role="button">Log out</Link>
                                 </div>

@@ -1,7 +1,7 @@
-import React, {useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 import PlanOverviewItem from "./plan-overview-item";
-import {useSelector} from "react-redux";
-import {adminGet, getAllPlansOfOneUser, getRecommendation} from "../services/travel-plan-service";
+import { useSelector } from "react-redux";
+import { adminGet, getAllPlansOfOneUser, getRecommendation } from "../services/travel-plan-service";
 
 const PlanOverview = (usage) => {
     const { currentUser } = useSelector((state) => state.users);
@@ -56,7 +56,7 @@ const PlanOverview = (usage) => {
             {usage.children === "Recommendation" &&
                 (<h2 className="featurette-heading fw-normal lh-1 ps-3">Recommendation</h2>) }
 
-            <div className="album py-3 bg-light">
+            <div className="album pt-2 pb-2 bg-light">
                 <div className="container">
                     <div className="row">
                         {plan && (<>{plan.map(planItem => <PlanOverviewItem key={planItem._id} planOverview={planItem}/>)}</>)}

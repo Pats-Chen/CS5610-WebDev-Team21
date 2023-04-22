@@ -73,9 +73,9 @@ function TravelAdvisor() {
                 `}
             </style>
 
-            <header>
+            <div>
                 <NavigationBar/>
-            </header>
+            </div>
 
             <div>
                 <Routes>
@@ -87,9 +87,9 @@ function TravelAdvisor() {
                     <Route path="myprofileedit" element={<ProfileEditComponent/>}/>
                     <Route path="choose_icon" element={<ProfileChooseIconComponent/>}/>
                     <Route path="myplans" element={<ProfilePlansComponent/>}/>
-                    <Route path="profile/myprofile" element={<ProfileInfoComponent/>}/>
                     <Route path="profile/myprofileedit" element={<ProfileEditComponent/>}/>
                     <Route path="profile/myplans" element={<ProfilePlansComponent/>}/>
+                    <Route path="profile" element={<ProfileInfoComponent/>}/>
                     <Route path="profile/:userId" element={<ProfileInfoComponent/>}/>
                     <Route path="create" element={<MapComponent/>}/>
                     <Route path="place_detail/:placeId" element={<PlaceDetail/>}/>

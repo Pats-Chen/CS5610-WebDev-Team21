@@ -61,11 +61,7 @@ const ProfileNavBar = () => {
                         <section className="text-center">
                             <div className="row d-flex justify-content-center">
                                 <div className="col-lg-6">
-                                    <h2><strong>{displayedUser.firstName} {displayedUser.lastName}</strong></h2>
-                                    <p className="text-muted">
-                                        {/*{currentUser.bio}*/}
-                                        Hi, {displayedUser.username}!
-                                    </p>
+                                    <h2 className="text-muted">What's new, <strong>{displayedUser.username}</strong>?</h2>
                                 </div>
                             </div>
                         </section>

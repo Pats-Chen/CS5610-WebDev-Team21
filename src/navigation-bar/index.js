@@ -1,14 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {getUserProfile} from "../services/user-service";
+import {logoutThunk} from "../services/users-thunks";
 import './index.css';
 
 const NavigationBar = () => {
     const { userId } = useParams()
     const {currentUser} = useSelector((state) => state.users)
     const [displayedUser, setDisplayedUser] = useState(currentUser);
+    const dispatch = useDispatch()
+    const logout = async () =>{
+        try {
+            await dispatch(logoutThunk());
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         async function fetchData() {
             if (userId) {
@@ -51,7 +61,7 @@ const NavigationBar = () => {
                             {currentUser && (
                                 <>
                                     <li className="nav-item">
-                                        <Link to={`/travelAdvisor/profile/myprofile`} className="nav-link text-dark">Profile</Link>
+                                        <Link to={`/travelAdvisor/profile`} className="nav-link text-dark">Profile</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to={`/travelAdvisor/profile/${currentUser._id}`} className="nav-link text-dark">
@@ -60,6 +70,12 @@ const NavigationBar = () => {
                                                  className="rounded-circle bg-white"/>
                                         </Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <Link to="/travelAdvisor/home"
+                                              className="nav-link text-dark"
+                                              onClick={logout}>Log out</Link>
+                                    </li>
+
                                     <li className="nav-item">
                                         <Link to="/travelAdvisor/myplans" className="nav-link text-dark">My plans</Link>
                                     </li>

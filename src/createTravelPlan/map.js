@@ -244,54 +244,62 @@ class Map extends Component {
                 <Routes>
                     <Route index element={
                         <>
-                            <ConditionalMap/>
-                            <h1 className="map-title">Create your travel plan!</h1>
-                            <div className="search-container">
-                                <input
-                                    style={{border: "2px solid black"}}
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    ref={this.autocompleteInput}
-                                    placeholder="Add a location e.g. Boston"
-                                />
-                                <input
-                                    style={{border: "2px solid black"}}
-                                    type="text"
-                                    placeholder="Minutes to stay (must be a number)"
-                                    value={this.state.timeOfStay}
-                                    onChange={this.handleTimeOfStayChange}
-                                />
-                                <button onClick={this.handleAdd}>Add</button>
+                            <div className="bg-light rounded-2">
+                                <ConditionalMap/>
+                                <h1 className="map-title ps-4">Create your travel plan!</h1>
+                                <div className="search-container">
+                                    <input
+                                        style={{border: "2px solid black"}}
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        ref={this.autocompleteInput}
+                                        placeholder="Add a location e.g. Boston"
+                                    />
+                                    <input
+                                        style={{border: "2px solid black"}}
+                                        type="text"
+                                        placeholder="Minutes to stay (must be a number)"
+                                        value={this.state.timeOfStay}
+                                        onChange={this.handleTimeOfStayChange}
+                                    />
+                                    <button onClick={this.handleAdd}>Add</button>
+                                </div>
+                                <div id="map"></div>
+                                <div className="search-container">
+                                    <input
+                                        style={{border: "2px solid black"}}
+                                        type="text"
+                                        placeholder="Enter your plan name"
+                                        value={this.state.planName}
+                                        onChange={this.handlePlanNameChange}
+                                    />
+                                    <input
+                                        style={{border: "2px solid black"}}
+                                        type="text"
+                                        placeholder="Enter your plan description"
+                                        value={this.state.planDescription}
+                                        onChange={this.handlePlanDescriptionChange}
+                                    />
+                                    <button onClick={this.handleCreatePlan}> {this.state.createplan_btn} </button>
+                                    {this.state.createplan_btn !== 'Create' && (
+                                        <div>
+                                            <button style={{marginLeft: "10px", backgroundColor: "#ff6600"}}
+                                                    onClick={() => {
+                                                        this.handleCreatePlan(true)
+                                                    }}> Create New
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                                <h3 className="map-title ps-4">List of places</h3>
+                                <div className="list-container">{this.renderAddList()}</div>
                             </div>
-                            <div id="map"></div>
-                            <div className="search-container">
-                                <input
-                                    style={{border: "2px solid black"}}
-                                    type="text"
-                                    placeholder="Enter your plan name"
-                                    value={this.state.planName}
-                                    onChange={this.handlePlanNameChange}
-                                />
-                                <input
-                                    style={{border: "2px solid black"}}
-                                    type="text"
-                                    placeholder="Enter your plan description"
-                                    value={this.state.planDescription}
-                                    onChange={this.handlePlanDescriptionChange}
-                                />
-                                <button onClick={this.handleCreatePlan}> {this.state.createplan_btn} </button>
-                                {this.state.createplan_btn !== 'Create' && (
-                                    <div>
-                                        <button style={{marginLeft: "10px", backgroundColor: "#ff6600"}}
-                                                onClick={() => {
-                                                    this.handleCreatePlan(true)
-                                                }}> Create New
-                                        </button>
-                                    </div>
-                                )}
+                            <div>
+                                <footer>
+                                    <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                                </footer>
                             </div>
-                            <h3 className="map-title">Your travel plan:</h3>
-                            <div className="list-container">{this.renderAddList()}</div>
                         </>
                     }/>
                 </Routes>
@@ -304,11 +312,54 @@ function LocationItem({result, index, onRemove}) {
     useNavigate();
     return (
         <li key={index}>
-            {result.name} - Address: {result.address} - Time of Stay: {result.timeOfStay}
-            <Link to={`/travelAdvisor/place_detail/${result.placeId}`} className={"button-detail"}>Detail</Link>
-            <button className="button-remove" onClick={() => onRemove(index)}>
-                Remove
-            </button>
+
+            <div className="card-body">
+                <div className="justify-content-between align-items-center">
+                    <div className="row">
+                        <div className="col-8">
+                            <div className="row">
+                                <div className="col-1 text-end">
+                                    <i className="fa fa-map-marker fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-11">
+                                    <span className="text-muted">{result.name}</span>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-1 text-end">
+                                    <i className="fa fa-location-arrow fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-11">
+                                    <span className="text-muted">{result.address}</span>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-1 text-end">
+                                    <i className="fa fa-clock fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-11">
+                                    <span className="text-muted">{result.timeOfStay} minutes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-4">
+                            <div className="row">
+                                <div className="text-end">
+                                    <Link to={`/travelAdvisor/place_detail/${result.placeId}`} className="button-detail">Detail</Link>
+                                </div>
+                                <div className="text-end">
+                                    <button className="button-remove" onClick={() => onRemove(index)}>
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </li>
     );
 }

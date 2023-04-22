@@ -8,7 +8,7 @@ function ProfileInfo(){
             <div className="container bg-light">
                 <ProfileNavBar/>
             </div>
-            <div className="container bg-light">
+            <div className="container bg-light rounded-bottom">
                 <MyProfileInfoComponent/>
             </div>
             <div>

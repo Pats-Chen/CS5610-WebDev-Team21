@@ -34,17 +34,30 @@ const PlanOverviewItem = (
                          style={{height: "225px", width: "100%", display: "block"}}/>
                         <div className="card-body">
                             <div className="justify-content-between align-items-center">
+
                                 <div className="row">
-                                    <div className="col-4">
-                                        <i className="fa fa-plane-departure fa-1x pe-1" style={{color: "seagreen"}}></i>
+                                    <div className="col-sm-1">
+                                        <i className="fa fa-suitcase fa-1x" style={{color: "seagreen"}}></i>
+                                    </div>
+                                    <div className="col-sm-11">
                                         <span className="text-muted">{`${planOverview.planName}`}</span>
                                     </div>
-                                    <div className="col-4">
-                                        <i className="fa fa-user fa-1x pe-1" style={{color: "seagreen"}}></i>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-sm-1">
+                                        <i className="text-center fa fa-user fa-1x" style={{color: "seagreen"}}></i>
+                                    </div>
+                                    <div className="col-sm-11">
                                         <span className="text-muted">{planOwner && `${planOwner.username}`}</span>
                                     </div>
-                                    <div className="col-4">
-                                        <i className="fa fa-map-pin fa-1x pe-1" style={{color: "seagreen"}}></i>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-sm-1">
+                                        <i className="text-center fa fa-map-marker fa-1x" style={{color: "seagreen"}}></i>
+                                    </div>
+                                    <div className="col-sm-11">
                                         <span className="text-muted">{`${planOverview.locations.length}`}</span>
                                     </div>
                                 </div>

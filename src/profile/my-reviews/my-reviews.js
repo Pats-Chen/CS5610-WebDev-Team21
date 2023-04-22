@@ -23,26 +23,22 @@ const MyReviews = () => {
     return (
 
         <>
-
-
-
-
             <div className="container bg-light">
                 <ProfileNavBar/>
             </div>
 
             {reviews.length === 0 && (
-                <div className="container mt-5">
+                <div className="container bg-light rounded-bottom">
                     <div className="row justify-content-center">
                         <div className="col-md-6 text-center py-4 bg-light border rounded">
-                            <h4 className="mb-3">You have not reviewed any plans yet</h4>
-                            <p>Please explore our travel plans and share your experience with others.</p>
+                            <h4 className="mb-3">You have not reviewed any plans yet.</h4>
+                            <p>Please explore more travel plans and share your experience with others.</p>
                         </div>
                     </div>
                 </div>
             )}
 
-            <div className="container mt-3">
+            <div className="container bg-light rounded-bottom">
                 <div className="row">
                     {reviews && reviews.map(review =>
                         <MyReviewItem key={review._id} review={review} />)

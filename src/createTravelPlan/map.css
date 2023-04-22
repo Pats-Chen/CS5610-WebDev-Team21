@@ -63,14 +63,28 @@
     font-size: 16px;
 }
 
-.button-detail, .button-remove {
+.button-detail {
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    padding: 8px 16px;
+    padding: 8px 23px 8px 23px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+
+.button-remove {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 16px 8px 16px;
     margin: 4px;
     cursor: pointer;
     border-radius: 4px;

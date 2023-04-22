@@ -31,44 +31,43 @@ const MyReviewItems = ({ review }) => {
         <>
             <div className="col-lg-4 col-sm-6">
                 <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
-                    <div className="card">
-                        <div className="card-body d-flex flex-row">
-                            <div>
-                                <h5 className="card-title font-weight-bold mb-2">
-                                    Plan title: {plan && plan.planName}
-                                </h5>
-                                <p className="card-text">
-                                    <i className="far fa-clock pe-2"></i>
-                                    {date}
-                                </p>
-                                <p>
-                                   My comment: {review.content}
-                                </p>
-                            </div>
-                        </div>
-                        <div
-                            className="bg-image hover-overlay ripple rounded-0"
-                            data-mdb-ripple-color="light"
-                        >
-                            <a href="#!">
-                                <div
-                                    className="mask"
-                                    style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
-                                ></div>
-                            </a>
-                        </div>
+                    <div className="card mb-3 mt-3">
                         <div className="card-body">
-                            <div className="d-flex justify-content-between">
-                                <Link to={`/travelAdvisor/detail/${review.planId}`}>
-                                <a
-                                    className="btn btn-link link-danger p-md-1 my-1"
-                                    role="button"
-                                    aria-expanded="false"
-                                    aria-controls="collapseContent"
-                                >
-                                    See my comment
-                                </a>
-                                </Link>
+                            <div className="row">
+                                <div className="col-sm-2">
+                                    <i className="fa fa-suitcase"/>
+                                </div>
+                                <div className="col-sm-10">
+                                    <p className="text-muted mb-0">{plan && plan.planName}</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-2">
+                                    <i className="far fa-clock"/>
+                                </div>
+                                <div className="col-sm-10">
+                                    {date}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-2">
+                                    <i className="fa fa-feather"/>
+                                </div>
+                                <div className="col-sm-10">
+                                    <p className="text-muted mb-0">{review.content}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row text-center">
+                                <p className="text-muted mb-0">
+                                    <Link to={`/travelAdvisor/detail/${review.planId}`}
+                                          className="btn btn-primary p-md-1 my-1"
+                                          role="button"
+                                          aria-expanded="false"
+                                          aria-controls="collapseContent">
+                                        Check
+                                    </Link>
+                                </p>
                             </div>
                         </div>
                     </div>

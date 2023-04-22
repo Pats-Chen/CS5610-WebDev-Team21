@@ -40,21 +40,22 @@ const EditProfile = () => {
     };
 
     return currentUser && (
-        <div className="container-xl px-4 mt-4">
-            <hr className="mt-0 mb-4" />
+        <div className="container-xl px-4 pt-3">
             <div className="row">
-                <div className="card mb-4 col-xl-4">
-                    <div className="card-header">Profile Picture</div>
-                    <div className="card-body text-center">
-                        <img
-                            className="img-account-profile rounded-circle mb-2"
-                            src={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
-                            alt={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
-                            // set width, height to 150px
-                            style={{height: "150px", width: "150px"}}/>
-                        <div>
-                            <Link to="/travelAdvisor/choose_icon"
-                                  className="btn btn-primary" role="button">Change</Link>
+                <div className="col-xl-4">
+                    <div className="card mb-4">
+                        <div className="card-header">Profile Picture</div>
+                        <div className="card-body text-center">
+                            <img
+                                className="img-account-profile rounded-circle mb-2"
+                                src={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
+                                alt={`${process.env.PUBLIC_URL}/img/${currentUser.profileImage}`}
+                                // set width, height to 150px
+                                style={{height: "150px", width: "150px"}}/>
+                            <div>
+                                <Link to="/travelAdvisor/choose_icon"
+                                      className="btn btn-primary rounded-pill" role="button">Change</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ const EditProfile = () => {
                                         className="small mb-1"
                                         htmlFor="inputUsername"
                                     >
-                                        Username (how your name will appear to other users on the site)
+                                        Username
                                     </label>
                                     <input
                                         className="form-control"
@@ -80,77 +81,6 @@ const EditProfile = () => {
                                     />
                                 </div>
 
-                                <div className="row gx-3 mb-3">
-                                    <div className="col-md-6">
-                                        <label
-                                            className="small mb-1"
-                                            htmlFor="inputFirstName"
-                                        >
-                                            First name
-                                        </label>
-                                        <input
-                                            className="form-control"
-                                            id="inputFirstName"
-                                            type="text"
-                                            placeholder="Enter your first name"
-                                            value={firstName}
-                                            onChange = {(event) => setFirstName(event.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label
-                                            className="small mb-1"
-                                            htmlFor="inputLastName"
-                                        >
-                                            Last name
-                                        </label>
-                                        <input
-                                            className="form-control"
-                                            id="inputLastName"
-                                            type="text"
-                                            placeholder="Enter your last name"
-                                            value={lastName}
-                                            onChange = {(event) => setLastName(event.target.value)}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row gx-3 mb-3">
-                                    <div className="col-md-6">
-                                        <label
-                                            className="small mb-1"
-                                            htmlFor="inputOrgName"
-                                        >
-                                            Website
-                                        </label>
-                                        <input
-                                            className="form-control"
-                                            id="inputOrgName"
-                                            type="text"
-                                            placeholder="Enter your website"
-                                            value={website}
-                                            onChange = {(event) => setWebsite(event.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label
-                                            className="small mb-1"
-                                            htmlFor="inputLocation"
-                                        >
-                                            Location
-                                        </label>
-                                        <input
-                                            className="form-control"
-                                            id="inputLocation"
-                                            type="text"
-                                            placeholder="Enter your location"
-                                            value={location}
-                                            onChange = {(event) => setLocation(event.target.value)}
-                                        />
-                                    </div>
-                                </div>
                                 <div className="mb-3">
                                     <label
                                         className="small mb-1"
@@ -167,6 +97,36 @@ const EditProfile = () => {
                                         onChange = {(event) => setEmailAddress(event.target.value)}
                                     />
                                 </div>
+
+                                <div className="row gx-3 mb-3">
+                                    <div className="col-md-6">
+                                        <label className="small mb-1"
+                                               htmlFor="inputFirstName">
+                                            First name
+                                        </label>
+                                        <input className="form-control"
+                                               id="inputFirstName"
+                                               type="text"
+                                               placeholder="Enter your first name"
+                                               value={firstName}
+                                               onChange = {(event) => setFirstName(event.target.value)}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label className="small mb-1"
+                                               htmlFor="inputLastName">
+                                            Last name
+                                        </label>
+                                        <input className="form-control"
+                                               id="inputLastName"
+                                               type="text"
+                                               placeholder="Enter your last name"
+                                               value={lastName}
+                                               onChange = {(event) => setLastName(event.target.value)}
+                                        />
+                                    </div>
+                                </div>
+
                                 <div className="row gx-3 mb-3">
                                     <div className="col-md-6">
                                         <label
@@ -183,7 +143,22 @@ const EditProfile = () => {
                                             onChange = {(event) => setPhoneNumber(event.target.value)}
                                         />
                                     </div>
+                                    <div className="col-md-6">
+                                        <label className="small mb-1"
+                                               htmlFor="inputLocation">
+                                            Location
+                                        </label>
+                                        <input className="form-control"
+                                               id="inputLocation"
+                                               type="text"
+                                               placeholder="Enter your location"
+                                               value={location}
+                                               onChange = {(event) => setLocation(event.target.value)}
+                                        />
+                                    </div>
+                                </div>
 
+                                <div className="row gx-3 mb-3">
                                     <div className="col-md-6">
                                         <label
                                             className="small mb-1"
@@ -199,29 +174,42 @@ const EditProfile = () => {
                                             onChange = {(event) => setBirthday(event.target.value)}
                                         />
                                     </div>
-
-                                    <div className="mb-3">
-                                        <label
-                                            className="small mb-1"
-                                            htmlFor="inputBio"
-                                        >
-                                            About me
+                                    <div className="col-md-6">
+                                        <label className="small mb-1"
+                                               htmlFor="inputOrgName">
+                                            Website
                                         </label>
-                                        <input
-                                            className="form-control"
-                                            id="inputBio"
-                                            type="text"
-                                            placeholder="Enter your Bio"
-                                            value={bio}
-                                            onChange = {(event) => setBio(event.target.value)}
+                                        <input className="form-control"
+                                               id="inputOrgName"
+                                               type="text"
+                                               placeholder="Enter your website"
+                                               value={website}
+                                               onChange = {(event) => setWebsite(event.target.value)}
                                         />
                                     </div>
-
                                 </div>
+
+                                <div className="mb-3">
+                                    <label
+                                        className="small mb-1"
+                                        htmlFor="inputBio"
+                                    >
+                                        About me
+                                    </label>
+                                    <input
+                                        className="form-control"
+                                        id="inputBio"
+                                        type="text"
+                                        placeholder="Enter your Bio"
+                                        value={bio}
+                                        onChange = {(event) => setBio(event.target.value)}
+                                    />
+                                </div>
+
                                 <div className="row text-center">
                                     <div className="container mb-1">
                                         <Link to="/travelAdvisor/profile/myprofile"
-                                              className="btn btn-primary"
+                                              className="btn btn-primary rounded-pill"
                                               role="button"
                                               onClick={saveChangeHandler}>Save</Link>
                                     </div>

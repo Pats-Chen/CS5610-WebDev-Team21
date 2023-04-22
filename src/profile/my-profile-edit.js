@@ -8,7 +8,7 @@ function ProfileTrips(){
             <div className="container bg-light">
                 <ProfileNavBar/>
             </div>
-            <div className="container bg-light">
+            <div className="container bg-light rounded-bottom">
                 <EditProfileComponent/>
             </div>
             <div>

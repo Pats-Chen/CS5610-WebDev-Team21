@@ -5,11 +5,16 @@ import PlanOverview from "../plan-overview/index";
 function ProfileTrips(){
     return (
         <>
-            <div className="container bg-light">
+            <div className="container bg-light rounded-bottom">
                 <ProfileNavBar/>
             </div>
-            <div className="container bg-light">
-                <PlanOverview/>
+            <div className="container bg-light rounded-2">
+                {/*<h2 className="featurette-heading fw-normal lh-1 ps-3">My plans</h2>*/}
+                <PlanOverview>CurrentUser</PlanOverview>
+            </div>
+            <div className="container bg-light rounded-2">
+                {/*<h2 className="featurette-heading fw-normal lh-1 ps-3">Admin view</h2>*/}
+                <PlanOverview>Admin</PlanOverview>
             </div>
             <div>
                 <footer>

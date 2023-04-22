@@ -24,15 +24,15 @@ function HomeCarousel () {
                         <div className="carousel-caption text-start">
                             {currentUser && (
                                 <>
-                                    <h1>Welcome back, {currentUser.username}!</h1>
-                                    <p>View profile details</p>
-                                    <p><Link className="btn btn-lg btn-primary" to={`/travelAdvisor/profile/${currentUser._id}`}>Profile</Link></p>
+                                    <h1>WELCOME BACK, {currentUser.username}!</h1>
+                                    <p>view profile details</p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to={`/travelAdvisor/profile/${currentUser._id}`}>Profile</Link></p>
                                 </>
                             )}
                             {!currentUser && (<>
                                     <h1>SIGN UP TODAY</h1>
                                     <p>start preparing for your future travel</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to="/travelAdvisor/signup">Sign up</Link></p>
                                 </>
                                 )}
                         </div>
@@ -49,13 +49,13 @@ function HomeCarousel () {
                             {currentUser && (<>
                                     <h1>CREATE YOUR OWN PLAN</h1>
                                     <p>search your distinction and build your trip</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/create">Create</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to="/travelAdvisor/create">Create</Link></p>
                                 </>
                                 )}
                             {!currentUser && (<>
-                                    <h1>CREATE YOUR OWN PLAN in 5 MINUTES</h1>
+                                    <h1>CREATE A PLAN IN 5 MIN</h1>
                                     <p>sign up and create your own plan</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">Sign up & Create</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to="/travelAdvisor/signup">Create</Link></p>
                                 </>
                             )}
                         </div>
@@ -71,13 +71,13 @@ function HomeCarousel () {
                             {currentUser && (<>
                                     <h1>SHARE YOUR PLANS</h1>
                                     <p>build relationship with others and join their journey</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/myplans">My plans</Link></p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to="/travelAdvisor/myplans">My plans</Link></p>
                                 </>
                             )}
                             {!currentUser && (<>
-                                    <h1>EXPLORE OTHERS PLANS</h1>
-                                    <p>There is always one plan that can inspire your dream</p>
-                                    <p><Link className="btn btn-lg btn-primary" to="/travelAdvisor/signup">See plans</Link></p>
+                                    <h1>EXPLORE OTHER PLANS</h1>
+                                    <p>there is always one that can inspire your dream</p>
+                                    <p><Link className="btn btn-lg btn-primary rounded-pill" to="/travelAdvisor/signup">Explore</Link></p>
                                 </>
                             )}
                         </div>

@@ -8,9 +8,9 @@ function Home(){
         <>
             <HomeCarousel/>
 
-            <div className="container">
-                <div className="row bg-light rounded-bottom-2">
-                    <div className="col-md-9" >
+            <div className="container bg-light rounded-bottom-2">
+                <div className="row">
+                    <div className="col-md-9">
                         <h2 className="featurette-heading fw-normal lh-1 ps-3">Creating a travel plan
                             <span className="text-muted"> can't be any easier.</span></h2>
                         <p className="lead ms-1 ps-3">Create a plan to anywhere you want to go or
