@@ -68,15 +68,13 @@ const PlanOverviewItem = (
                     <img className="card-img-top"
                          src={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
                          alt={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
-                         style={{height: "225px", width: "100%", display: "block", position: "relative"}}>
-                    </img>
-                    {/*this stretched link will only be spread over the img tag because of the transform*/}
-                    {/*<Link to= {`/travelAdvisor/detail/${planOverview._id}`} className="stretched-link"/>*/}
+                         style={{height: "225px", width: "100%", display: "block", position: "relative"}}/>
                     <div className="card-body">
                         <div className="justify-content-between align-items-center">
                             <div className="row text-end">
                                 {(currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
-                                    <i className="fa fa-times fa-1x" style={{color: "dimgray"}}
+                                    <i className="fa fa-times fa-1x"
+                                       style={{color: "dimgray", zIndex: "2", position: "relative"}}
                                        onClick={() => deletePlanClickHandler(planOverview._id)}></i>
                                 }
                             </div>
@@ -111,6 +109,9 @@ const PlanOverviewItem = (
                             <div className="row">
                                 <p className="card-text">{`${planOverview.planDescription}`}</p>
                             </div>
+
+                            {/*this stretched link will only be spread over the img tag because of the transform*/}
+                            <Link to= {`/travelAdvisor/detail/${planOverview._id}`} className="stretched-link"/>
                         </div>
                     </div>
                 </div>
