@@ -1,28 +1,29 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {useLocation} from "react-router";
+import {getUserProfile} from "../services/user-service";
 
 const PlanOverviewItem = (
     {
         planOverview = {
-            "_planID": 1,
+            "_id": 1,
             "planName": "Plan 1",
             "planCreator": "11",
-            "planOwner": "11",
+            "planOverview": "11",
             "planDescription": "This is a example of a plan.",
-            "planStops": [ {
-                "stopName": "Stop 1",
-                "stopLocation": [42.3456, -71.0987],
-                "stopTime": "1 day",
-                "stopIsEnd": true
+            "locations": [ {
+                "placeId": "Stop 1",
+                "location": [42.3456, -71.0987],
+                "stopTime": "11"
             }],
             "planCover": "fenway-park.jpg"
         }
     }
 ) => {
-    const {pathname} = useLocation();
-    const paths = pathname.split('/')
-    const active = paths[2];
+    const [planOwner,setPlanOwner] = useState(null);
+    useEffect(()=>{
+        getUserProfile(planOverview.planCreator).then((result)=>setPlanOwner(result))
+    },[])
+
     return (
         <>
             <div className="col-md-4">
@@ -40,18 +41,18 @@ const PlanOverviewItem = (
                                     </div>
                                     <div className="col-4">
                                         <i className="fa fa-user fa-1x pe-1" style={{color: "seagreen"}}></i>
-                                        <span className="text-muted">{`${planOverview.planOwner}`}</span>
+                                        <span className="text-muted">{planOwner && `${planOwner.username}`}</span>
                                     </div>
                                     <div className="col-4">
                                         <i className="fa fa-map-pin fa-1x pe-1" style={{color: "seagreen"}}></i>
-                                        <span className="text-muted">{`${planOverview.planStops.length}`}</span>
+                                        <span className="text-muted">{`${planOverview.locations.length}`}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <p className="card-text">{`${planOverview.planDescription}`}</p>
                         </div>
-                    <Link to="/travelAdvisor/detail" className="stretched-link"/>
+                    <Link to= {`/travelAdvisor/detail/${planOverview._id}`} className="stretched-link"/>
                 </div>
             </div>
         </>

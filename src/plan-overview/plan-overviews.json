@@ -5,7 +5,7 @@
     "planCreator": "11",
     "planOwner": "111",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
@@ -20,7 +20,7 @@
     "planCreator": "22",
     "planOwner": "22",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
@@ -35,7 +35,7 @@
     "planCreator": "33",
     "planOwner": "33",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
@@ -50,7 +50,7 @@
     "planCreator": "44",
     "planOwner": "44",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
@@ -65,7 +65,7 @@
     "planCreator": "55",
     "planOwner": "55",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
@@ -80,7 +80,7 @@
     "planCreator": "66",
     "planOwner": "66",
     "planDescription": "This is a example of a plan.",
-    "planStops": [ {
+    "locations": [ {
       "_id": 1,
       "stopName": "Stop 1",
       "stopLocation": [42.3456, -71.0987],
