@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {getUserProfile} from "../services/user-service";
 import {useSelector} from "react-redux";
 import {delTravelPlan} from "../services/travel-plan-service";
+import './plan-overview.css';
+
 
 const PlanOverviewItem = (
     {
@@ -74,9 +76,11 @@ const PlanOverviewItem = (
                         <div className="justify-content-between align-items-center">
                             <div className="row text-end">
                                 {currentUser && (currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
-                                    <i className="fa fa-times fa-1x"
-                                       style={{color: "dimgray", zIndex: "2", position: "relative"}}
-                                       onClick={() => deletePlanClickHandler(planOverview._id)}></i>
+                                    <div>
+                                        <i className="fa fa-times fa-1x iconHoverEffect rounded-2 p-1"
+                                           style={{color: "dimgray", zIndex: "2", position: "relative"}}
+                                           onClick={() => deletePlanClickHandler(planOverview._id)}/>
+                                    </div>
                                 }
                             </div>
 
