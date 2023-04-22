@@ -25,7 +25,7 @@ const Signup = () => {
             location: "",
             phoneNumber: "",
             dateOfBirth: "",
-            profileImage: "walrus-1358159.svg",
+            profileImage: "no-user-icon.svg",
             followers: 0,
             following: 0,
             planNumber: 0,
