@@ -20,7 +20,10 @@ export const getLists = (id) =>
     api.get(TRAVEL_API + "/get/" + id)
 
 export const delTravelPlan = (locations_id) => {
-    axios.delete(TRAVEL_API + "/delete/" + locations_id)
+    api.delete(TRAVEL_API + "/delete/" + locations_id).then((response) => {
+        console.log(response.data);
+        return response.data
+    })
 }
 
 export const getAllPlansOfOneUser = async (uid)=>{
