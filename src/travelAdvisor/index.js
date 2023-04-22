@@ -13,6 +13,7 @@ import ProfileChooseIconComponent from "../profile/edit-profile/change-user-icon
 import PlaceDetail from "../createTravelPlan/PlaceDetail";
 import PlanDetailComponent from "../plan-detail/index";
 import ReviewComponent from "../plan-detail/reviews";
+import MyReviews from "../profile/my-reviews/my-reviews";
 
 function TravelAdvisor() {
     return (
@@ -82,6 +83,7 @@ function TravelAdvisor() {
                     <Route path="home" element={<HomeComponent/>}/>
                     <Route path="login" element={<LoginComponent/>}/>
                     <Route path="signup" element={<SignupComponent/>}/>
+                    <Route path="myreviews" element={<MyReviews/>}/>
                     <Route path="myprofileedit" element={<ProfileEditComponent/>}/>
                     <Route path="choose_icon" element={<ProfileChooseIconComponent/>}/>
                     <Route path="myplans" element={<ProfilePlansComponent/>}/>

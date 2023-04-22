@@ -64,6 +64,9 @@ const NavigationBar = () => {
                                         <Link to="/travelAdvisor/myplans" className="nav-link text-dark">My plans</Link>
                                     </li>
                                     <li className="nav-item">
+                                        <Link to="/travelAdvisor/myreviews" className="nav-link text-dark">My reviews</Link>
+                                    </li>
+                                    <li className="nav-item">
                                         <Link to="/travelAdvisor/create" className="nav-link text-dark">Create new plan</Link>
                                     </li>
                                 </>
