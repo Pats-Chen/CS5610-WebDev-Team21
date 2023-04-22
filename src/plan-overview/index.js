@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PlanOverviewItem from "./plan-overview-item";
 import { useSelector } from "react-redux";
-import { adminGet, getAllPlansOfOneUser, getRecommendation } from "../services/travel-plan-service";
+import { adminGet, getAllPlansOfOneUser, getRecommendation, delTravelPlan } from "../services/travel-plan-service";
+
 
 const PlanOverview = (usage) => {
     const { currentUser } = useSelector((state) => state.users);
     const [plan,setPlan] =useState(null);
-
 
     useEffect ( () =>{
         if (currentUser && currentUser.userStatus !== "admin" && usage.children === "CurrentUser") {
@@ -44,7 +44,7 @@ const PlanOverview = (usage) => {
             setPlan(null);
         }
 
-    }, [currentUser, usage.children,plan]);
+    }, [currentUser, usage.children, plan]);
 
 
     return (
