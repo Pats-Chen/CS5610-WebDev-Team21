@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {getUserProfile} from "../services/user-service";
+import {useSelector} from "react-redux";
+import {delTravelPlan} from "../services/travel-plan-service";
 
 const PlanOverviewItem = (
     {
@@ -8,23 +10,33 @@ const PlanOverviewItem = (
             "_id": 1,
             "planName": "Plan 1",
             "planCreator": "11",
+            "planOwner": "11",
             "planOverview": "11",
             "planDescription": "This is a example of a plan.",
             "locations": [ {
                 "placeId": "Stop 1",
                 "location": [42.3456, -71.0987],
                 "stopTime": "11"
-            }],
-            "planCover": "fenway-park.jpg"
+            }]
         }
     }
 ) => {
+    const {currentUser} = useSelector((state) => state.users);
     const [planOwner,setPlanOwner] = useState(null);
     const [placeId, setPlaceId] = useState(null);
     const [placeDetails, setPlaceDetails] = useState(null);
 
+    const deletePlanClickHandler = (locations_id) => {
+        if (currentUser.userStatus === "admin" || currentUser._id === planOverview.planOwner) {
+            delTravelPlan(locations_id);
+            // window.location.reload();
+        } else {
+            console.log("User is not authorized to delete this plan!");
+        }
+    }
+
     useEffect(()=>{
-        getUserProfile(planOverview.planCreator).then((result)=>setPlanOwner(result))
+        getUserProfile(planOverview.planOwner).then((result)=>setPlanOwner(result))
         setPlaceId(planOverview.locations[0].placeId);
         // console.log(planOverview.locations[0].placeId)
     },[])
@@ -56,44 +68,53 @@ const PlanOverviewItem = (
             <div className="col-md-4">
                 <div className="card mb-4 box-shadow">
                     <img className="card-img-top"
-                         // src={`${process.env.PUBLIC_URL}/img/${planOverview.planCover}`}
                          src={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
                          alt={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
-                         style={{height: "225px", width: "100%", display: "block"}}/>
-                        <div className="card-body">
-                            <div className="justify-content-between align-items-center">
+                         style={{height: "225px", width: "100%", display: "block", position: "relative"}}>
+                    </img>
+                    {/*this stretched link will only be spread over the img tag because of the transform*/}
+                    {/*<Link to= {`/travelAdvisor/detail/${planOverview._id}`} className="stretched-link"/>*/}
+                    <div className="card-body">
+                        <div className="justify-content-between align-items-center">
+                            <div className="row text-end">
+                                {(currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
+                                    <i className="fa fa-times fa-1x" style={{color: "dimgray"}}
+                                       onClick={() => deletePlanClickHandler(planOverview._id)}></i>
+                                }
+                            </div>
 
-                                <div className="row">
-                                    <div className="col-sm-1">
-                                        <i className="fa fa-suitcase fa-1x" style={{color: "seagreen"}}></i>
-                                    </div>
-                                    <div className="col-sm-11">
-                                        <span className="text-muted">{`${planOverview.planName}`}</span>
-                                    </div>
+                            <div className="row">
+                                <div className="col-sm-1">
+                                    <i className="fa fa-suitcase fa-1x" style={{color: "seagreen"}}></i>
                                 </div>
-
-                                <div className="row">
-                                    <div className="col-sm-1">
-                                        <i className="text-center fa fa-user fa-1x" style={{color: "seagreen"}}></i>
-                                    </div>
-                                    <div className="col-sm-11">
-                                        <span className="text-muted">{planOwner && `${planOwner.username}`}</span>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-sm-1">
-                                        <i className="text-center fa fa-map-marker fa-1x" style={{color: "seagreen"}}></i>
-                                    </div>
-                                    <div className="col-sm-11">
-                                        <span className="text-muted">{`${planOverview.locations.length}`}</span>
-                                    </div>
+                                <div className="col-sm-11">
+                                    <span className="text-muted">{`${planOverview.planName}`}</span>
                                 </div>
                             </div>
 
-                            <p className="card-text">{`${planOverview.planDescription}`}</p>
+                            <div className="row">
+                                <div className="col-sm-1">
+                                    <i className="text-center fa fa-user fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-sm-11">
+                                    <span className="text-muted">{planOwner && `${planOwner.username}`}</span>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-sm-1">
+                                    <i className="text-center fa fa-map-marker fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-sm-11">
+                                    <span className="text-muted">{`${planOverview.locations.length}`}</span>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <p className="card-text">{`${planOverview.planDescription}`}</p>
+                            </div>
                         </div>
-                    <Link to= {`/travelAdvisor/detail/${planOverview._id}`} className="stretched-link"/>
+                    </div>
                 </div>
             </div>
         </>

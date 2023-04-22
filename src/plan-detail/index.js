@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ItineraryList from "./itinerary-list";
 import ItineraryMap from "./itinerary-map";
-import MyReviews from "../review/index.js"
+import MyReviews from "../review/index.js";
 
 import {Link, useParams} from "react-router-dom";
 import {useLoadScript} from "@react-google-maps/api";
@@ -22,13 +22,12 @@ const PlanDetailComponent = () => {
     const {reviews} = useSelector((state) => state.reviews);
     const [reviewValue, setReviewValue] = React.useState("");
 
-
     // hardcode demoID：
     const [planOwnerId,setPlanOwnerId] = useState(null);
     const [displayPlan,setDisplayPlan] = useState(null);
     const [planOwner, setPlanOwner]= useState(null);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     // find Reviews by planId
     useEffect(() => {
@@ -90,14 +89,13 @@ const PlanDetailComponent = () => {
             <div className="container my-3">
                 <div className="row bg-light rounded-top-2 ps-5 align-items-center flex-wrap">
                     <div className="col-12 col-md-1 bg-light mb-3 mb-md-0">
-                        <Link to={`/travelAdvisor/profile/${planOwnerId}`} >
-                        <img
-                            src={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "default-avatar.png"}`}
-                            alt=""
-                            className="border rounded-circle"
-                            style={{ height: "60px" }}    />
-
-                    </Link>
+                        <Link to={`/travelAdvisor/profile/${planOwnerId}`}>
+                            <img
+                                src={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "default-avatar.png"}`}
+                                alt=""
+                                className="border rounded-circle"
+                                style={{ height: "60px" }}    />
+                        </Link>
                     </div>
                     <div className="col-12 col-md-11 bg-light text-start">
                         {planOwner && (
@@ -122,7 +120,6 @@ const PlanDetailComponent = () => {
                 </div>
             </div>
 
-
             {/*Placeholder ends here*/}
             <div className="container bg-light pb-2 rounded-bottom-2">
                 <ItineraryList plan={displayPlan}></ItineraryList>
@@ -130,50 +127,37 @@ const PlanDetailComponent = () => {
 
             {/*review part*/}
 
-
             {/* write review */}
             {!currentUser &&
                 <div style={{ textAlign: "center", marginTop: "20px", marginBottom:"10px" }}>
                     <h5 style={{ marginBottom: "10px" }}>Please login to see review</h5>
                     <span>
-        <Link to="/travelAdvisor/login" style={{ textDecoration: "none" }}>Login</Link> now
-    </span>
+                        <Link to="/travelAdvisor/login" style={{ textDecoration: "none" }}>Login</Link> now
+                    </span>
                 </div>
-
             }
             { currentUser &&
-
-            <div className="d-flex mb-3 mt-4">
-                <a href="">
-                    <img
-                        src={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "default-avatar.png"}`}
-                        className="border rounded-circle mr-2"
-                        alt=""
-                        style={{ height: "40px", marginRight: "10px" }}
-                    />
-                </a>
+                <div className="d-flex mb-3 mt-4">
+                    <a href="">
+                        <img src={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "default-avatar.png"}`}
+                             className="border rounded-circle mr-2"
+                             alt=""
+                             style={{ height: "40px", marginRight: "10px" }}/>
+                    </a>
                 <div className="form-outline w-100">
-          <textarea
-              className="form-control"
-              id="textAreaExample"
-              rows="2"
-              value={reviewValue}
-              placeholder = "Write a review"
-              onChange = {(e) => setReviewValue(e.target.value)}
-
-          > </textarea>
-                    <label
-                        className="form-label "
-                        htmlFor="textAreaExample"
-                    >
-                        Write a comment
-                    </label>
+                    <textarea className="form-control"
+                              id="textAreaExample"
+                              rows="2"
+                              value={reviewValue}
+                              placeholder = "Write a review"
+                              onChange = {(e) => setReviewValue(e.target.value)}/>
+                    <label className="form-label "
+                           htmlFor="textAreaExample"/>
                     <button onClick={addReviewHandler} className="mt-2 btn btn-primary float-end" type="button">Post</button>
                 </div>
             </div> }
 
             {/* MyReviews component */}
-
             { reviews && <MyReviews reviews={reviews} > </MyReviews>}
 
             <div>
@@ -182,8 +166,6 @@ const PlanDetailComponent = () => {
                     <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
                 </footer>
             </div>
-
-
         </>
     )
 };
