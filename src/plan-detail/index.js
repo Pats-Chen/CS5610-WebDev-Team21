@@ -28,7 +28,7 @@ const PlanDetailComponent = () => {
     const [displayPlan,setDisplayPlan] = useState(null);
     const [planOwner, setPlanOwner]= useState(null);
 
-
+    const navigate = useNavigate()
 
     // find Reviews by planId
     useEffect(() => {
@@ -36,7 +36,6 @@ const PlanDetailComponent = () => {
             dispatch(findReviewByPlanIdThunk(planId));
         }
     }, [currentUser]);
-
 
     // add review
     const addReviewHandler = () => {
@@ -51,7 +50,6 @@ const PlanDetailComponent = () => {
         dispatch(createReviewThunk(newReview));
         setReviewValue("");
         window.location.reload()
-
     }
 
 
@@ -82,8 +80,6 @@ const PlanDetailComponent = () => {
                 <div className="col-2 bg-light"></div>
                 <div className="col-8 bg-light">
 
-                    {/*displayPlan.plan.locations[0].location.lat*/}
-                    {/*<ItineraryClusterMarker/>*/}
                     <ItineraryMap plan = {displayPlan}></ItineraryMap>
 
                 </div>
@@ -127,15 +123,10 @@ const PlanDetailComponent = () => {
             </div>
 
 
-
-
             {/*Placeholder ends here*/}
             <div className="container bg-light pb-2 rounded-bottom-2">
                 <ItineraryList plan={displayPlan}></ItineraryList>
             </div>
-
-
-
 
             {/*review part*/}
 
@@ -184,9 +175,6 @@ const PlanDetailComponent = () => {
             {/* MyReviews component */}
 
             { reviews && <MyReviews reviews={reviews} > </MyReviews>}
-
-
-
 
             <div>
                 <footer>
