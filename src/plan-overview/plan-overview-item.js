@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {getUserProfile} from "../services/user-service";
 import {useSelector} from "react-redux";
@@ -35,24 +35,22 @@ const PlanOverviewItem = (
         }
     }
 
-    useEffect(()=>{
-        getUserProfile(planOverview.planOwner).then((result)=>setPlanOwner(result))
-        setPlaceId(planOverview.locations[0].placeId);
-        // console.log(planOverview.locations[0].placeId)
-    },[])
-
     useEffect(() => {
         const fetchPlaceURL = async () => {
-            const map = new window.google.maps.Map(document.createElement('div'));
-            const service = new window.google.maps.places.PlacesService(map);
-            const request = {placeId: placeId, fields: ['photos'],};
-
-            service.getDetails(request, (place, status) => {
-                if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                    setPlaceDetails(place);
-                }
-            });
+            const map = await new window.google.maps.Map(document.createElement('div'));
+            const service = await new window.google.maps.places.PlacesService(map);
+            // console.log(placeId);
+            if (placeId) {
+                const request = {placeId: placeId, fields: ['photos'],}
+                service.getDetails(request, (place, status) => {
+                    if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+                        setPlaceDetails(place);
+                    }
+                });
+            };
         };
+        getUserProfile(planOverview.planOwner).then((result)=>setPlanOwner(result))
+        if (placeId === null) setPlaceId(planOverview.locations[0].placeId);
         fetchPlaceURL();
     }, [placeId]);
 
