@@ -1,20 +1,17 @@
 import React, {useEffect, useState} from "react";
 import ItineraryList from "./itinerary-list";
 import ItineraryMap from "./itinerary-map";
-import {useLoadScript} from "@react-google-maps/api";
-import './index.css';
-import {getUserProfile} from "../services/user-service";
 import MyReviews from "../review/index.js"
+
 import {Link, useParams} from "react-router-dom";
+import {useLoadScript} from "@react-google-maps/api";
+import {createReviewThunk, findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
+import {getUserProfile} from "../services/user-service";
 import {getPlanById} from "../services/travel-plan-service";
-
-
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {createReviewThunk, findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
 import { useDispatch } from "react-redux";
-
-
+import './index.css';
 
 const PlanDetailComponent = () => {
     const { isLoaded } = useLoadScript({
@@ -84,7 +81,11 @@ const PlanDetailComponent = () => {
             <div className="container row bg-light rounded-top-2 ps-5 m-0">
                 <div className="col-2 bg-light"></div>
                 <div className="col-8 bg-light">
+
+                    {/*displayPlan.plan.locations[0].location.lat*/}
+                    {/*<ItineraryClusterMarker/>*/}
                     <ItineraryMap plan = {displayPlan}></ItineraryMap>
+
                 </div>
                 <div className="col-2 bg-light"></div>
             </div>

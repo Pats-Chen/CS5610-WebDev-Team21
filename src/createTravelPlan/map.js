@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Routes, useNavigate, useLocation, Link} from 'react-router-dom';
-import './map.css';
 import {create_plan, getLists} from "../services/travel-plan-service";
+import './map.css';
 
 class Map extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Map extends Component {
 
     initMap() {
         const map = new window.google.maps.Map(document.getElementById('map'), {
-            center: {lat: 37.7749, lng: -122.4194},
+            center: {lat: 42.3600825, lng: -71.0588801},
             zoom: 12,
         });
         this.setState({map});

@@ -32,7 +32,7 @@ const PlanOverviewItem = (
                          alt={`${planOverview.planCover}`}
                          style={{height: "225px", width: "100%", display: "block"}}/>
                         <div className="card-body">
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="justify-content-between align-items-center">
                                 <div className="row">
                                     <div className="col-4">
                                         <i className="fa fa-plane-departure fa-1x pe-1" style={{color: "seagreen"}}></i>

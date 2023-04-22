@@ -1,12 +1,25 @@
-import React, {useMemo} from "react";
-import {GoogleMap, MarkerF} from "@react-google-maps/api";
+import React from "react";
+import {GoogleMap, MarkerF, MarkerClusterer, InfoWindow} from "@react-google-maps/api";
 
-const ItineraryMap = () => {
-    const center = useMemo(() => ({lat:44, lng:-80}), []);
+const ItineraryMap = (displayPlan) => {
+
+    const center = new window.google.maps.LatLng(displayPlan.plan.locations[0].location.lat,
+                                                 displayPlan.plan.locations[0].location.lng);
+
     return (
-        <GoogleMap zoom={10} center={center} mapContainerClassName="map-container-detail">
-            <MarkerF position={center} />
-            <MarkerF position={{lat:42, lng:-71}} />
+        <GoogleMap zoom={12} center={center} mapContainerClassName="map-container-detail">
+            <MarkerClusterer children={
+                () => displayPlan.plan.locations.map(location => (
+                    <MarkerF key={location.placeId}
+                             position={new window.google.maps.LatLng(location.location.lat, location.location.lng)}
+                             onClick={
+                                 () => {
+                                     new window.google.maps.InfoWindow().open();
+                                        console.log(location.name);
+                                 }
+                             }/>
+                ))
+            }/>
         </GoogleMap>
     )
 };

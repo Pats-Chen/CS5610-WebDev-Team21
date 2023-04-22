@@ -1,5 +1,4 @@
 import React from "react";
-// import itineraryArray from "./itinerary.json"
 import ItineraryItem from "./itinerary-item";
 
 const ItineraryList = (plan) => {

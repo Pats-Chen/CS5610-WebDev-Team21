@@ -41,8 +41,8 @@ const Signup = () => {
 
     return (
         <>
-            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
-                <h3>Signup</h3>
+            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px'}}>
+                <h3>Sign up</h3>
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="form2Username">Username</label>
                     <input className="mb-2 form-control" id="form2Username"
@@ -102,7 +102,7 @@ const Signup = () => {
                     </div>
                 </div>
 
-                <button className="btn btn-primary mb-3" onClick={signupClickHandler}>Register</button>
+                <button className="btn btn-primary mb-3" onClick={signupClickHandler}>Sign up</button>
                 <div className="text-center">
                     <p>Already have an account? <Link to="/travelAdvisor/login" className="text-decoration-none">
                         Login</Link> now

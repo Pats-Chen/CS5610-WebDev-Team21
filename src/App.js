@@ -1,8 +1,8 @@
 import './vendors/fontawesome/css/all.min.css';
 import './App.css';
 import React from "react";
-import {Routes, Route, Navigate} from "react-router";
-import {BrowserRouter, Router} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import CurrentUserContext from "./travelAdvisor/current-user-context";

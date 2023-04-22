@@ -1,22 +1,24 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function HomeCarousel () {
     const { currentUser } = useSelector((state) => state.users);
     return (
         <div id="myCarousel" className="carousel slide mb-0" data-bs-ride="carousel">
             <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                <button type="button" data-bs-slide-to="0"
                         className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                <button type="button" data-bs-slide-to="1"
                         aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                <button type="button" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img src="/img/boston-night-carousel.jpg" className="bd-placeholder-img" width="100%" height="100%"/>
+                    <img src="/img/boston-night-carousel.jpg"
+                         alt="/img/boston-night-carousel.jpg"
+                         className="bd-placeholder-img" width="100%" height="100%"/>
 
                     <div className="container">
                         <div className="carousel-caption text-start">
@@ -38,7 +40,9 @@ function HomeCarousel () {
                 </div>
 
                 <div className="carousel-item">
-                    <img src="/img/seattle-night-carousel.jpg" className="bd-placeholder-img" width="100%" height="100%"/>
+                    <img src="/img/seattle-night-carousel.jpg"
+                         alt="/img/seattle-night-carousel.jpg"
+                         className="bd-placeholder-img" width="100%" height="100%"/>
 
                     <div className="container">
                         <div className="carousel-caption">
@@ -58,7 +62,9 @@ function HomeCarousel () {
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="/img/sanfrancisco-night-carousel.jpg" className="bd-placeholder-img" width="100%" height="100%"/>
+                    <img src="/img/sanfrancisco-night-carousel.jpg"
+                         alt="/img/sanfrancisco-night-carousel.jpg"
+                         className="bd-placeholder-img" width="100%" height="100%"/>
 
                     <div className="container">
                         <div className="carousel-caption text-end">

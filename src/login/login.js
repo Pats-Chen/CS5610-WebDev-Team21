@@ -24,8 +24,8 @@ export const Login = () => {
 
     return (
         <>
-            <div className="bg-light rounded-2 p-2 container" style={{marginTop: '130px', textAlign: 'left'}}>
-                <h3>Login</h3>
+            <div className="container bg-light rounded-2 p-2" style={{marginTop: '130px'}}>
+                <h3>Log in</h3>
                 <div className="form-outline mb-3">
                     <label className="form-label" htmlFor="form2Username">Username</label>
                     <input onChange={(e) =>
@@ -39,11 +39,15 @@ export const Login = () => {
                            type="password" id="form2Password" className="form-control"/>
 
                 </div>
-                <button onClick={login} type="button" className="btn btn-primary btn-block mb-4">Login</button>
-
+                <button className="btn btn-primary btn-block mb-3"
+                        onClick={login}
+                        type="button" >Log in</button>
                 <div className="text-center">
-                    <p>Haven't got an account? <Link to="/travelAdvisor/signup" className="text-decoration-none">Register
-                        now</Link></p>
+                    <p>
+                        <span>Haven't got an account? </span>
+                        <Link to="/travelAdvisor/signup" className="text-decoration-none">Sign up</Link>
+                        <span> now</span>
+                    </p>
                 </div>
             </div>
 
