@@ -49,7 +49,7 @@ const PlanOverviewItem = (
                 });
             };
         };
-        getUserProfile(planOverview.planOwner).then((result)=>setPlanOwner(result))
+        getUserProfile(planOverview.planCreator).then((result)=>setPlanOwner(result))
         if (placeId === null) setPlaceId(planOverview.locations[0].placeId);
         fetchPlaceURL();
     }, [placeId]);
