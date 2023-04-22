@@ -29,7 +29,7 @@ const PlanOverviewItem = (
     const deletePlanClickHandler = (locations_id) => {
         if (currentUser.userStatus === "admin" || currentUser._id === planOverview.planOwner) {
             delTravelPlan(locations_id);
-            // window.location.reload();
+            window.location.reload();
         } else {
             console.log("User is not authorized to delete this plan!");
         }
@@ -51,6 +51,7 @@ const PlanOverviewItem = (
         };
         getUserProfile(planOverview.planCreator).then((result)=>setPlanOwner(result))
         if (placeId === null) setPlaceId(planOverview.locations[0].placeId);
+
         fetchPlaceURL();
     }, [placeId]);
 
@@ -72,7 +73,7 @@ const PlanOverviewItem = (
                     <div className="card-body">
                         <div className="justify-content-between align-items-center">
                             <div className="row text-end">
-                                {(currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
+                                {currentUser && (currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
                                     <i className="fa fa-times fa-1x"
                                        style={{color: "dimgray", zIndex: "2", position: "relative"}}
                                        onClick={() => deletePlanClickHandler(planOverview._id)}></i>
