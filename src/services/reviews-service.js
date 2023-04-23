@@ -29,5 +29,6 @@ export const findReviewsByAuthor = async (_id) => {
 export const deleteReview = async (rid) => {
     const response = await axios
         .delete(`${REVIEWS_API}/${rid}`)
+    // console.log(response)
     return response.data
 }

@@ -18,7 +18,7 @@ const MyReviews = () => {
             dispatch(findReviewsByAuthorThunk(currentUser._id));
         }
     }, [currentUser]);
-    console.log(reviews)
+    // console.log(reviews)
 
     return (
 
