@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://cs5610-webdev-server-team21.onrender.com/api";
+const BASE_URL = "https://cs5610-webdev-server-team21.onrender.com";
 // const BASE_URL = "http://localhost:4000"
 const USER_API = `${BASE_URL}/api/users`;
 const SECURITY_API = `${BASE_URL}/api/auth`;
