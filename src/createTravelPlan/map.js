@@ -143,10 +143,10 @@ class Map extends Component {
                 const place = results[0];
                 map.panTo(place.geometry.location);
                 map.setZoom(15);
-                const marker = new window.google.maps.Marker({
-                    map,
-                    position: place.geometry.location,
-                });
+                // const marker = new window.google.maps.Marker({
+                //     map,
+                //     position: place.geometry.location,
+                // });
                 const address = place.formatted_address;
                 const placeId = place.place_id;
                 this.setState({
@@ -223,8 +223,24 @@ class Map extends Component {
     };
 
     renderAddList = () => {
-        const {searchResults} = this.state;
+        const {searchResults, map} = this.state;
+        searchResults.map((place)=>{
+        const marker = new window.google.maps.Marker({
+            map,
+            position: place.location,
+            // icon: {
+            //     path: window.google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
+            //     fillColor: 'green', // Set the fill color of the marker
+            //     fillOpacity: 0.8,
+            //     strokeWeight: 0,
+            //     scale: 8, // Set the size of the marker
+            // }
+        });
+        }
+        )
+
         return (
+
             <ul>
                 {searchResults.map((result, index) => (
                     <LocationItem
