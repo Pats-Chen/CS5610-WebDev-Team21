@@ -6,6 +6,7 @@ import {getUserProfile} from "../services/user-service";
 import {logoutThunk} from "../services/users-thunks";
 import './index.css';
 
+
 const NavigationBar = () => {
     const { userId } = useParams()
     const {currentUser} = useSelector((state) => state.users)
@@ -13,11 +14,13 @@ const NavigationBar = () => {
     const dispatch = useDispatch()
     const logout = async () =>{
         try {
+            localStorage.removeItem('travel_list');
             await dispatch(logoutThunk());
         } catch (err) {
             console.log(err);
         }
     };
+
 
     useEffect(() => {
         async function fetchData() {
