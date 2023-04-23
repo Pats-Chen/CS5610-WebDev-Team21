@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PlanOverviewItem from "./plan-overview-item";
 import { useSelector } from "react-redux";
-import { adminGet, getAllPlansOfOneUser, getRecommendation, delTravelPlan } from "../services/travel-plan-service";
+import { adminGet, getAllPlansOfOneUser, getRecommendation } from "../services/travel-plan-service";
 
 
 const PlanOverview = (usage) => {

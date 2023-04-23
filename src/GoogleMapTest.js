@@ -3,8 +3,9 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 
 function GoogleMapTest() {
+    const REACT_APP_GOOGLE_MAPS_API_KEY = "AIzaSyB5lMFVzSYMXPvnX6VJedaG0ihHqlEjuR4";
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries: ["places"],
     });
 

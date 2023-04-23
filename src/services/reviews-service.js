@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://cs5610-webdev-server-team21.onrender.com/api";
 const REVIEWS_API = `${BASE_URL}/api/reviews`;
 
 export const createReview = async (comment) => {

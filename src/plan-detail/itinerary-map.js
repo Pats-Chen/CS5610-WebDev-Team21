@@ -1,5 +1,5 @@
 import React from "react";
-import {GoogleMap, MarkerF, MarkerClusterer, InfoWindow} from "@react-google-maps/api";
+import {GoogleMap, MarkerF, MarkerClusterer} from "@react-google-maps/api";
 
 const ItineraryMap = (displayPlan) => {
 
