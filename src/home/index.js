@@ -8,7 +8,7 @@ function Home(){
         <>
             <HomeCarousel/>
 
-            <div className="container bg-light rounded-bottom-2">
+            <div className="container bg-light rounded-bottom">
                 <div className="row">
                     <div className="col-md-9">
                         <h2 className="featurette-heading fw-normal lh-1 ps-3">Creating a travel plan

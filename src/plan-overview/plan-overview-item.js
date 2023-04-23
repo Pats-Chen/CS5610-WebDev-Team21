@@ -7,7 +7,6 @@ import {findReviewsByPlanId, deleteReview} from "../services/reviews-service";
 import {findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
 import { useDispatch } from "react-redux";
 import './plan-overview.css';
-import {deleteReview, findReviewsByPlanId} from "../services/reviews-service";
 import review from "../review";
 
 const PlanOverviewItem = (
