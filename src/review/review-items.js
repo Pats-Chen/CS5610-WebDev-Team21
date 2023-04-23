@@ -4,9 +4,7 @@ import {deleteReviewThunk} from "../services/reviews-thunks";
 import {getUserProfile} from "../services/user-service";
 import {Link} from "react-router-dom";
 
-
 const ReviewItems = (review)=>{
-
     const {currentUser} = useSelector((state) => state.users);
     const dispatch = useDispatch();
 
@@ -17,8 +15,6 @@ const ReviewItems = (review)=>{
 
     const [Owner, setOwner]= useState(null);
 
-
-
     useEffect(() => {
         async function fetchData() {
             const userProfile = await getUserProfile(review.review.authorId);
@@ -27,51 +23,49 @@ const ReviewItems = (review)=>{
         fetchData();
     }, []);
 
-
     return (
         <div>
-
-            <div className="d-flex mb-3">
-                <Link to={`/travelAdvisor/profile/${Owner && Owner._id}`} >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/img/${Owner && Owner.profileImage ? Owner.profileImage : "default-avatar.png"}`}
-                        className="border rounded-circle mr-2"
-                        alt=""
-                        style={{ height: "40px" }}
-                    />
-
-            </Link>
-                <div>
-                    <div className=" rounded-lg px-3 py-1">
-                        <a href="" className="text-dark mb-0 d-flex">
-                            <strong>{review.review.authorName}  </strong> <small style={{ textDecoration: "none", margin: "0 0 0 10px" }}>
-                            {new Date(review.review.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </small>
-
-
-
-
-                        </a>
-                        <p className="text-muted d-block">
-                            <small>{review.review.content}</small>
-                        </p>
+            <div className="row d-flex mb-3">
+                <div className="col-1">
+                    <div className="text-end ps-3 pt-1">
+                        <Link to={`/travelAdvisor/profile/${Owner && Owner._id}`} >
+                            <img
+                                src={`${process.env.PUBLIC_URL}/img/${Owner && Owner.profileImage ? Owner.profileImage : "no-user-icon.svg"}`}
+                                alt={`${process.env.PUBLIC_URL}/img/${Owner && Owner.profileImage ? Owner.profileImage : "no-user-icon.svg"}`}
+                                className="border rounded-circle mr-2"
+                                style={{ height: "40px" }}
+                            />
+                        </Link>
                     </div>
                 </div>
 
-                {
-                    (review.review.authorId === currentUser._id  || currentUser.userStatus === "admin") &&
-                    <div className="col-1">
-                        <button className="rounded-pill btn btn-danger btn-sm" onClick={deleteClickHandler}>
-                            Delete
-                        </button>
+                <div className="col-9">
+                    <div>
+                        <div className="text-success">
+                            {review.review.authorName}
+                            <span className="text-muted ps-2">
+                                    {new Date(review.review.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </span>
+                        </div>
+                        <div className="text-info d-block">
+                            {review.review.content}
+                        </div>
                     </div>
-                }
-
-
-
-
+                </div>
+                <div className="col-2">
+                    <div className="float-end ps-3 pt-1">
+                        {
+                            (review.review.authorId === currentUser._id  || currentUser.userStatus === "admin") &&
+                            <div className="col-1">
+                                <button className="btn btn-danger btn-sm rounded-pill" onClick={deleteClickHandler}>
+                                    Delete
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-
+            <hr/>
         </div>
     );
 };

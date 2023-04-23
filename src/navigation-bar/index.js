@@ -90,10 +90,6 @@ const NavigationBar = () => {
                                     </li>
                                 </>
                             )}
-
-                            <li className="nav-item">
-                                <Link to="/travelAdvisor/detail" className="nav-link text-dark">Plan detail</Link>
-                            </li>
                         </ul>
                     </div>
                 </div>

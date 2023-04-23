@@ -3,8 +3,10 @@ import {Link} from "react-router-dom";
 import {getUserProfile} from "../services/user-service";
 import {useSelector} from "react-redux";
 import {delTravelPlan} from "../services/travel-plan-service";
+import {findReviewsByPlanId, deleteReview} from "../services/reviews-service";
+import {findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
+import { useDispatch } from "react-redux";
 import './plan-overview.css';
-
 
 const PlanOverviewItem = (
     {
@@ -24,9 +26,12 @@ const PlanOverviewItem = (
     }
 ) => {
     const {currentUser} = useSelector((state) => state.users);
+    const {reviews} = useSelector((state) => state.reviews);
     const [planOwner,setPlanOwner] = useState(null);
     const [placeId, setPlaceId] = useState(null);
     const [placeDetails, setPlaceDetails] = useState(null);
+
+    const dispatch = useDispatch();
 
     const deletePlanClickHandler = (locations_id) => {
         if (currentUser.userStatus === "admin" || currentUser._id === planOverview.planOwner) {
@@ -60,20 +65,22 @@ const PlanOverviewItem = (
     if (!placeDetails) {
         return <div>Loading...</div>;
     }
+
     const photoUrl =
         placeDetails.photos && placeDetails.photos.length > 0
             ? placeDetails.photos[0].getUrl()
             : null;
+
     return (
         <>
-            <div className="col-md-4">
+            <div className="col-lg-4">
                 <div className="card mb-4 box-shadow">
                     <img className="card-img-top"
                          src={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
                          alt={photoUrl ? `${photoUrl}` : `${process.env.PUBLIC_URL}/img/no-photo.svg`}
                          style={{height: "225px", width: "100%", display: "block", position: "relative"}}/>
                     <div className="card-body">
-                        <div className="justify-content-between align-items-center">
+                        <div className="container">
                             <div className="row text-end">
                                 {currentUser && (currentUser._id === planOverview.planOwner || currentUser.userStatus === "admin") &&
                                     <div>
@@ -84,35 +91,40 @@ const PlanOverviewItem = (
                                 }
                             </div>
 
-                            <div className="row">
-                                <div className="col-sm-1">
+                            <div className="row flex-wrap">
+                                <div className="col-lg-2 col-sm-1">
                                     <i className="fa fa-suitcase fa-1x" style={{color: "seagreen"}}></i>
                                 </div>
-                                <div className="col-sm-11">
+                                <div className="col-lg-10 col-sm-11">
                                     <span className="text-muted">{`${planOverview.planName}`}</span>
                                 </div>
                             </div>
 
-                            <div className="row">
-                                <div className="col-sm-1">
+                            <div className="row flex-wrap">
+                                <div className="col-lg-2 col-sm-1">
                                     <i className="text-center fa fa-user fa-1x" style={{color: "seagreen"}}></i>
                                 </div>
-                                <div className="col-sm-11">
+                                <div className="col-lg-10 col-sm-11">
                                     <span className="text-muted">{planOwner && `${planOwner.username}`}</span>
                                 </div>
                             </div>
 
-                            <div className="row">
-                                <div className="col-sm-1">
+                            <div className="row flex-wrap">
+                                <div className="col-lg-2 col-sm-1">
                                     <i className="text-center fa fa-map-marker fa-1x" style={{color: "seagreen"}}></i>
                                 </div>
-                                <div className="col-sm-11">
+                                <div className="col-lg-10 col-sm-11">
                                     <span className="text-muted">{`${planOverview.locations.length}`}</span>
                                 </div>
                             </div>
 
-                            <div className="row">
-                                <p className="card-text">{`${planOverview.planDescription}`}</p>
+                            <div className="row flex-wrap">
+                                <div className="col-lg-2 col-sm-1">
+                                    <i className="text-center fa fa-info-circle fa-1x" style={{color: "seagreen"}}></i>
+                                </div>
+                                <div className="col-lg-10 col-sm-11">
+                                    <p className="text-muted">{`${planOverview.planDescription}`}</p>
+                                </div>
                             </div>
 
                             {/*this stretched link will only be spread over the img tag because of the transform*/}

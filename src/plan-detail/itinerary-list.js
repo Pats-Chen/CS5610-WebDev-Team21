@@ -8,11 +8,11 @@ const ItineraryList = (plan) => {
         <>
             <ul className="list-group">
                 <li className="list-group-item">
-                    <h3>Start</h3>
+                    <i className="fa fa-flag fa-2x ps-3" style={{color: "seagreen"}}/>
                 </li>
                 {plan.plan.locations.map(item => <ItineraryItem key ={item.placeId} item={item}/>)}
                 <li className="list-group-item">
-                    <h3>End</h3>
+                    <i className="fa fa-flag-checkered fa-2x ps-3" style={{color: "seagreen"}}/>
                 </li>
             </ul>
         </>

@@ -16,13 +16,12 @@ import './index.css';
 const PlanDetailComponent = () => {
     const { isLoaded } = useLoadScript({
                                            googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
-    const{planId} = useParams();
+    const {planId} = useParams();
     const dispatch = useDispatch();
     const {currentUser} = useSelector((state) => state.users);
     const {reviews} = useSelector((state) => state.reviews);
     const [reviewValue, setReviewValue] = React.useState("");
 
-    // hardcode demoID：
     const [planOwnerId,setPlanOwnerId] = useState(null);
     const [displayPlan,setDisplayPlan] = useState(null);
     const [planOwner, setPlanOwner]= useState(null);
@@ -41,7 +40,7 @@ const PlanDetailComponent = () => {
         const newReview = {
             planId: planId,
             authorId: currentUser._id,
-            authorName: currentUser.firstName + " " + currentUser.lastName,
+            authorName: currentUser.username,
             authorImg: currentUser.profileImage,
             content: reviewValue,
             date: new Date(),
@@ -50,7 +49,6 @@ const PlanDetailComponent = () => {
         setReviewValue("");
         window.location.reload()
     }
-
 
     // find plan by planId
     useEffect(() => {
@@ -74,91 +72,158 @@ const PlanDetailComponent = () => {
     if (!isLoaded) return <div>Loading...</div>
     return displayPlan && (
         <>
-            <h5>Plan Id: {displayPlan.planCreator}</h5>
-            <div className="container row bg-light rounded-top-2 ps-5 m-0">
+            {/*Placeholder for navigation to Owner's profile*/}
+            <div className="container row bg-light pt-2 pb-2 m-0 rounded-top">
                 <div className="col-2 bg-light"></div>
                 <div className="col-8 bg-light">
-
-                    <ItineraryMap plan = {displayPlan}></ItineraryMap>
-
+                    <div className="card container">
+                        <div className="row container card-body">
+                            <div className="col-6">
+                                <div className="row pb-2 text-center">
+                                    <div className="">
+                                        <Link to={`/travelAdvisor/profile/${planOwnerId}`}>
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "no-user-icon.svg"}`}
+                                                alt={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "no-user-icon.svg"}`}
+                                                className="border rounded-circle"
+                                                style={{ height: "80px" }}    />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="row flex-wrap">
+                                    {planOwner && (
+                                        <div className="d-flex justify-content-center">
+                                            <button
+                                                className="btn btn-primary align-self-start rounded-pill"
+                                                onClick={() => (
+                                                    window.location.href = `/travelAdvisor/profile/${planOwnerId}`
+                                                )}>
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="col-6 mt-3">
+                                <div className="row flex-wrap">
+                                    <div className="col-sm-2">
+                                        <i className="fa fa-user" style={{color: "seagreen"}}/>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <p className="text-muted mb-0">{planOwner.username}</p>
+                                    </div>
+                                </div>
+                                <div className="row flex-wrap">
+                                    <div className="col-sm-2">
+                                        <i className="fa fa-suitcase" style={{color: "seagreen"}}/>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <p className="text-muted mb-0">{displayPlan.planName}</p>
+                                    </div>
+                                </div>
+                                <div className="row flex-wrap">
+                                    <div className="col-sm-2">
+                                        <i className="far fa-id-card" style={{color: "seagreen"}}/>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <p className="text-muted mb-0">{planId}</p>
+                                    </div>
+                                </div>
+                                <div className="row flex-wrap">
+                                    <div className="col-sm-2">
+                                        <i className="fa fa-info-circle" style={{color: "seagreen"}}/>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <p className="text-muted mb-0">{displayPlan.planDescription}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-2 bg-light"></div>
             </div>
 
-            {/*Placeholder for navigation to Owner's profile*/}
-            <div className="container my-3">
-                <div className="row bg-light rounded-top-2 ps-5 align-items-center flex-wrap">
-                    <div className="col-12 col-md-1 bg-light mb-3 mb-md-0">
-                        <Link to={`/travelAdvisor/profile/${planOwnerId}`}>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/img/${planOwner?.profileImage || "default-avatar.png"}`}
-                                alt=""
-                                className="border rounded-circle"
-                                style={{ height: "60px" }}    />
-                        </Link>
-                    </div>
-                    <div className="col-12 col-md-11 bg-light text-start">
-                        {planOwner && (
-                            <div className="d-flex justify-content-between">
-                                <div>
-                                    <h4 className="form-label mb-0">
-                                        Plan Owner: {planOwner.username}
-                                    </h4>
-                                    <p className="mb-0">Plan description: {displayPlan.planName}</p>
-                                </div>
-                                <button
-                                    className="btn btn-primary align-self-start"
-                                    onClick={() =>
-                                        (window.location.href = `/travelAdvisor/profile/${planOwnerId}`)
-                                    }
-                                >
-                                    View Profile
-                                </button>
-                            </div>
-                        )}
-                    </div>
+            <div className="container row bg-light m-0">
+                <div className="col-2 bg-light"></div>
+                <div className="col-8 bg-light">
+                    <ItineraryMap plan = {displayPlan}></ItineraryMap>
                 </div>
+                <div className="col-2 bg-light"></div>
             </div>
 
             {/*Placeholder ends here*/}
-            <div className="container bg-light pb-2 rounded-bottom-2">
-                <ItineraryList plan={displayPlan}></ItineraryList>
+            <div className="container row bg-light pb-2 pt-2 m-0 rounded-bottom">
+                <div className="col-2 bg-light"></div>
+                <div className="col-8 bg-light">
+                    <ItineraryList plan={displayPlan}></ItineraryList>
+                </div>
+                <div className="col-2 bg-light"></div>
             </div>
 
             {/*review part*/}
-
-            {/* write review */}
-            {!currentUser &&
-                <div style={{ textAlign: "center", marginTop: "20px", marginBottom:"10px" }}>
-                    <h5 style={{ marginBottom: "10px" }}>Please login to see review</h5>
-                    <span>
-                        <Link to="/travelAdvisor/login" style={{ textDecoration: "none" }}>Login</Link> now
-                    </span>
-                </div>
-            }
-            { currentUser &&
-                <div className="d-flex mb-3 mt-4">
-                    <a href="">
-                        <img src={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "default-avatar.png"}`}
-                             className="border rounded-circle mr-2"
-                             alt=""
-                             style={{ height: "40px", marginRight: "10px" }}/>
-                    </a>
-                <div className="form-outline w-100">
-                    <textarea className="form-control"
-                              id="textAreaExample"
-                              rows="2"
-                              value={reviewValue}
-                              placeholder = "Write a review"
-                              onChange = {(e) => setReviewValue(e.target.value)}/>
-                    <label className="form-label "
-                           htmlFor="textAreaExample"/>
-                    <button onClick={addReviewHandler} className="mt-2 btn btn-primary float-end" type="button">Post</button>
-                </div>
-            </div> }
-
             {/* MyReviews component */}
-            { reviews && <MyReviews reviews={reviews} > </MyReviews>}
+            <div className="container row bg-light pb-2 pt-2 m-0 rounded-">
+                <div className="col-2 bg-light"></div>
+                <div className="col-8 bg-light">
+                    <div className="card">
+                        <div className="card-header">
+                            <strong>Reviews</strong>
+                        </div>
+                        <div className="card-body">
+                            { reviews && <MyReviews reviews={reviews}/>}
+
+                            {/* write review */}
+                            <div>
+                                <div className="row d-flex">
+                                    <div className="col-1">
+                                        <div className="text-end ps-1 pt-1">
+                                            { currentUser &&
+                                                <div className="d-flex">
+                                                    <img src={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "no-user-icon.svg"}`}
+                                                         alt={`${process.env.PUBLIC_URL}/img/${currentUser?.profileImage || "no-user-icon.svg"}`}
+                                                         className="border rounded-circle mr-2"
+                                                         style={{ height: "40px", marginRight: "10px" }}/>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="col-9">
+                                        {!currentUser &&
+                                            <div style={{ textAlign: "center", marginTop: "20px", marginBottom:"10px" }}>
+                                                <h5 style={{ marginBottom: "10px" }}>Please login to see review</h5>
+                                                <span>
+                                                        <Link to="/travelAdvisor/login" style={{ textDecoration: "none" }}>Login</Link> now
+                                                    </span>
+                                            </div>
+                                        }
+                                        { currentUser &&
+                                            <>
+                                                <label className="form-label d-none" htmlFor="reviewTextArea"/>
+                                                <textarea className="form-control"
+                                                          id="reviewTextArea"
+                                                          rows="2"
+                                                          value={reviewValue}
+                                                          placeholder = "Write a review here..."
+                                                          onChange = {(e) => setReviewValue(e.target.value)}/>
+                                            </>
+                                        }
+                                    </div>
+                                    <div className="col-2">
+                                        <div className="float-end ps-3 pt-1">
+                                            { currentUser &&
+                                                <button onClick={addReviewHandler} className="btn btn-primary mt-2 float-start rounded-pill" type="button">Post</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-2 bg-light"></div>
+            </div>
 
             <div>
                 <footer>

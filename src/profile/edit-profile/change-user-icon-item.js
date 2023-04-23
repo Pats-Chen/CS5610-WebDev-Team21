@@ -39,7 +39,7 @@ const ChangeUserIconItem = ({icon = {
                      style={{height: "150px", width: "150px"}}/>
             </div>
             <div className="container-fluid ps-5 pt-2 pb-2">
-                <button className="btn btn-primary" onClick={saveIconChangeHandler}>Choose</button>
+                <button className="btn btn-primary rounded-pill" onClick={saveIconChangeHandler}>Choose</button>
             </div>
         </div>
     )
