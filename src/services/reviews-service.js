@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const REVIEWS_API = 'http://localhost:4000/api/reviews'
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const REVIEWS_API = `${BASE_URL}/api/reviews`;
 
 export const createReview = async (comment) => {
     const response = await axios.post(`${REVIEWS_API}`, comment)
