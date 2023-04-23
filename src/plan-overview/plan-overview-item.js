@@ -4,6 +4,8 @@ import {getUserProfile} from "../services/user-service";
 import {useSelector} from "react-redux";
 import {delTravelPlan} from "../services/travel-plan-service";
 import './plan-overview.css';
+import {deleteReview, findReviewsByPlanId} from "../services/reviews-service";
+import review from "../review";
 
 
 const PlanOverviewItem = (
@@ -31,6 +33,13 @@ const PlanOverviewItem = (
     const deletePlanClickHandler = (locations_id) => {
         if (currentUser.userStatus === "admin" || currentUser._id === planOverview.planOwner) {
             delTravelPlan(locations_id);
+            // console.log(planOverview._id);
+            findReviewsByPlanId(planOverview._id)
+                .then(reviews => {
+                    // console.log(reviews);
+                    // reviews.map((r) => console.log(r));
+                    reviews.map((r) => deleteReview(r._id));// This will log the resolved value of the promise
+                })
             window.location.reload();
         } else {
             console.log("User is not authorized to delete this plan!");
