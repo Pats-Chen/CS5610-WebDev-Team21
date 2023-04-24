@@ -14,9 +14,9 @@ import { useDispatch } from "react-redux";
 import './index.css';
 
 const PlanDetailComponent = () => {
-    const REACT_APP_GOOGLE_MAPS_API_KEY= "AIzaSyB5lMFVzSYMXPvnX6VJedaG0ihHqlEjuR4";
+    // const REACT_APP_GOOGLE_MAPS_API_KEY= "AIzaSyB5lMFVzSYMXPvnX6VJedaG0ihHqlEjuR4";
     const { isLoaded } = useLoadScript({
-                                           googleMapsApiKey: REACT_APP_GOOGLE_MAPS_API_KEY});
+                                           googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
     const {planId} = useParams();
     const dispatch = useDispatch();
     const {currentUser} = useSelector((state) => state.users);

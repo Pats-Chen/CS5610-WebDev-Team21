@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://cs5610-webdev-server-team21.onrender.com";
-// const BASE_URL = "http://localhost:4000"
+// const BASE_URL = "https://cs5610-webdev-server-team21.onrender.com";
+const BASE_URL = "http://localhost:4000"
 const TRAVEL_API = `${BASE_URL}/api/travel`;
 const api = axios.create({
     withCredentials: true
