@@ -209,19 +209,20 @@ const EditProfile = () => {
                                 <div className="row text-center">
                                     <div className="container mb-1">
                                         <Link to="/travelAdvisor/profile/myprofile"
-                                              className="btn btn-primary rounded-pill"
+                                              className="btn btn-primary rounded-pill me-2"
                                               role="button"
                                               onClick={saveChangeHandler}>Save</Link>
+                                        <Link to="/travelAdvisor/profile/myprofile"
+                                              className="btn btn-danger rounded-pill"
+                                              role="button">Cancel</Link>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
+            </div>
         </div>
-        </div>
-
     );
 }
 

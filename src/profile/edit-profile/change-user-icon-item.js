@@ -27,7 +27,7 @@ const ChangeUserIconItem = ({icon = {
             bio: currentUser.bio,
         };
         dispatch(updateUserThunk(updatedProfile));
-        navigate('/travelAdvisor/profile/myprofile');
+        navigate('/travelAdvisor/profile/myprofileedit');
     };
 
     return(
