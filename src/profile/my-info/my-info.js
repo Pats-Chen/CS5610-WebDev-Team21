@@ -40,6 +40,18 @@ const MyInfo = () => {
                 <div className="col-md-6">
                     <div className="container">
                         <div className="text-c">
+                            {currentUser && (currentUser._id === displayedUser._id) && (
+                                <div className="row text-center">
+                                    <div className="container mt-3">
+                                        <Link to="/travelAdvisor/myplans"
+                                              className="btn btn-primary rounded-pill me-2"
+                                              role="button">My plans</Link>
+                                        <Link to="/travelAdvisor/myreviews"
+                                              className="btn btn-primary rounded-pill"
+                                              role="button">My reviews</Link>
+                                    </div>
+                                </div>
+                            )}
                             <div className="card mb-3 mt-3">
                                 <div className="card-body">
                                     <div className="row">
