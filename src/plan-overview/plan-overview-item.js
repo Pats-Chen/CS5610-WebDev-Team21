@@ -4,10 +4,8 @@ import {getUserProfile} from "../services/user-service";
 import {useSelector} from "react-redux";
 import {delTravelPlan} from "../services/travel-plan-service";
 import {findReviewsByPlanId, deleteReview} from "../services/reviews-service";
-import {findReviewByPlanIdThunk} from "../services/reviews-thunks.js";
-import { useDispatch } from "react-redux";
 import './plan-overview.css';
-import review from "../review";
+
 
 const PlanOverviewItem = (
     {
@@ -27,12 +25,10 @@ const PlanOverviewItem = (
     }
 ) => {
     const {currentUser} = useSelector((state) => state.users);
-    const {reviews} = useSelector((state) => state.reviews);
     const [planOwner,setPlanOwner] = useState(null);
     const [placeId, setPlaceId] = useState(null);
     const [placeDetails, setPlaceDetails] = useState(null);
 
-    const dispatch = useDispatch();
 
     const deletePlanClickHandler = (locations_id) => {
         if (currentUser.userStatus === "admin" || currentUser._id === planOverview.planOwner) {
@@ -40,11 +36,10 @@ const PlanOverviewItem = (
             // console.log(planOverview._id);
             findReviewsByPlanId(planOverview._id)
                 .then(reviews => {
-                    // console.log(reviews);
+                     // console.log(reviews);
                     // reviews.map((r) => console.log(r));
                     reviews.map((r) => deleteReview(r._id));// This will log the resolved value of the promise
-                })
-            window.location.reload();
+                }).then(()=>window.location.reload())
         } else {
             console.log("User is not authorized to delete this plan!");
         }
@@ -64,9 +59,9 @@ const PlanOverviewItem = (
                 });
             };
         };
+
         getUserProfile(planOverview.planCreator).then((result)=>setPlanOwner(result))
         if (placeId === null) setPlaceId(planOverview.locations[0].placeId);
-
         fetchPlaceURL();
     }, [placeId]);
 
