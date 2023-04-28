@@ -15,8 +15,8 @@ import './index.css';
 
 const PlanDetailComponent = () => {
     // const REACT_APP_GOOGLE_MAPS_API_KEY= "AIzaSyB5lMFVzSYMXPvnX6VJedaG0ihHqlEjuR4";
-    const { isLoaded } = useLoadScript({
-                                           googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
+    // const { isLoaded } = useLoadScript({
+    //                                        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY});
     const {planId} = useParams();
     const dispatch = useDispatch();
     const {currentUser} = useSelector((state) => state.users);
@@ -27,7 +27,7 @@ const PlanDetailComponent = () => {
     const [displayPlan,setDisplayPlan] = useState(null);
     const [planOwner, setPlanOwner]= useState(null);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // find Reviews by planId
     useEffect(() => {
@@ -70,7 +70,7 @@ const PlanDetailComponent = () => {
 
 
 
-    if (!isLoaded) return <div>Loading...</div>
+    // if (!isLoaded) return <div>Loading...</div>
     return displayPlan && (
         <>
             {/*Placeholder for navigation to Owner's profile*/}
