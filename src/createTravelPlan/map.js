@@ -50,7 +50,9 @@ class Map extends Component {
                 }
             })
         ));
+
         this.setState({ Markers: [...Markers, ...newMarkers] });
+        map.panTo(searchResults[0].location);
     }
     initMap() {
         const map = new window.google.maps.Map(document.getElementById('map'), {
