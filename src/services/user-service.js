@@ -13,7 +13,7 @@ const api = axios.create({
 
 export const signup = (user) =>
     api.post(`${SECURITY_API}/signup`, user)
-        .then(response => response.data);q·q
+        .then(response => response.data);
 
 
 export const login = (user) =>{
