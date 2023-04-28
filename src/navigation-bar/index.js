@@ -33,18 +33,20 @@ const NavigationBar = () => {
     }, []);
     return (
         <div className="container-fluid">
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-light">
+            <nav className="navbar navbar-expand navbar-light fixed-top bg-light">
                 <div className="container-fluid">
                     <Link to="#" className="navbar-brand">
                         <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} width="30" height="30"
                              alt={`${process.env.PUBLIC_URL}/img/logo.svg`}
                              className="rounded-circle bg-success"/>
                     </Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarCollapse">
+
+                    {/*<button className="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"*/}
+                    {/*        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">*/}
+                    {/*    <span className="navbar-toggler-icon"></span>*/}
+                    {/*</button>*/}
+
+                    <div className="collapse navbar-collapse show" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
                                 <Link to="/travelAdvisor/home" className="nav-link text-dark">Home</Link>

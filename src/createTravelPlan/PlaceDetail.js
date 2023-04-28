@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import {useParams, useNavigate, Link} from 'react-router-dom';
 
 const PlaceDetail = () => {
     const {placeId} = useParams();
@@ -64,70 +64,155 @@ const PlaceDetail = () => {
             <style>
                 #mymap {`height:200px`}
             </style>
-            <button
-                onClick={handleClick}
-                style={{
-                    backgroundColor: 'lightblue',
-                    color: 'black',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    padding: '10px 20px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    marginBottom: '20px',
-                }}
-            >
-                🔙 Back Create Travel Plan
-            </button>
-            <h1>{placeDetails.name}</h1>
-            {photoUrl && (
-                <img
-                    src={photoUrl}
-                    alt={placeDetails.name}
-                    style={{width: '300px', height: 'auto'}}
-                />
-            )}
-            <p>Latitude: {lat}</p>
-            <p>Longitude: {lng}</p>
-            <p>Address: {placeDetails.formatted_address}</p>
-            <p>International Phone Number: {placeDetails.international_phone_number}</p>
-            <p>Phone Number: {placeDetails.formatted_phone_number}</p>
-            <p>Website: {placeDetails.website}</p>
-            <p>Rating: {placeDetails.rating}</p>
-            <h5>Types:</h5>
-            <ul>
-                {placeDetails.types.map((type, index) => (
-                    <li key={index}>{type}</li>
-                ))}
-            </ul>
-            <h5>Opening Hours:</h5>
-            <ul>
-                {openingHours.map((day, index) => (
-                    <li key={index}>{day}</li>
-                ))}
-            </ul>
-            <h5>Reviews:</h5>
-            <ul>
-                {reviews.map((review, index) => (
-                    <li key={index}>
-                        <p>
-                            <strong>{review.author_name}</strong> (
-                            {review.rating} stars)
-                        </p>
-                        <p>{review.text}</p>
-                        {review.relative_time_description && (
-                            <p>
-                                <small>
-                                    Posted {review.relative_time_description}
-                                </small>
-                            </p>
-                        )}
-                    </li>
-                ))}
-            </ul>
-            <h5>Map</h5>
-            <div ref={mapElement} id="map" style={{height: '400px'}}></div>
+
+            <div className="container row bg-light pt-2 pb-2 m-0 rounded">
+                <div className="col-2 bg-light text-center">
+                    <button
+                        onClick={handleClick}
+                        className="btn btn-primary rounded-pill"
+                    >Back
+                    </button>
+                </div>
+                <div className="col-8 bg-light">
+                    <div className="card container p-0 m-0">
+                        <div>
+                            {photoUrl && (
+                                <img src={photoUrl}
+                                     alt={placeDetails.name}
+                                     className="card-img-top"
+                                     style={{width: 'fit', height: 'auto'}}/>
+                            )}
+                        </div>
+                        <div className="row container card-body">
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-map-marker fa-1x" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.name}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-globe-asia fa-1x" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.formatted_address}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-phone fa-1x" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.formatted_phone_number}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-blender-phone fa-1x" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.international_phone_number}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-wifi fa-1x" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.website}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-compass" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">({lat}, {lng})</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-star" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">{placeDetails.rating}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-calendar" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">Opening hour</p>
+                                    <ul className="text-muted mb-0">
+                                        {openingHours.map((day, index) => (
+                                            <li key={index}>{day}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-list" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">Place type</p>
+                                    <ul className="text-muted mb-0">
+                                        {placeDetails.types.map((type, index) => (
+                                            <li key={index}>{type}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div className="col-3 text-end">
+                                    <i className="fa fa-comments" style={{color: "seagreen"}}/>
+                                </div>
+                                <div className="col-9">
+                                    <p className="text-muted mb-0">Comments</p>
+                                    <ul className="text-muted mb-0">
+                                        {reviews.map((review, index) => (
+                                            <li key={index}>
+                                                <span>
+                                                    <span><strong>{review.author_name}</strong></span>
+                                                    <span> ({review.rating}/5)</span>
+                                                    {review.relative_time_description && (
+                                                        <span><small> Posted {review.relative_time_description}</small></span>
+                                                    )}
+                                                </span>
+                                                <p>{review.text}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row flex-wrap">
+                                <div ref={mapElement} id="map" style={{height: '400px'}}></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-2 bg-light"></div>
+            </div>
+
+            <div>
+                <footer>
+                    <p className="float-end text-muted"><a href="#">Back to top</a></p>
+                    <p className="text-muted">&copy; Team 21 &middot; CS5610 &middot; Northeastern University &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </footer>
+            </div>
         </div>
     );
 };
